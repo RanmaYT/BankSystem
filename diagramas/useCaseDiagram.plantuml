@@ -1,0 +1,44 @@
+@startuml Casos de Uso
+top to bottom direction
+
+' Atores
+actor "Cliente" as cliente
+actor "Administrador" as adm
+
+
+
+' Sistema
+rectangle System {
+    ' Casos de uso
+    left to right direction
+    usecase cancelarConta as "Cancelar conta"
+    usecase depositar as "Depositar"
+    usecase sacar as "Sacar"
+    usecase investir as "Investir"
+    usecase realizarPagamento as "Realizar pagamento"
+    usecase verificarSaldo as "Veririficar saldo"
+    usecase verificarExtrato as "Verificar extrato"
+
+    usecase cadastrarCliente as "Cadastrar cliente"
+    usecase gerenciarCliente as "Gerenciar cliente"
+    usecase imporRestricao as "Impor restrição"
+
+}
+
+' Relacionamentos
+
+' Relacionamentos cliente
+cliente -up-> cancelarConta
+cliente -up-> depositar
+cliente -up-> sacar
+cliente -up-> investir
+cliente -up-> realizarPagamento
+cliente -up-> verificarSaldo
+cliente -up-> verificarExtrato
+
+' Relacionamentos Admin
+adm -down-> cadastrarCliente
+adm -down-> gerenciarCliente
+adm -down-> imporRestricao
+
+@enduml

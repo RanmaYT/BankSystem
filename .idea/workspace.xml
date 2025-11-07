@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTOs/ExtratoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/ExtratoBancarioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Conta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -23,9 +32,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="359hSmPbnTqEpjtQS06dPRLcPbh" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -43,9 +52,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Jucyara/IdeaProjects/BankSystem"
   }
 }]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="" />

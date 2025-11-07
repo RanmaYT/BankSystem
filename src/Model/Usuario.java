@@ -1,6 +1,9 @@
 package Model;
 
-public abstract class Usuario {
+import SingletonRepositories.IStorable;
+
+public abstract class Usuario implements IStorable {
+    private int id;
     private String nome;
     private String senha;
     private String email;
@@ -22,4 +25,8 @@ public abstract class Usuario {
     public void atualizarDados(){
 
     }
+
+    public abstract String converterParaStringArmazenavel();
+
+    public int pegarId() { return id; }
 }

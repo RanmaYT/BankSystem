@@ -1,0 +1,323 @@
+@startuml Diagrama de Classes
+
+' O controller recebe o input do usuário, pega os dados com o model e passa isso pra view
+
+' View 
+package View {
+    class Menu {
+        + int menuPrincipal()
+        + int menuPrincipalCliente()
+        + int menuPrincipalAdministrador()
+
+        + void mostrarExtrato(ExtratoDTO extrato)
+    }
+
+    class TextColor {
+        + static final String RED
+        + static final String GREEN
+        + static final String RESET
+    }
+
+
+}
+
+' Controller
+package Controller {
+    class AdminController {
+        - AdminService admService
+        
+        + AdminController(AdminService admService)
+
+        + void bloquearCliente(int clienteId)
+        + void cadastrarCliente()
+    }
+
+    class ContaController {
+        - ContaService contaService
+        
+        + ContaController(ContaService contaService)
+
+        + void sacar(double quantia) 
+        + void depositar(double quantia)
+        + void pegarExtrato()
+    }
+}
+
+' Model
+package Model {
+    ' O model contém classes de dados (que guardam dados e fazem operações simples consigo mesma)
+    ' ou classes de de gerenciamento / serviço (que vão fazer operações mais complexas envolvendo entidades distintas) 
+    
+    ' Usuário
+    enum NivelUsuario {
+        "Admin",
+        "Cliente"
+    }
+
+    abstract class Usuario {
+        - String nome
+        - String senha
+        - String email
+        - String cpf
+        - NivelUsuario cargo
+
+        + Usuario(String nome, String senha, String email, String cpf, NivelUsuario cargo)
+
+        'Verifica se a estrutura da senha é válida
+        + boolean validarSenha(String senha) 
+        + void atualizarDados()
+    }
+
+    ' Posso colocar campos únicos para essas classes aqui
+    class Admin {
+        - String matricula
+
+        + Admin(String nome, String senha, String email, String cpf, String matricula)
+    }
+
+    class Cliente {
+        - double rendaMensal
+
+        + Cliente(String nome, String senha, String email, String cpf, double rendaMensal)
+    }
+
+    ' Conta
+    abstract class Conta {
+        - double saldo 
+        - Usuario titularConta
+        - ExtratoBancario extrato
+        - IContaState estadoConta
+
+        + Conta()
+
+        + void mudarEstado(IContaState novoEstado)
+        + void creditar(double quantidade)
+        + void debitar(double quantidade)
+        + void deletarConta()
+    }
+
+    class ContaCorrente {
+        ' O cheque especial vai ser 10% da renda mensal
+        - double chequeEspecial
+
+        ' O método de debitar vai ser sobreescrito para
+        ' permitir o uso do cheque especial
+        + void debitar(double quantidade)
+        + void usarChequeEspecial()
+    }
+
+    ' Extrato Bancário
+    class OperacaoExtratavel {
+        - String nomeOperacao;
+        - double valorDaOperacao;
+
+        + OperacaoExtratavel(String nomeOperacao, double valorDaOperacao)
+    }
+
+    class ExtratoBancario{
+        - List<OperacaoExtratavel> operacoesRealizadas
+
+        + ExtratoBancario() 
+
+        + void adicionarOperacao(OperacaoExtratavel operacao)
+    }
+
+
+    ' Relacionamentos do model
+
+    ' Relacionamento do usuário
+    Usuario <|-down- Admin
+    Usuario <|-down- Cliente
+    Usuario -left-> NivelUsuario
+
+    ' Relacionamento das contas
+    Conta <|-- ContaCorrente
+    Conta *-left- Usuario : 1 tem 1
+    Conta *--right-- ExtratoBancario : 1 tem 1 
+
+    ' Relacionamento do extrato
+    ExtratoBancario *-- OperacaoExtratavel : 1 tem N >
+
+
+
+    ' Packages internos
+    package Services{
+        ' Serviços serão classes que auxiliarão classes de dados a se relacionar com outras classes
+        class AutenticacaoService {
+            + boolean verificarLogin(String email, String senha)
+        }
+        
+        class AdminService{
+            - UserRepository userRepo
+
+            + void cadastrarCliente()
+            + void bloquearCliente(int id || String cpf)
+        }
+
+        class ContaService {
+            ' O sistema vai utilizar do sessionManager pra pegar a conta do cliente logado
+            - SessionManager sessionManager
+            - ContaRepository contaRepo
+
+            + void sacar(double quantia)
+            + void depositar(double quantia)
+            + ExtratoBancario pegarExtrato()
+        }
+
+        class PagamentoService{
+            - IPaymentStrategy pagamentoStrategy
+
+            + void realizarPagamento(double quantia)
+        }
+
+        ' Relacionamentos dos serviços
+        AdminService <-up- AdminController
+        ContaService <-up- ContaController
+        
+    }
+}
+
+' Util
+package Util{
+    class InputUtil {
+        + String getAlphaInput()
+        + int getIntInput()
+    }
+
+    class FinancaUtil {
+        + static double calcularChequeEspecial(double rendaMensal)
+    }
+}
+
+' DTOs
+package DTOs {
+        class OperacaoExtratavelDTO {
+            - String nomeOperacao
+            - double valorOperacao
+
+            + OperacaoExtratavelDTO(String nomeOperacao, double valorOperacao)
+        }
+
+        class ExtratoDTO{
+            - List<OperacaoExtratavelDTO> operacoesRealizadas
+
+            + ExtratoDTO()
+        }
+
+        ExtratoDTO -- ExtratoBancario
+        ExtratoDTO *-left- OperacaoExtratavelDTO
+}
+
+' State
+package State {
+    interface IContaState{
+        + boolean podeDeletarConta()
+        + boolean podeDebitar()
+        + boolean podeCreditar()
+        + boolean podePegarExtrato()
+    }
+
+    class ContaPositiva {
+        - Conta conta
+        + ContaPositiva(Conta conta)
+    }
+
+    class ContaNegativada {
+        - Conta conta
+        + ContaNegativada(Conta conta)
+    }
+
+    class ContaBloqueada {
+        - Conta conta
+        + ContaBloqueada(Conta conta)
+    }
+
+    class ContaEncerrada {
+        - Conta conta
+        + ContaEncerrada(Conta conta)
+    }
+
+    ' Relacionamento dos estados contas 
+    Conta *--right- IContaState
+    IContaState <|.. ContaPositiva
+    IContaState <|.. ContaNegativada
+    IContaState <|.. ContaBloqueada
+    IContaState <|..right. ContaEncerrada
+}
+
+' Strategy
+package Strategy{
+    interface IPaymentStrategy {
+        + void pagar(double quantia)
+    }
+
+    class EspecieStrategy {
+        + void pagar(double quantia)
+    }
+
+    class InternetBankingStrategy {
+        + void pagar(double quantia)
+    }
+
+    ' Relacionamentos
+    IPaymentStrategy <|.up. EspecieStrategy
+    IPaymentStrategy <|.up. InternetBankingStrategy 
+
+    IPaymentStrategy .down.* PagamentoService
+}
+
+' Repositories
+package SingletonRepositories {
+    ' Provavelmente vou salvar os dados em arquivos
+    ' Classes que vão guardar conjuntos de dados
+
+    ' Interface para salvamento
+    interface IStorable {
+        + String converterParaStringArmazenavel()
+        + int pegarId()
+    }
+
+    IStorable <|... Usuario
+    IStorable <|... Conta
+    IStorable <|... ExtratoBancario
+
+    
+    interface Repository<T extends IStorable>{
+        + T acharPorId(int id)
+        + void salvar(T entidade)
+        + void delete(T entidade) 
+    }
+    
+    class UserRepository {
+       - static UserRepository instance
+       + static Repository getInstance()
+    }
+
+    class ContaRepository {
+        - static ContaRepository instance
+        + static Repository getInstance()
+    }
+
+    class ExtratoRepository {
+        - static ExtratoRepository instance
+        + static Repository getInstance()
+    }
+
+    ' Relacionamentos
+    Repository <|.down. UserRepository 
+    Repository <|.down. ContaRepository 
+    Repository <|.down. ExtratoRepository
+    Repository --> IStorable
+}
+
+package SingletonSession{
+    class SessionManager {
+        - static SessionManager instance
+        - Usuario usuarioLogado
+        - Conta contaAtiva
+
+        + static SessionManager getInstance()
+    }
+}
+
+@enduml

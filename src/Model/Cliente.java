@@ -7,4 +7,9 @@ public class Cliente extends Usuario {
         super(nome, senha, email, cpf, NivelUsuario.Cliente);
         this.rendaMensal = rendaMensal;
     }
+
+    @Override
+    public String converterParaStringArmazenavel() {
+        return "";
+    }
 }
