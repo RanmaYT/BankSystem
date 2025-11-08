@@ -31,9 +31,15 @@ public abstract class Usuario implements IStorable {
 
     }
 
-    public String getNome(){
-        return nome;
-    }
+    public String getNome(){ return nome; }
+
+    public String getSenha(){ return senha; }
+
+    public String getEmail(){ return email; }
+
+    public String getCpf(){ return cpf; }
+
+    public NivelUsuario getCargo(){ return cargo; }
 
     public abstract String converterParaStringArmazenavel();
 

@@ -1,14 +1,14 @@
 package SingletonRepositories;
 
 import Model.Conta;
+import Model.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class ContaRepository implements Repository<Conta>{
     private static ContaRepository instance;
-    private static Map<Integer, Conta> contasCadastrados;
+    private static Map<Usuario, Conta> contasCadastrados;
 
     private ContaRepository() {
         contasCadastrados = new HashMap<>();
@@ -22,18 +22,17 @@ public class ContaRepository implements Repository<Conta>{
         return instance;
     }
 
-    @Override
-    public Conta acharPorId(int id) {
-        return contasCadastrados.get(id);
+    public Conta acharPorTitular(Usuario titular) {
+        return contasCadastrados.get(titular);
     }
 
     @Override
     public void salvar(Conta conta) {
-        contasCadastrados.put(conta.getId(), conta);
+        contasCadastrados.put(conta.getTitularConta(), conta);
     }
 
     @Override
     public void deletar(Conta conta) {
-        contasCadastrados.remove(conta.getId());
+        contasCadastrados.remove(conta.getTitularConta());
     }
 }

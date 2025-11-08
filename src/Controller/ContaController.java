@@ -1,5 +1,6 @@
 package Controller;
 
+import DTOs.ExtratoBancarioDTO;
 import Model.Services.ContaService;
 
 public class ContaController {
@@ -21,7 +22,7 @@ public class ContaController {
         contaService.realizarPagamento(valor);
     }
 
-    public void pegarExtrato() {
-
+    public ExtratoBancarioDTO pegarExtrato() {
+        return null;
     }
 }

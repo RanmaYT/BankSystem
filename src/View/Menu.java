@@ -1,5 +1,7 @@
 package View;
 
+import Controller.AdminController;
+import DTOs.UserDTO;
 import Util.InputUtil;
 
 public class Menu {
@@ -19,5 +21,9 @@ public class Menu {
 
     public int menuPrincipalAdmin(){
         return 0;
+    }
+
+    public void mostrarInfoUsuario(UserDTO userDTO){
+
     }
 }

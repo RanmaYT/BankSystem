@@ -6,25 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BankSystem/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BankSystem/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Conta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/AutenticacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AutenticacaoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Util/FinancaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/FinancaUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Util/InputUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/InputUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TextColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TextColor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,19 +46,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Jucyara/IdeaProjects/BankSystem"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jucyara/IdeaProjects/BankSystem&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -77,16 +69,5 @@
       <updated>1762528196600</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -19,7 +19,6 @@ public class UserRepository implements Repository<Usuario>{
         return instance;
     }
 
-    @Override
     public Usuario acharPorId(int id) {
         return usuariosCadastrados.get(id);
     }

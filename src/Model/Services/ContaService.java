@@ -7,6 +7,9 @@ import Model.Usuario;
 
 import SingletonRepositories.ContaRepository;
 import SingletonSession.SessionManager;
+import State.ContaBloqueada;
+import State.ContaNegativada;
+import State.ContaPositiva;
 
 public class ContaService {
     private SessionManager sessionManager;
@@ -29,7 +32,7 @@ public class ContaService {
 
     public void sacar(double valor){
         // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorId(1);
+        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
         // Realizar a operação
         conta.debitar(valor);
@@ -37,7 +40,7 @@ public class ContaService {
 
     public void depositar(double valor){
         // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorId(1);
+        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
         // Realizar a operação
         conta.creditar(valor);
@@ -45,9 +48,21 @@ public class ContaService {
 
     public void realizarPagamento(double valor) {
         // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorId(1);
+        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
         // Realizar a operação
         pagamentoService.realizarPagamento(conta, valor);
+    }
+
+    public void bloquearConta(Usuario cliente) {
+        Conta conta = contaRepo.acharPorTitular(cliente);
+
+        conta.mudarEstado(new ContaBloqueada(conta));
+    }
+
+    public void desbloquearConta(Usuario cliente) {
+        Conta conta = contaRepo.acharPorTitular(cliente);
+
+        conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva(conta) : new ContaNegativada(conta));
     }
 }
