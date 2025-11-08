@@ -3,6 +3,7 @@ package Model.Services;
 import Factory.ContaFactory;
 import Model.Conta;
 
+import Model.OperacaoExtratavel;
 import Model.Usuario;
 
 import SingletonRepositories.ContaRepository;
@@ -10,6 +11,9 @@ import SingletonSession.SessionManager;
 import State.ContaBloqueada;
 import State.ContaNegativada;
 import State.ContaPositiva;
+import Strategy.EspeciePayment;
+import Strategy.IPaymentStrategy;
+import Strategy.InternetBankingStrategy;
 
 public class ContaService {
     private SessionManager sessionManager;
@@ -52,12 +56,25 @@ public class ContaService {
         conta.creditar(valor);
     }
 
-    public void realizarPagamento(double valor) {
+    public void realizarPagamento(IPaymentStrategy strategy, String itemPago, double valor) {
+        // Setta a estratégia que será usada
+        pagamentoService.setPayStrategy(strategy);
+
         // Pegar a conta no repo
         Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
         // Realizar a operação
         pagamentoService.realizarPagamento(conta, valor);
+
+        // Salva a operação no extrato
+    }
+
+    public void salvarNoExtrato(Conta conta, String nomeOperacao, double valorOperacao){
+        // Cria uma operação extratável
+
+        // Pegar o extrato
+
+        // Atualizar o
     }
 
     public void bloquearConta(Usuario cliente) {

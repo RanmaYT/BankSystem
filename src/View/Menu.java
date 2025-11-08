@@ -27,6 +27,7 @@ public class Menu {
         System.out.println("[1] Ver saldo");
         System.out.println("[2] Sacar");
         System.out.println("[3] Depositar");
+        System.out.println("[4] Realizar pagamento");
 
         int opcao = input.getIntegerInput("|| ");
 
@@ -41,6 +42,29 @@ public class Menu {
             case 3:
                 double valorDeposito = input.getDoubleInput("Valor a ser depositado: ");
                 contaController.depositar(valorDeposito);
+                break;
+            case 4:
+                boolean escolhaValida = false;
+                int escolhaPagamento = 0;
+
+                while(!escolhaValida) {
+                    // Perguntar como ele vai pagar
+                    System.out.println("Como você quer pagar?");
+                    System.out.println("[1] Espécie");
+                    System.out.println("[2] Internet Banking");
+                    System.out.println("[0] Voltar");
+
+                    escolhaPagamento = input.getIntegerInput("|| ");
+
+                    escolhaValida = !(escolhaPagamento < 1 || escolhaPagamento > 2);
+                    if(escolhaPagamento == 0) { return; }
+                }
+
+                String itemPago = input.getStringInput("O que está sendo pago: ");
+                double valorPago = input.getDoubleInput("Qual o valor pago: ");
+
+                contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
+
                 break;
             default:
                 System.out.println("Valor inválido, usuário!");

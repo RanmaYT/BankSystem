@@ -6,6 +6,7 @@ import Model.Services.PagamentoService;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
+import Strategy.EspeciePayment;
 import Util.InputUtil;
 import View.Menu;
 
@@ -17,7 +18,7 @@ public class Main {
         UserRepository uR = UserRepository.getInstance();
 
         // Services
-        PagamentoService pagamentoService = new PagamentoService();
+        PagamentoService pagamentoService = new PagamentoService(new EspeciePayment());
         ContaService contaService = new ContaService(sM, cR, pagamentoService);
         AdminService adminService = new AdminService(uR, contaService);
 
