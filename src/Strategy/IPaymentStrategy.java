@@ -3,5 +3,5 @@ package Strategy;
 import Model.Conta;
 
 public interface IPaymentStrategy {
-    public void pagar(Conta conta, double valor);
+    public double pagar(Conta conta, double valor);
 }

@@ -2,6 +2,7 @@ import Controller.AdminController;
 import Controller.ContaController;
 import Model.Services.AdminService;
 import Model.Services.ContaService;
+import Model.Services.MonetaryServices;
 import Model.Services.PagamentoService;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
@@ -19,12 +20,13 @@ public class Main {
 
         // Services
         PagamentoService pagamentoService = new PagamentoService(new EspeciePayment());
-        ContaService contaService = new ContaService(sM, cR, pagamentoService);
+        MonetaryServices monetaryServices = new MonetaryServices(cR, sM, pagamentoService);
+        ContaService contaService = new ContaService(sM, cR);
         AdminService adminService = new AdminService(uR, contaService);
 
         // Controllers
         AdminController adminController = new AdminController(adminService);
-        ContaController contaController = new ContaController(contaService);
+        ContaController contaController = new ContaController(contaService, monetaryServices);
 
         // Menu
         InputUtil inputUtil = new InputUtil();

@@ -64,6 +64,8 @@ public abstract class Conta implements IStorable {
         return titularConta;
     }
 
+    public ExtratoBancario getExtrato(){ return extrato; }
+
     public abstract String converterParaStringArmazenavel();
     public int getId() { return id; }
 }

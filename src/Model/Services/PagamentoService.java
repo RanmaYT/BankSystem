@@ -14,7 +14,7 @@ public class PagamentoService {
         this.payStrategy = payStrategy;
     }
 
-    public void realizarPagamento(Conta conta, double valor) {
-        payStrategy.pagar(conta, valor);
+    public double realizarPagamento(Conta conta, double valor) {
+        return payStrategy.pagar(conta, valor);
     }
 }

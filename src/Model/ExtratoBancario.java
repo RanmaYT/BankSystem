@@ -11,6 +11,6 @@ public class ExtratoBancario {
     }
 
     public void adicionarOperacao(OperacaoExtratavel operacao){
-
+        operacoesRealizadas.add(operacao);
     }
 }

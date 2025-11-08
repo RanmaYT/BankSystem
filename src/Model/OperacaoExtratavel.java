@@ -1,5 +1,7 @@
 package Model;
 
+import View.TextColor;
+
 public class OperacaoExtratavel {
     private String nomeOperacao;
     private double valorDaOperacao;

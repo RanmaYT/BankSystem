@@ -2,27 +2,35 @@ package Controller;
 
 import DTOs.ExtratoBancarioDTO;
 import Model.Services.ContaService;
+import Model.Services.MonetaryServices;
 import Strategy.EspeciePayment;
 import Strategy.IPaymentStrategy;
 import Strategy.InternetBankingStrategy;
 
 public class ContaController {
     private ContaService contaService;
+    private MonetaryServices monetaryServices;
 
-    public ContaController(ContaService contaService) {
+    public ContaController(ContaService contaService, MonetaryServices monetaryServices) {
         this.contaService = contaService;
+        this.monetaryServices = monetaryServices;
     }
 
     public double verSaldo(){
         return contaService.verSaldo();
     }
 
+    public ExtratoBancarioDTO pegarExtrato() {
+        contaService.verExtrato();
+        return null;
+    }
+
     public void sacar(double valor) {
-        contaService.sacar(valor);
+        monetaryServices.sacar(valor);
     }
 
     public void depositar(double valor) {
-        contaService.depositar(valor);
+        monetaryServices.depositar(valor);
     }
 
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
@@ -41,10 +49,8 @@ public class ContaController {
                 return;
         }
 
-        contaService.realizarPagamento(strategy, itemPago, valor);
+        monetaryServices.realizarPagamento(strategy, itemPago, valor);
     }
 
-    public ExtratoBancarioDTO pegarExtrato() {
-        return null;
-    }
+
 }

@@ -2,6 +2,7 @@ package View;
 
 import Controller.AdminController;
 import Controller.ContaController;
+import DTOs.ExtratoBancarioDTO;
 import DTOs.UserDTO;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
@@ -28,6 +29,7 @@ public class Menu {
         System.out.println("[2] Sacar");
         System.out.println("[3] Depositar");
         System.out.println("[4] Realizar pagamento");
+        System.out.println("[5] Ver Extrato");
 
         int opcao = input.getIntegerInput("|| ");
 
@@ -64,7 +66,9 @@ public class Menu {
                 double valorPago = input.getDoubleInput("Qual o valor pago: ");
 
                 contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
-
+                break;
+            case 5:
+                contaController.pegarExtrato();
                 break;
             default:
                 System.out.println("Valor inválido, usuário!");
@@ -125,5 +129,9 @@ public class Menu {
 
     public void mostrarInfoUsuario(UserDTO userDTO){
         System.out.println(userDTO);
+    }
+
+    public void mostrarExtrato(ExtratoBancarioDTO extratoBancarioDTO) {
+
     }
 }
