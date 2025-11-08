@@ -1,6 +1,13 @@
 package View;
 
+import Util.InputUtil;
+
 public class Menu {
+    private InputUtil input;
+
+    public Menu(InputUtil input) {
+        this.input = input;
+    }
 
     public int menuPrincipal(){
         return 0;

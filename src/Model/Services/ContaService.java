@@ -1,6 +1,10 @@
 package Model.Services;
 
+import Factory.ContaFactory;
 import Model.Conta;
+
+import Model.Usuario;
+
 import SingletonRepositories.ContaRepository;
 import SingletonSession.SessionManager;
 
@@ -15,16 +19,35 @@ public class ContaService {
         this.pagamentoService = pagamentoService;
     }
 
-    public void sacar(double valor){
+    public void criarConta(Usuario usuario, ContaFactory contaFactory){
+        Conta conta = contaFactory.criarConta(usuario);
 
+        contaRepo.salvar(conta);
+
+        System.out.println("Conta criada e cadastrada com sucesso!");
+    }
+
+    public void sacar(double valor){
+        // Pegar a conta no repo
+        Conta conta = contaRepo.acharPorId(1);
+
+        // Realizar a operação
+        conta.debitar(valor);
     }
 
     public void depositar(double valor){
+        // Pegar a conta no repo
+        Conta conta = contaRepo.acharPorId(1);
 
+        // Realizar a operação
+        conta.creditar(valor);
     }
 
     public void realizarPagamento(double valor) {
-        // Conta conta = VAI PEGAR A CONTA
-        // pagamentoService.realizarPagamento(conta, valor); VAI DELEGAR O TRABLHO PRO SISTEMA DE PAGAMENTO
+        // Pegar a conta no repo
+        Conta conta = contaRepo.acharPorId(1);
+
+        // Realizar a operação
+        pagamentoService.realizarPagamento(conta, valor);
     }
 }

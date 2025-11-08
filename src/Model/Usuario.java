@@ -4,6 +4,8 @@ import SingletonRepositories.IStorable;
 
 public abstract class Usuario implements IStorable {
     private int id;
+    private static int idCount = 1;
+
     private String nome;
     private String senha;
     private String email;
@@ -16,6 +18,9 @@ public abstract class Usuario implements IStorable {
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
+
+        this.id = idCount;
+        idCount++;
     }
 
     public boolean validarSenha(String senha){
@@ -26,7 +31,11 @@ public abstract class Usuario implements IStorable {
 
     }
 
+    public String getNome(){
+        return nome;
+    }
+
     public abstract String converterParaStringArmazenavel();
 
-    public int pegarId() { return id; }
+    public int getId() { return id; }
 }

@@ -5,15 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTOs/ExtratoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/ExtratoBancarioDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BankSystem/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BankSystem/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Conta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/AutenticacaoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AutenticacaoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Util/FinancaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/FinancaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Util/InputUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/InputUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/TextColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TextColor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,5 +77,16 @@
       <updated>1762528196600</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

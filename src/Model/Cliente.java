@@ -12,4 +12,8 @@ public class Cliente extends Usuario {
     public String converterParaStringArmazenavel() {
         return "";
     }
+
+    public double getRendaMensal(){
+        return  rendaMensal;
+    }
 }

@@ -4,7 +4,7 @@ import Model.Conta;
 import Model.Usuario;
 
 public class SessionManager {
-    private SessionManager instance;
+    private static SessionManager instance;
     private Usuario usuarioLogado;
     private Conta contaAtiva;
 
@@ -12,7 +12,7 @@ public class SessionManager {
 
     }
 
-    public SessionManager getInstance(){
+    public static SessionManager getInstance(){
         if(instance == null) { instance = new SessionManager(); }
         return instance;
     }
