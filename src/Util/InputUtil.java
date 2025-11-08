@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class InputUtil {
     private Scanner sc = new Scanner(System.in);
 
-    public String getAlphaInput(String nomeCampo){
+    public String getAlphaInput(String campoEntrada){
         // Obs: essa função só coleta inputs formados apenas por letras e espaços
         boolean hasOnlyLetters = false;
         String input = "";
 
         // Pegar o input
-        System.out.print(nomeCampo);
+        System.out.print(campoEntrada);
         input = sc.nextLine();
 
         // Valida se é composto apenas por letras
@@ -27,18 +27,18 @@ public class InputUtil {
         return input;
     }
 
-    public String getStringInput(String nomeCampo){
-        System.out.print(nomeCampo);
+    public String getStringInput(String campoEntrada){
+        System.out.print(campoEntrada);
         String input = sc.nextLine();
         return  input;
     }
 
-    public int getIntegerInput(String nomeCampo){
+    public int getIntegerInput(String campoEntrada){
         while(true) {
             try {
                 int input;
                 // Pegar o input
-                System.out.print(nomeCampo);
+                System.out.print(campoEntrada);
                 input = sc.nextInt();
 
                 // Limpar o input
@@ -56,12 +56,12 @@ public class InputUtil {
         }
     }
 
-    public double getDoubleInput(String nomeCampo) {
+    public double getDoubleInput(String campoEntrada) {
         while(true) {
             try {
                 double input;
                 // Pegar o input
-                System.out.print(nomeCampo);
+                System.out.print(campoEntrada);
                 input = sc.nextDouble();
 
                 // Limpar o input

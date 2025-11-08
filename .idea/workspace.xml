@@ -6,16 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BankSystem/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BankSystem/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Util/InputUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/InputUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +55,20 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Jucyara/IdeaProjects/BankSystem&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="BankSystem" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

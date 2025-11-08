@@ -10,6 +10,10 @@ public class ContaController {
         this.contaService = contaService;
     }
 
+    public double verSaldo(){
+        return contaService.verSaldo();
+    }
+
     public void sacar(double valor) {
         contaService.sacar(valor);
     }

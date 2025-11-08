@@ -30,6 +30,12 @@ public class ContaService {
         System.out.println("Conta criada e cadastrada com sucesso!");
     }
 
+    public double verSaldo(){
+        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+
+        return conta.getSaldo();
+    }
+
     public void sacar(double valor){
         // Pegar a conta no repo
         Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
@@ -55,12 +61,16 @@ public class ContaService {
     }
 
     public void bloquearConta(Usuario cliente) {
+        // TODO: Validar se a conta já está bloqueada
+
         Conta conta = contaRepo.acharPorTitular(cliente);
 
         conta.mudarEstado(new ContaBloqueada(conta));
     }
 
     public void desbloquearConta(Usuario cliente) {
+        // TODO: Validar se a conta já está desbloqueada
+
         Conta conta = contaRepo.acharPorTitular(cliente);
 
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva(conta) : new ContaNegativada(conta));

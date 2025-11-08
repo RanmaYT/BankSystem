@@ -8,23 +8,12 @@ import View.Menu;
 
 public class AdminController {
     private AdminService admService;
-    private InputUtil inputUtil;
 
-    public AdminController(AdminService admService, InputUtil inputUtil){
+    public AdminController(AdminService admService){
         this.admService = admService;
-        this.inputUtil = inputUtil;
     }
 
-    public void cadastrarCliente() {
-        System.out.println("=== Cadastro Cliente ===");
-
-        // Pega os campos necessários
-        String nome = inputUtil.getAlphaInput("Nome: ");
-        String senha = inputUtil.getStringInput("Senha: ");
-        String email = inputUtil.getStringInput("Email: ");
-        String cpf = inputUtil.getStringInput("CPF: ");
-        double rendaMensal = inputUtil.getDoubleInput("Renda Mensal: ");
-
+    public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal) {
         // Delega o trabalho com os dados pro serviço
         admService.cadastrarCliente(nome, senha, email, cpf, rendaMensal, new ContaCorrenteFactory());
     }
@@ -35,9 +24,11 @@ public class AdminController {
 
     public void bloquearCliente(int clienteId){
         admService.bloquearCliente(clienteId);
+        System.out.println("Conta bloqueada!");
     }
 
     public void desbloquearCliente(int clienteId) {
         admService.desbloquearCliente(clienteId);
+        System.out.println("Conta desbloqueada!");
     }
 }

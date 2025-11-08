@@ -7,25 +7,30 @@ import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
 import Util.InputUtil;
+import View.Menu;
 
 public class Main {
     public static void main(String[] args) {
         // Singletons
         SessionManager sM = SessionManager.getInstance();
         ContaRepository cR = ContaRepository.getInstance();
+        UserRepository uR = UserRepository.getInstance();
 
-        // Criando dependencias
-        UserRepository userRepo = UserRepository.getInstance();
-        ContaService contaService = new ContaService(sM, cR, new PagamentoService());
-        AdminService adminService = new AdminService(userRepo, contaService);
+        // Services
+        PagamentoService pagamentoService = new PagamentoService();
+        ContaService contaService = new ContaService(sM, cR, pagamentoService);
+        AdminService adminService = new AdminService(uR, contaService);
 
-        AdminController adminController = new AdminController(adminService, new InputUtil());
+        // Controllers
+        AdminController adminController = new AdminController(adminService);
+        ContaController contaController = new ContaController(contaService);
 
-        adminController.cadastrarCliente();
+        // Menu
+        InputUtil inputUtil = new InputUtil();
+        Menu menu = new Menu(inputUtil, adminController, contaController);
 
-        // Seta o usuário logado como o 1° usuário cadastrado
-        sM.setUsuarioLogado(UserRepository.getInstance().acharPorId(1));
-
-        System.out.println(adminController.getUserInfo(1));
+        while(true) {
+            menu.menuPrincipalAdmin();
+        }
     }
 }

@@ -5,11 +5,15 @@
 ' View 
 package View {
     class Menu {
+        - InputUtil input;
+
+        + Menu(InputUtil input)
         + int menuPrincipal()
         + int menuPrincipalCliente()
         + int menuPrincipalAdministrador()
 
         + void mostrarExtrato(ExtratoDTO extrato)
+        + void mostrarInfoUsuario(UserDTO usuario)
     }
 
     class TextColor {
@@ -17,37 +21,37 @@ package View {
         + static final String GREEN
         + static final String RESET
     }
-
-
 }
 
 ' Controller
 package Controller {
     class AdminController {
         - AdminService admService
-        
-        + AdminController(AdminService admService)
+        - InputUtil inputUtil
 
+        + AdminController(AdminService admService, InputUtil inputUtil)
         + void bloquearCliente(int clienteId)
+        + void desbloquearCliente(int clienteId)
+        + UserDTO getInfoUsuario(int clienteId)
         + void cadastrarCliente()
     }
 
     class ContaController {
         - ContaService contaService
-        
-        + ContaController(ContaService contaService)
 
-        + void sacar(double quantia) 
-        + void depositar(double quantia)
-        + void pegarExtrato()
+        + ContaController(ContaService contaService)
+        + void sacar(double valor)
+        + void depositar(double valor)
+        + void realizarPagamento(double valor)
+        + ExtratoBancarioDTO pegarExtrato()
     }
 }
 
 ' Model
 package Model {
     ' O model contém classes de dados (que guardam dados e fazem operações simples consigo mesma)
-    ' ou classes de de gerenciamento / serviço (que vão fazer operações mais complexas envolvendo entidades distintas) 
-    
+    ' ou classes de de gerenciamento / serviço (que vão fazer operações mais complexas envolvendo entidades distintas)
+
     ' Usuário
     enum NivelUsuario {
         "Admin",
@@ -55,6 +59,7 @@ package Model {
     }
 
     abstract class Usuario {
+        - int id
         - String nome
         - String senha
         - String email
@@ -62,9 +67,8 @@ package Model {
         - NivelUsuario cargo
 
         + Usuario(String nome, String senha, String email, String cpf, NivelUsuario cargo)
-
         'Verifica se a estrutura da senha é válida
-        + boolean validarSenha(String senha) 
+        + boolean validarSenha(String senha)
         + void atualizarDados()
     }
 
@@ -83,13 +87,13 @@ package Model {
 
     ' Conta
     abstract class Conta {
-        - double saldo 
+        - int id
+        - double saldo
         - Usuario titularConta
         - ExtratoBancario extrato
         - IContaState estadoConta
 
-        + Conta()
-
+        + Conta(double saldo, Usuario titularConta, ExtratoBancario extrato, IContaState estadoInicial)
         + void mudarEstado(IContaState novoEstado)
         + void creditar(double quantidade)
         + void debitar(double quantidade)
@@ -100,6 +104,7 @@ package Model {
         ' O cheque especial vai ser 10% da renda mensal
         - double chequeEspecial
 
+        + ContaCorrente(double saldo, Usuario titularConta, ExtratoBancario extrato, IContaState estadoInicial, double chequeEspecial)
         ' O método de debitar vai ser sobreescrito para
         ' permitir o uso do cheque especial
         + void debitar(double quantidade)
@@ -117,8 +122,7 @@ package Model {
     class ExtratoBancario{
         - List<OperacaoExtratavel> operacoesRealizadas
 
-        + ExtratoBancario() 
-
+        + ExtratoBancario()
         + void adicionarOperacao(OperacaoExtratavel operacao)
     }
 
@@ -133,7 +137,7 @@ package Model {
     ' Relacionamento das contas
     Conta <|-- ContaCorrente
     Conta *-left- Usuario : 1 tem 1
-    Conta *--right-- ExtratoBancario : 1 tem 1 
+    Conta *--right-- ExtratoBancario : 1 tem 1
 
     ' Relacionamento do extrato
     ExtratoBancario *-- OperacaoExtratavel : 1 tem N >
@@ -146,42 +150,55 @@ package Model {
         class AutenticacaoService {
             + boolean verificarLogin(String email, String senha)
         }
-        
+
         class AdminService{
             - UserRepository userRepo
 
-            + void cadastrarCliente()
-            + void bloquearCliente(int id || String cpf)
+            + AdminService(UserRepository userRepo)
+            + void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, ContaFactory tipoConta)
+            + void bloquearCliente(int id)
+            + void desbloquearCliente(int id)
+            + UserDTO getInfoUsuario(int id)
         }
 
         class ContaService {
             ' O sistema vai utilizar do sessionManager pra pegar a conta do cliente logado
             - SessionManager sessionManager
             - ContaRepository contaRepo
+            - PagamentoService pagamentoService
 
-            + void sacar(double quantia)
-            + void depositar(double quantia)
+            + ContaService(SessionManager sM, ContaRepository contaRepo, PagamentoService pS)
+            + void sacar(double valor)
+            + void depositar(double valor)
+            + void realizarPagamento(double valor)
+            + void bloquearConta(Usuario cliente)
+            + void desbloquearConta(Usuario cliente)
             + ExtratoBancario pegarExtrato()
         }
 
         class PagamentoService{
             - IPaymentStrategy pagamentoStrategy
 
+            + PagamentoService()
+            + void setStrategy(IPaymentStrategy strategy)
             + void realizarPagamento(double quantia)
         }
 
         ' Relacionamentos dos serviços
         AdminService <-up- AdminController
         ContaService <-up- ContaController
-        
+
     }
 }
 
 ' Util
 package Util{
     class InputUtil {
+        - Scanner sc
+
         + String getAlphaInput()
         + int getIntInput()
+        + String getStringInput()
     }
 
     class FinancaUtil {
@@ -198,14 +215,27 @@ package DTOs {
             + OperacaoExtratavelDTO(String nomeOperacao, double valorOperacao)
         }
 
-        class ExtratoDTO{
+        class ExtratoBancarioDTO{
             - List<OperacaoExtratavelDTO> operacoesRealizadas
 
-            + ExtratoDTO()
+            + ExtratoBancarioDTO()
+            + void adicionarOperacao()
         }
 
-        ExtratoDTO -- ExtratoBancario
-        ExtratoDTO *-left- OperacaoExtratavelDTO
+        class UserDTO {
+            - int id
+            - String nome
+            - String senha
+            - String email
+            - String cpf
+            - NivelUsuario cargo
+
+            + UserDTO(Usuario user)
+            + String tostring()
+        }
+
+        ExtratoBancarioDTO -- ExtratoBancario
+        ExtratoBancarioDTO *-left- OperacaoExtratavelDTO
 }
 
 ' State
@@ -237,7 +267,7 @@ package State {
         + ContaEncerrada(Conta conta)
     }
 
-    ' Relacionamento dos estados contas 
+    ' Relacionamento dos estados contas
     Conta *--right- IContaState
     IContaState <|.. ContaPositiva
     IContaState <|.. ContaNegativada
@@ -248,25 +278,36 @@ package State {
 ' Strategy
 package Strategy{
     interface IPaymentStrategy {
-        + void pagar(double quantia)
+        + void pagar(Conta conta, double valor)
     }
 
     class EspecieStrategy {
-        + void pagar(double quantia)
+        + void pagar(Conta conta, double valor)
     }
 
     class InternetBankingStrategy {
-        + void pagar(double quantia)
+        + void pagar(Conta conta, double valor)
     }
 
     ' Relacionamentos
     IPaymentStrategy <|.up. EspecieStrategy
-    IPaymentStrategy <|.up. InternetBankingStrategy 
+    IPaymentStrategy <|.up. InternetBankingStrategy
 
     IPaymentStrategy .down.* PagamentoService
 }
 
-' Repositories
+' Factory
+package Factory {
+    interface ContaFactory {
+        + Conta criarConta(Usuario usuario)
+    }
+
+    class ContaCorrenteFactory {
+        + Conta criarConta(Usuario usuario)
+    }
+}
+
+' Singletons
 package SingletonRepositories {
     ' Provavelmente vou salvar os dados em arquivos
     ' Classes que vão guardar conjuntos de dados
@@ -279,33 +320,41 @@ package SingletonRepositories {
 
     IStorable <|... Usuario
     IStorable <|... Conta
+
+    ' Algumas complicações com esse aqui.
     IStorable <|... ExtratoBancario
 
-    
     interface Repository<T extends IStorable>{
-        + T acharPorId(int id)
         + void salvar(T entidade)
-        + void delete(T entidade) 
+        + void deletar(T entidade)
     }
-    
+
     class UserRepository {
-       - static UserRepository instance
-       + static Repository getInstance()
+        - static UserRepository instance
+
+        + UserRepository()
+        + static UserRepository getInstance()
     }
 
     class ContaRepository {
         - static ContaRepository instance
-        + static Repository getInstance()
+
+        + ContaRepository()
+        + static ContaRepository getInstance()
     }
 
+    ' Essa classe não foi criada
     class ExtratoRepository {
+        ' Só há um extrato por conta, não sei se vou criar um repositório só pra ele.
         - static ExtratoRepository instance
-        + static Repository getInstance()
+
+        + ExtratoRepository()
+        + static ExtratoRepository getInstance()
     }
 
     ' Relacionamentos
-    Repository <|.down. UserRepository 
-    Repository <|.down. ContaRepository 
+    Repository <|.down. UserRepository
+    Repository <|.down. ContaRepository
     Repository <|.down. ExtratoRepository
     Repository --> IStorable
 }
@@ -316,7 +365,10 @@ package SingletonSession{
         - Usuario usuarioLogado
         - Conta contaAtiva
 
+        - SessionManager()
         + static SessionManager getInstance()
+        + String getUsuarioLogado()
+        + void setUsuarioLogado()
     }
 }
 
