@@ -2,54 +2,38 @@ package Controller;
 
 import DTOs.ExtratoBancarioDTO;
 import Model.Services.ContaService;
-import Model.Services.MonetaryServices;
-import Strategy.EspeciePayment;
+import Model.Services.MonetaryService;
 import Strategy.IPaymentStrategy;
+import Strategy.EspeciePayment;
 import Strategy.InternetBankingStrategy;
 
 public class ContaController {
     private ContaService contaService;
-    private MonetaryServices monetaryServices;
+    private MonetaryService monetaryService;
 
-    public ContaController(ContaService contaService, MonetaryServices monetaryServices) {
+    public ContaController(ContaService contaService, MonetaryService monetaryService) {
         this.contaService = contaService;
-        this.monetaryServices = monetaryServices;
+        this.monetaryService = monetaryService;
     }
 
     public double verSaldo(){
-        return contaService.verSaldo();
+        return contaService.pegarSaldo();
     }
 
     public ExtratoBancarioDTO pegarExtrato() {
-        contaService.verExtrato();
-        return null;
+        return contaService.pegarExtrato();
     }
 
     public void sacar(double valor) {
-        monetaryServices.sacar(valor);
+        monetaryService.sacar(valor);
     }
 
     public void depositar(double valor) {
-        monetaryServices.depositar(valor);
+        monetaryService.depositar(valor);
     }
 
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
-        IPaymentStrategy strategy;
-
-        // Cria a estratégia dependendo do que o usuário colocou
-        switch (opcaoPagamento) {
-            case 1:
-                strategy = new EspeciePayment();
-                break;
-            case 2:
-                strategy = new InternetBankingStrategy();
-                break;
-            default:
-                System.out.println("Uma forma de pagamento inválida foi escolhida, encerrando processo de pagamento!");
-                return;
-        }
-
-        monetaryServices.realizarPagamento(strategy, itemPago, valor);
+        monetaryService.realizarPagamento(opcaoPagamento, itemPago, valor);
     }
 
 

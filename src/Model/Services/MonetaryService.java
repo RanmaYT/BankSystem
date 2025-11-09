@@ -4,14 +4,16 @@ import Model.Conta;
 import Model.OperacaoExtratavel;
 import SingletonRepositories.ContaRepository;
 import SingletonSession.SessionManager;
+import Strategy.EspeciePayment;
 import Strategy.IPaymentStrategy;
+import Strategy.InternetBankingStrategy;
 
-public class MonetaryServices {
+public class MonetaryService {
     private ContaRepository contaRepo;
     private SessionManager sessionManager;
     private PagamentoService pagamentoService;
 
-    public MonetaryServices(ContaRepository contaRepository, SessionManager sessionManager, PagamentoService pagamentoService) {
+    public MonetaryService(ContaRepository contaRepository, SessionManager sessionManager, PagamentoService pagamentoService) {
         this.contaRepo = contaRepository;
         this.sessionManager = sessionManager;
         this.pagamentoService = pagamentoService;
@@ -39,7 +41,22 @@ public class MonetaryServices {
         salvarNoExtrato(conta, "Depósito", valor);
     }
 
-    public void realizarPagamento(IPaymentStrategy strategy, String itemPago, double valor) {
+    public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
+        IPaymentStrategy strategy;
+
+        // Cria a estratégia dependendo do que o usuário colocou
+        switch (opcaoPagamento) {
+            case 1:
+                strategy = new EspeciePayment();
+                break;
+            case 2:
+                strategy = new InternetBankingStrategy();
+                break;
+            default:
+                System.out.println("Uma forma de pagamento inválida foi escolhida, encerrando processo de pagamento!");
+                return;
+        }
+
         // Setta a estratégia que será usada
         pagamentoService.setPayStrategy(strategy);
 

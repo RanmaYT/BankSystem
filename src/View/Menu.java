@@ -68,7 +68,7 @@ public class Menu {
                 contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
                 break;
             case 5:
-                contaController.pegarExtrato();
+                mostrarExtrato(contaController.pegarExtrato());
                 break;
             default:
                 System.out.println("Valor inválido, usuário!");
@@ -132,6 +132,6 @@ public class Menu {
     }
 
     public void mostrarExtrato(ExtratoBancarioDTO extratoBancarioDTO) {
-
+        System.out.println(extratoBancarioDTO);
     }
 }

@@ -1,10 +1,11 @@
 package Model.Services;
 
+import DTOs.ExtratoBancarioDTO;
 import Factory.ContaFactory;
+import Mappers.ExtratoMapper;
 import Model.Conta;
 
 import Model.ExtratoBancario;
-import Model.OperacaoExtratavel;
 import Model.Usuario;
 
 import SingletonRepositories.ContaRepository;
@@ -12,15 +13,16 @@ import SingletonSession.SessionManager;
 import State.ContaBloqueada;
 import State.ContaNegativada;
 import State.ContaPositiva;
-import Strategy.IPaymentStrategy;
 
 public class ContaService {
     private SessionManager sessionManager;
     private ContaRepository contaRepo;
+    private ExtratoMapper extratoMapper;
 
-    public ContaService(SessionManager sessionManager, ContaRepository contaRepo) {
+    public ContaService(SessionManager sessionManager, ContaRepository contaRepo, ExtratoMapper extratoMapper) {
         this.sessionManager = sessionManager;
         this.contaRepo = contaRepo;
+        this.extratoMapper = extratoMapper;
     }
 
     public void criarConta(Usuario usuario, ContaFactory contaFactory){
@@ -47,15 +49,13 @@ public class ContaService {
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva(conta) : new ContaNegativada(conta));
     }
 
-    public ExtratoBancario verExtrato(){
+    public ExtratoBancarioDTO pegarExtrato(){
         Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
-        System.out.println(conta.getExtrato());
-
-        return conta.getExtrato();
+        return extratoMapper.converterEmDTO(conta.getExtrato());
     }
 
-    public double verSaldo(){
+    public double pegarSaldo(){
         Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
 
         return conta.getSaldo();

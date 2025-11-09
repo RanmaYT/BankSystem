@@ -3,8 +3,6 @@ package Controller;
 import DTOs.UserDTO;
 import Factory.ContaCorrenteFactory;
 import Model.Services.AdminService;
-import Util.InputUtil;
-import View.Menu;
 
 public class AdminController {
     private AdminService admService;
