@@ -32,8 +32,6 @@ public class Main {
         InputUtil input = new InputUtil();
         Menu menu = new Menu(input, adminController, contaController);
 
-        while(true) {
-            menu.menuPrincipalAdmin();
-        }
+        menu.menuPrincipal();
     }
 }
