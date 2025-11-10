@@ -2,6 +2,7 @@ package Model.Services;
 
 import DTOs.UserDTO;
 import Factory.ContaFactory;
+import Mappers.UsersMapper;
 import Model.Cliente;
 import Model.Usuario;
 import SingletonRepositories.UserRepository;
@@ -9,10 +10,12 @@ import SingletonRepositories.UserRepository;
 public class AdminService {
     private UserRepository userRepo;
     private ContaService contaService;
+    private UsersMapper usersMapper;
 
-    public AdminService(UserRepository userRepo, ContaService contaService) {
+    public AdminService(UserRepository userRepo, ContaService contaService, UsersMapper usersMapper) {
         this.userRepo = userRepo;
         this.contaService = contaService;
+        this.usersMapper = usersMapper;
     }
 
     public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, ContaFactory tipoConta) {
@@ -30,9 +33,10 @@ public class AdminService {
     }
 
     public UserDTO getUserInfo(int clienteId){
-        Usuario usuario = userRepo.acharPorId(clienteId);
+        // Fica dependente da classe concreta!
+        Cliente usuario = (Cliente) userRepo.acharPorId(clienteId);
 
-        UserDTO userDTO = new UserDTO(usuario);
+        UserDTO userDTO = usersMapper.clienteToDTO(usuario);
         return userDTO;
     }
 

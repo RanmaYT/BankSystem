@@ -128,7 +128,9 @@ public class Menu {
     }
 
     public void mostrarInfoUsuario(UserDTO userDTO){
+        System.out.println("================");
         System.out.println(userDTO);
+        System.out.println("================");
     }
 
     public void mostrarExtrato(ExtratoBancarioDTO extratoBancarioDTO) {

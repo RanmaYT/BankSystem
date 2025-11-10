@@ -4,14 +4,12 @@ import Model.NivelUsuario;
 import Model.Usuario;
 
 public class UserDTO {
-    private int id;
     private String nome;
     private String email;
     private String cpf;
     private NivelUsuario cargo;
 
     public UserDTO(Usuario user){
-        this.id = user.getId();
         this.nome = user.getNome();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
@@ -20,11 +18,10 @@ public class UserDTO {
 
     @Override
     public String toString(){
-        return String.format("ID: %d\n" +
-                "Nome: %s\n" +
+        return String.format("Nome: %s\n" +
                 "Email: %s\n" +
                 "CPF: %s\n" +
                 "Cargo: %s",
-                id, nome, email, cpf, cargo.toString());
+                nome, email, cpf, cargo.toString());
     }
 }

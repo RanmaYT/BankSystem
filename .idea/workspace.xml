@@ -6,17 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTOs/ExtratoBancarioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/ExtratoBancarioDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTOs/OperacaoExtratavelDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/OperacaoExtratavelDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTOs/ClienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/ClienteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTOs/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/MonetaryServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TextColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TextColor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
