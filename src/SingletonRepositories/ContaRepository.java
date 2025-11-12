@@ -54,7 +54,7 @@ public class ContaRepository extends BaseRepository<Conta>{
             case "POSITIVA":
                 state = new ContaPositiva();
                 break;
-            case "NEGATIVA":
+            case "NEGATIVADA":
                 state = new ContaNegativada();
                 break;
             case "BLOQUEADA":

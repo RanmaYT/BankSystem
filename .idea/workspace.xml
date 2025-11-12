@@ -6,29 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContasCadastradas.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BankSystem/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BankSystem/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/ContaCorrenteFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ContaCorrenteFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mappers/ExtratoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mappers/ExtratoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Conta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaBloqueada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaBloqueada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaEncerrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaEncerrada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaNegativada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaNegativada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaPositiva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaPositiva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/IContaState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/IContaState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JucyaraFerreira"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RanmaYT/BankSystem.git",
+    "accountId": "7626a122-66d5-478c-af94-1010106ab50c"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -60,7 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -68,7 +58,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Jucyara/IdeaProjects/BankSystem",
+    "last_opened_file_path": "C:/Users/Adriano/IdeaProjects/BankSystem",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
