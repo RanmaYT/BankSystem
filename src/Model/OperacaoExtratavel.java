@@ -1,19 +1,31 @@
 package Model;
 
-public class OperacaoExtratavel {
-    private String nomeOperacao;
-    private double valorDaOperacao;
+import SingletonRepositories.IStorable;
 
-    public OperacaoExtratavel(String nomeOperacao, double valorDaOperacao){
+public class OperacaoExtratavel implements IStorable {
+    private String nomeOperacao;
+    private double valorOperacao;
+
+    public OperacaoExtratavel(String nomeOperacao, double valorOperacao){
         this.nomeOperacao = nomeOperacao;
-        this.valorDaOperacao = valorDaOperacao;
+        this.valorOperacao = valorOperacao;
     }
 
     public String getNomeOperacao(){
         return nomeOperacao;
     }
 
-    public double getValorDaOperacao(){
-        return valorDaOperacao;
+    public double getValorOperacao(){
+        return valorOperacao;
+    }
+
+    @Override
+    public String converterParaStringArmazenavel() {
+        return String.format("{nomeOperacao=%s,valorOperacao=%.2f}", nomeOperacao, valorOperacao);
+    }
+
+    @Override
+    public int getId() {
+        return 0;
     }
 }

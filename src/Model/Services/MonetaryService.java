@@ -1,8 +1,10 @@
 package Model.Services;
 
 import Model.Conta;
+import Model.ExtratoBancario;
 import Model.OperacaoExtratavel;
 import SingletonRepositories.ContaRepository;
+import SingletonRepositories.ExtratoRepository;
 import SingletonSession.SessionManager;
 import Strategy.EspeciePayment;
 import Strategy.IPaymentStrategy;
@@ -26,7 +28,7 @@ public class MonetaryService {
         conta.debitar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta, "Saque", -valor );
+        salvarNoExtrato(conta.getEmailTitular(), "Saque", -valor );
     }
 
     public void depositar(double valor){
@@ -36,7 +38,7 @@ public class MonetaryService {
         conta.creditar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta, "Depósito", valor);
+        salvarNoExtrato(conta.getEmailTitular(), "Depósito", valor);
     }
 
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
@@ -66,17 +68,20 @@ public class MonetaryService {
 
         // Salva a operação no extrato
         String nomeOperacao = "Pagamento: " + itemPago;
-        salvarNoExtrato(conta, nomeOperacao, -valorFinalPago);
+        salvarNoExtrato(conta.getEmailTitular(), nomeOperacao, -valorFinalPago);
     }
 
-    public void salvarNoExtrato(Conta conta, String nomeOperacao, double valorOperacao){
+    // TODO: MOVER PARA EXTRATO SERVICE DEPOIS
+    public void salvarNoExtrato(String emailTitular, String nomeOperacao, double valorOperacao){
         // Cria uma operação extratável
         OperacaoExtratavel operacaoExtratavel = new OperacaoExtratavel(nomeOperacao, valorOperacao);
 
         // Pegar o extrato e adiciona a operação ao extrato.
-        conta.getExtrato().adicionarOperacao(operacaoExtratavel);
+        ExtratoBancario extratoBancario = ExtratoRepository.getInstance().pegarPorTitular(emailTitular);
+        extratoBancario.adicionarOperacao(operacaoExtratavel);
 
-        System.out.println("Salvo no extrato!");
+        // gambiarra: sem injeção de dependência e outras loucuras
+        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getEmailTitular(), extratoBancario.converterParaStringArmazenavel());
     }
 
 }

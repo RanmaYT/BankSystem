@@ -23,10 +23,6 @@ public abstract class Usuario implements IStorable {
         idCount++;
     }
 
-    public boolean validarSenha(String senha){
-        return false;
-    }
-
     public void atualizarDados(){
 
     }
@@ -41,6 +37,7 @@ public abstract class Usuario implements IStorable {
 
     public NivelUsuario getCargo(){ return cargo; }
 
+    @Override
     public String converterParaStringArmazenavel() {
         String textoArmazenavel = String.format("{nome=%s;senha=%s;email=%s;cpf=%s;cargo=%s}",
                 nome, senha, email, cpf, cargo.toString());
@@ -48,5 +45,6 @@ public abstract class Usuario implements IStorable {
         return textoArmazenavel;
     }
 
+    @Override
     public int getId() { return id; }
 }

@@ -2,18 +2,18 @@ package Controller;
 
 import DTOs.ExtratoBancarioDTO;
 import Model.Services.ContaService;
+import Model.Services.ExtratoService;
 import Model.Services.MonetaryService;
-import Strategy.IPaymentStrategy;
-import Strategy.EspeciePayment;
-import Strategy.InternetBankingStrategy;
 
 public class ContaController {
     private ContaService contaService;
     private MonetaryService monetaryService;
+    private ExtratoService extratoService;
 
-    public ContaController(ContaService contaService, MonetaryService monetaryService) {
+    public ContaController(ContaService contaService, MonetaryService monetaryService, ExtratoService extratoService) {
         this.contaService = contaService;
         this.monetaryService = monetaryService;
+        this.extratoService = extratoService;
     }
 
     public double verSaldo(){
@@ -21,7 +21,7 @@ public class ContaController {
     }
 
     public ExtratoBancarioDTO pegarExtrato() {
-        return contaService.pegarExtrato();
+        return extratoService.pegarExtratoDoUsuarioLogado();
     }
 
     public void sacar(double valor) {

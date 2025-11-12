@@ -5,4 +5,5 @@ public interface IContaState {
     boolean podeDebitar();
     boolean podeDeletarConta();
     boolean podePegarExtrato();
+    String getStateName();
 }

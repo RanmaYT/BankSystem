@@ -10,7 +10,7 @@ public class ExtratoMapper {
         ExtratoBancarioDTO extratoDTO = new ExtratoBancarioDTO();
 
         for(OperacaoExtratavel operacaoExtratavel : extratoBancario.getOperacoesRealizadas()) {
-            extratoDTO.adicionarOperacao(new OperacaoExtratavelDTO(operacaoExtratavel.getNomeOperacao(), operacaoExtratavel.getValorDaOperacao()));
+            extratoDTO.adicionarOperacao(new OperacaoExtratavelDTO(operacaoExtratavel.getNomeOperacao(), operacaoExtratavel.getValorOperacao()));
         }
 
         return extratoDTO;

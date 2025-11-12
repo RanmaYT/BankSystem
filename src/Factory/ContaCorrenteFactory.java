@@ -1,6 +1,8 @@
 package Factory;
 
 import Model.*;
+import State.ContaPositiva;
+import State.IContaState;
 import Util.FinancaUtil;
 
 import java.util.ArrayList;
@@ -14,9 +16,11 @@ public class ContaCorrenteFactory implements ContaFactory{
             return null;
         }
 
-
         Cliente cliente = (Cliente) usuario;
         double chequeEspecial = FinancaUtil.calcularChequeEspecial(cliente.getRendaMensal());
-        return new ContaCorrente(0, cliente.getEmail(), new ExtratoBancario(new ArrayList<>()), chequeEspecial);
+        String email = cliente.getEmail();
+        ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), email);
+        IContaState state = new ContaPositiva();
+        return new ContaCorrente(0, email, state, chequeEspecial);
     }
 }

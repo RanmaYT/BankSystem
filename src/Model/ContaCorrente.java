@@ -1,12 +1,13 @@
 package Model;
 
+import State.IContaState;
 import Util.InputUtil;
 
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
 
-    public ContaCorrente(double saldo, String emailTitular, ExtratoBancario extrato, double chequeEspecial) {
-        super(saldo, emailTitular, extrato);
+    public ContaCorrente(double saldo, String emailTitular, IContaState state, double chequeEspecial) {
+        super(saldo, emailTitular, state);
         this.chequeEspecial = chequeEspecial;
     }
 
@@ -37,6 +38,7 @@ public class ContaCorrente extends Conta {
 
             // Oferecer a possibilidade de utilizar o cheque especial, repete enquanto uma entrada válida não for colocada
             while(escolha.isEmpty()) {
+                // conta não deveria receber entrada, gambiarra!
                 System.out.println("O saldo atual é insuficiente para a compra, é possível utilizar o cheque especial, seu saldo ficará negativado com um adicional de 10% do valor do cheque");
                 escolha = input.getAlphaInput("Usar (s/n): ");
             }
@@ -59,5 +61,15 @@ public class ContaCorrente extends Conta {
         textoArmazenavel = textoPai.replace("}", ";") + textoArmazenavel.replace(",", ".");;
 
         return textoArmazenavel;
+    }
+
+    @Override
+    public String toString(){
+        String textoPai = super.toString();
+        String textoFilho = String.format("\nCheque especial: %.2f", chequeEspecial);
+
+        String textoFormatado = textoPai + textoFilho;
+
+        return textoFormatado;
     }
 }

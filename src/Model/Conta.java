@@ -1,5 +1,6 @@
 package Model;
 
+import SingletonRepositories.ContaRepository;
 import SingletonRepositories.IStorable;
 import State.ContaNegativada;
 import State.ContaPositiva;
@@ -11,14 +12,12 @@ public abstract class Conta implements IStorable {
 
     private double saldo;
     private String emailTitular;
-    private ExtratoBancario extrato;
     private IContaState estadoConta;
 
-    public Conta(double saldo, String emailTitular, ExtratoBancario extrato) {
+    public Conta(double saldo, String emailTitular, IContaState state) {
         this.saldo = saldo;
         this.emailTitular = emailTitular;
-        this.extrato = extrato;
-        this.estadoConta = new ContaPositiva(this);
+        this.estadoConta = state;
 
         this.id = idCount;
         idCount++;
@@ -26,6 +25,9 @@ public abstract class Conta implements IStorable {
 
     public void mudarEstado(IContaState novoEstado){
         estadoConta = novoEstado;
+
+        // gambiarra: classe de dados fazendo lógica de négocio
+        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
     }
 
     public void creditar(double valor){
@@ -35,8 +37,11 @@ public abstract class Conta implements IStorable {
 
         if(saldo >= 0 && estadoConta.getClass() != ContaPositiva.class) {
             System.out.println("A conta agora está positivada");
-            mudarEstado(new ContaPositiva(this));
+            mudarEstado(new ContaPositiva());
         }
+
+        // gambiarra: classe de dados fazendo lógica de négocio
+        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
     }
 
     public void debitar(double valor){
@@ -46,8 +51,11 @@ public abstract class Conta implements IStorable {
 
         if(saldo < 0) {
             System.out.println("A conta agora está negativada");
-            mudarEstado(new ContaNegativada(this));
+            mudarEstado(new ContaNegativada());
         }
+
+        // gambiarra: classe de dados fazendo lógica de négocio
+        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
     }
 
     public void deletarConta(){
@@ -59,13 +67,24 @@ public abstract class Conta implements IStorable {
         return saldo;
     }
 
-    public ExtratoBancario getExtrato(){ return extrato; }
+    public String getEmailTitular() { return emailTitular; }
 
+    @Override
     public String converterParaStringArmazenavel() {
         String textoArmazenavel = String.format("{saldo=%.2f;emailTitular=%s;estadoConta=%s}",
-                saldo, emailTitular, estadoConta).replace(",", ".");;
+                saldo, emailTitular, estadoConta.getStateName()).replace(",", ".");;
 
         return textoArmazenavel;
     }
+
+    @Override
+    // Não está funcionando ainda
     public int getId() { return id; }
+
+    @Override
+    public String toString(){
+        return String.format("Saldo: %.2f\n" +
+                "Email titular: %s\n" +
+                "Estado da conta: %s", saldo, emailTitular, estadoConta.getStateName());
+    }
 }

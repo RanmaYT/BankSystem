@@ -5,7 +5,7 @@ import Controller.ContaController;
 import DTOs.ExtratoBancarioDTO;
 import DTOs.UserDTO;
 
-// Esses 2 aqui são gambiarra por enquanto
+// Esses 3 aqui são gambiarra por enquanto
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;

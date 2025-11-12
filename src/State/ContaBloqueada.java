@@ -1,14 +1,6 @@
 package State;
 
-import Model.Conta;
-
 public class ContaBloqueada implements IContaState{
-    private Conta conta;
-
-    public ContaBloqueada(Conta conta) {
-        this.conta = conta;
-    }
-
     @Override
     public boolean podeCreditar() {
         System.out.println("A conta está bloqueada, permissão negada");
@@ -31,5 +23,10 @@ public class ContaBloqueada implements IContaState{
     public boolean podePegarExtrato() {
         System.out.println("A conta está bloqueada, permissão negada");
         return false;
+    }
+
+    @Override
+    public String getStateName(){
+        return "BLOQUEADA";
     }
 }

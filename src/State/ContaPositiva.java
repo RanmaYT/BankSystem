@@ -1,14 +1,6 @@
 package State;
 
-import Model.Conta;
-
 public class ContaPositiva implements IContaState{
-    private Conta conta;
-
-    public ContaPositiva(Conta conta) {
-        this.conta = conta;
-    }
-
     @Override
     public boolean podeCreditar() {
         return true;
@@ -27,5 +19,10 @@ public class ContaPositiva implements IContaState{
     @Override
     public boolean podePegarExtrato() {
         return true;
+    }
+
+    @Override
+    public String getStateName(){
+        return "POSITIVA";
     }
 }

@@ -1,14 +1,6 @@
 package State;
 
-import Model.Conta;
-
 public class ContaEncerrada implements IContaState{
-    private Conta conta;
-
-    public ContaEncerrada(Conta conta) {
-        this.conta = conta;
-    }
-
     @Override
     public boolean podeCreditar() {
         System.out.println("Essa conta já foi encerrada, impossível realizar operações!");
@@ -31,5 +23,10 @@ public class ContaEncerrada implements IContaState{
     public boolean podePegarExtrato() {
         System.out.println("Essa conta já foi encerrada, impossível realizar operações!");
         return false;
+    }
+
+    @Override
+    public String getStateName(){
+        return "ENCERRADA";
     }
 }

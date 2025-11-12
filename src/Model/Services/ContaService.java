@@ -1,27 +1,27 @@
 package Model.Services;
 
-import DTOs.ExtratoBancarioDTO;
 import Factory.ContaFactory;
-import Mappers.ExtratoMapper;
 import Model.Conta;
 
+import Model.ExtratoBancario;
 import Model.Usuario;
 
 import SingletonRepositories.ContaRepository;
+import SingletonRepositories.ExtratoRepository;
 import SingletonSession.SessionManager;
 import State.ContaBloqueada;
 import State.ContaNegativada;
 import State.ContaPositiva;
 
+import java.util.ArrayList;
+
 public class ContaService {
     private SessionManager sessionManager;
     private ContaRepository contaRepo;
-    private ExtratoMapper extratoMapper;
 
-    public ContaService(SessionManager sessionManager, ContaRepository contaRepo, ExtratoMapper extratoMapper) {
+    public ContaService(SessionManager sessionManager, ContaRepository contaRepo) {
         this.sessionManager = sessionManager;
         this.contaRepo = contaRepo;
-        this.extratoMapper = extratoMapper;
     }
 
     public void criarConta(Usuario usuario, ContaFactory contaFactory){
@@ -34,6 +34,10 @@ public class ContaService {
 
         contaRepo.salvar(conta);
 
+        // Gambiarra: uso direto do extrato, sem injeção de dependência;
+        ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), conta.getEmailTitular());
+        ExtratoRepository.getInstance().salvar(extrato);
+
         System.out.println("Conta criada e cadastrada com sucesso!");
     }
 
@@ -42,7 +46,7 @@ public class ContaService {
 
          Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
-         conta.mudarEstado(new ContaBloqueada(conta));
+         conta.mudarEstado(new ContaBloqueada());
     }
 
     public void desbloquearConta(Usuario cliente) {
@@ -50,13 +54,7 @@ public class ContaService {
 
         Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
-        conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva(conta) : new ContaNegativada(conta));
-    }
-
-    public ExtratoBancarioDTO pegarExtrato(){
-        Conta conta = sessionManager.getContaAtiva();
-
-        return extratoMapper.converterEmDTO(conta.getExtrato());
+        conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva() : new ContaNegativada());
     }
 
     // TODO: Transformar o ver saldo em ver informações (Saldo, estado da conta, cheque especial, etc...)
