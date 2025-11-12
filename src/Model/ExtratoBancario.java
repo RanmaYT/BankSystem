@@ -1,13 +1,15 @@
 package Model;
 
+import SingletonRepositories.IStorable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtratoBancario {
+public class ExtratoBancario implements IStorable {
     private List<OperacaoExtratavel> operacoesRealizadas;
 
-    public ExtratoBancario() {
-        operacoesRealizadas = new ArrayList<>();
+    public ExtratoBancario(List<OperacaoExtratavel> tipoDeLista) {
+        operacoesRealizadas = tipoDeLista;
     }
 
     public void adicionarOperacao(OperacaoExtratavel operacao){
@@ -16,5 +18,15 @@ public class ExtratoBancario {
 
     public List<OperacaoExtratavel> getOperacoesRealizadas(){
         return operacoesRealizadas;
+    }
+
+    @Override
+    public String converterParaStringArmazenavel() {
+        return "";
+    }
+
+    @Override
+    public int getId() {
+        return 0;
     }
 }

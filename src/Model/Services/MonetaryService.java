@@ -20,8 +20,7 @@ public class MonetaryService {
     }
 
     public void sacar(double valor){
-        // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+        Conta conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         conta.debitar(valor);
@@ -31,8 +30,7 @@ public class MonetaryService {
     }
 
     public void depositar(double valor){
-        // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+        Conta conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         conta.creditar(valor);
@@ -60,8 +58,8 @@ public class MonetaryService {
         // Setta a estratégia que será usada
         pagamentoService.setPayStrategy(strategy);
 
-        // Pegar a conta no repo
-        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+        // Pegar a conta do login atual
+        Conta conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         double valorFinalPago = pagamentoService.realizarPagamento(conta, valor);

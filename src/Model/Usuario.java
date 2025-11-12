@@ -41,7 +41,12 @@ public abstract class Usuario implements IStorable {
 
     public NivelUsuario getCargo(){ return cargo; }
 
-    public abstract String converterParaStringArmazenavel();
+    public String converterParaStringArmazenavel() {
+        String textoArmazenavel = String.format("{nome=%s;senha=%s;email=%s;cpf=%s;cargo=%s}",
+                nome, senha, email, cpf, cargo.toString());
+
+        return textoArmazenavel;
+    }
 
     public int getId() { return id; }
 }

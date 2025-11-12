@@ -10,13 +10,13 @@ public abstract class Conta implements IStorable {
     private static int idCount = 1;
 
     private double saldo;
-    private Usuario titularConta;
+    private String emailTitular;
     private ExtratoBancario extrato;
     private IContaState estadoConta;
 
-    public Conta(double saldo, Usuario titularConta, ExtratoBancario extrato) {
+    public Conta(double saldo, String emailTitular, ExtratoBancario extrato) {
         this.saldo = saldo;
-        this.titularConta = titularConta;
+        this.emailTitular = emailTitular;
         this.extrato = extrato;
         this.estadoConta = new ContaPositiva(this);
 
@@ -52,20 +52,20 @@ public abstract class Conta implements IStorable {
 
     public void deletarConta(){
         if(!estadoConta.podeDeletarConta()) { return; }
-
-        System.out.println("Deletando conta de: " + titularConta.getNome());
     }
 
+    // Getters e Setters
     public double getSaldo(){
         return saldo;
     }
 
-    public Usuario getTitularConta(){
-        return titularConta;
-    }
-
     public ExtratoBancario getExtrato(){ return extrato; }
 
-    public abstract String converterParaStringArmazenavel();
+    public String converterParaStringArmazenavel() {
+        String textoArmazenavel = String.format("{saldo=%.2f;emailTitular=%s;estadoConta=%s}",
+                saldo, emailTitular, estadoConta).replace(",", ".");;
+
+        return textoArmazenavel;
+    }
     public int getId() { return id; }
 }

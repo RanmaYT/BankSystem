@@ -24,4 +24,12 @@ public class SessionManager {
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
     }
+
+    public Conta getContaAtiva() {
+        return contaAtiva;
+    }
+
+    public void setContaAtiva(Conta contaAtiva){
+        this.contaAtiva = contaAtiva;
+    }
 }

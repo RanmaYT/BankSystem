@@ -5,7 +5,6 @@ import Factory.ContaFactory;
 import Mappers.ExtratoMapper;
 import Model.Conta;
 
-import Model.ExtratoBancario;
 import Model.Usuario;
 
 import SingletonRepositories.ContaRepository;
@@ -28,6 +27,11 @@ public class ContaService {
     public void criarConta(Usuario usuario, ContaFactory contaFactory){
         Conta conta = contaFactory.criarConta(usuario);
 
+        if(conta == null) {
+            System.out.println("Falha ao criar conta");
+            return;
+        }
+
         contaRepo.salvar(conta);
 
         System.out.println("Conta criada e cadastrada com sucesso!");
@@ -36,27 +40,28 @@ public class ContaService {
     public void bloquearConta(Usuario cliente) {
         // TODO: Validar se a conta já está bloqueada
 
-        Conta conta = contaRepo.acharPorTitular(cliente);
+         Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
-        conta.mudarEstado(new ContaBloqueada(conta));
+         conta.mudarEstado(new ContaBloqueada(conta));
     }
 
     public void desbloquearConta(Usuario cliente) {
         // TODO: Validar se a conta já está desbloqueada
 
-        Conta conta = contaRepo.acharPorTitular(cliente);
+        Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva(conta) : new ContaNegativada(conta));
     }
 
     public ExtratoBancarioDTO pegarExtrato(){
-        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+        Conta conta = sessionManager.getContaAtiva();
 
         return extratoMapper.converterEmDTO(conta.getExtrato());
     }
 
+    // TODO: Transformar o ver saldo em ver informações (Saldo, estado da conta, cheque especial, etc...)
     public double pegarSaldo(){
-        Conta conta = contaRepo.acharPorTitular(sessionManager.getUsuarioLogado());
+        Conta conta = sessionManager.getContaAtiva();
 
         return conta.getSaldo();
     }

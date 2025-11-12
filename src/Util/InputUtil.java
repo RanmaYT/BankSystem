@@ -59,19 +59,20 @@ public class InputUtil {
     public double getDoubleInput(String campoEntrada) {
         while(true) {
             try {
-                double input;
+                String input;
                 // Pegar o input
                 System.out.print(campoEntrada);
-                input = sc.nextDouble();
+                input = sc.nextLine();
 
-                // Limpar o input
-                sc.nextLine();
+                input = input.replace(",", ".");
 
-                return input;
+                double valor = Double.parseDouble(input);
+
+                return valor;
             } catch(InputMismatchException e) {
                 // Limpa o input em caso de erro, e printa uma mensagem
                 sc.nextLine();
-                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores inteiros");
+                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores flutuantes");
             }
         }
     }

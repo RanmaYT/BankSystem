@@ -1,0 +1,1 @@
+{nome=Jucyara;senha=1234a;email=jucyara@gmail.com;cpf=134.444.444-39;cargo=Cliente;rendaMensal=3000.50}

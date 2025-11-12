@@ -5,8 +5,8 @@ import Util.InputUtil;
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
 
-    public ContaCorrente(double saldo, Usuario titularConta, ExtratoBancario extrato, double chequeEspecial) {
-        super(saldo, titularConta, extrato);
+    public ContaCorrente(double saldo, String emailTitular, ExtratoBancario extrato, double chequeEspecial) {
+        super(saldo, emailTitular, extrato);
         this.chequeEspecial = chequeEspecial;
     }
 
@@ -53,6 +53,11 @@ public class ContaCorrente extends Conta {
 
     @Override
     public String converterParaStringArmazenavel() {
-        return "";
+        String textoArmazenavel = String.format("chequeEspecial=%.2f}", chequeEspecial);
+        String textoPai = super.converterParaStringArmazenavel();
+
+        textoArmazenavel = textoPai.replace("}", ";") + textoArmazenavel.replace(",", ".");;
+
+        return textoArmazenavel;
     }
 }

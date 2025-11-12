@@ -6,6 +6,7 @@ import DTOs.ExtratoBancarioDTO;
 import DTOs.UserDTO;
 
 // Esses 2 aqui são gambiarra por enquanto
+import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
 
@@ -32,9 +33,10 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    int idCliente = input.getIntegerInput("Entre com seu id: ");
+                    String emailCliente = input.getStringInput("Entre com seu email: ");
 
-                    SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().acharPorId(idCliente));
+                    SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorEmail(emailCliente));
+                    SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(emailCliente));
 
                     menuPrincipalCliente();
                     break;
@@ -136,16 +138,16 @@ public class Menu {
                     adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal);
                     continue;
                 case 2:
-                    int idBloqueio = input.getIntegerInput("Digite o ID do cliente para bloquear a conta: ");
-                    adminController.bloquearCliente(idBloqueio);
+                    String emailBloqueio = input.getStringInput("Digite o Email do cliente para bloquear a conta: ");
+                    adminController.bloquearCliente(emailBloqueio);
                     continue;
                 case 3:
-                    int idDesbloqueio = input.getIntegerInput("Digite o ID do cliente para desbloquear a conta: ");
-                    adminController.desbloquearCliente(idDesbloqueio);
+                    String emailDesbloqueio = input.getStringInput("Digite o Email do cliente para desbloquear a conta: ");
+                    adminController.desbloquearCliente(emailDesbloqueio);
                     continue;
                 case 4:
-                    int idConsulta = input.getIntegerInput("Digite o ID do cliente buscado: ");
-                    mostrarInfoUsuario(adminController.getUserInfo(idConsulta));
+                    String emailConsulta = input.getStringInput("Digite o Email do cliente buscado: ");
+                    mostrarInfoUsuario(adminController.getUserInfo(emailConsulta));
                     continue;
                 case 0:
                     System.out.println("Saindo do menu de administração");

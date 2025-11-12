@@ -1,15 +1,15 @@
 package SingletonRepositories;
 
+import Model.Cliente;
 import Model.Usuario;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public class UserRepository implements Repository<Usuario>{
+public class UserRepository extends BaseRepository<Usuario>{
     private static UserRepository instance;
-    private static Map<Integer, Usuario> usuariosCadastrados;
+    private static final String fileName = "Usuarios.txt";
 
-    private UserRepository() { usuariosCadastrados = new HashMap<>();  }
+    private UserRepository() {}
 
     public static UserRepository getInstance(){
         if(instance == null) {
@@ -19,17 +19,32 @@ public class UserRepository implements Repository<Usuario>{
         return instance;
     }
 
-    public Usuario acharPorId(int id) {
-        return usuariosCadastrados.get(id);
+    public Usuario pegarPorEmail(String email){
+        String linha = buscarLinhaComItem(email);
+
+        return carregarEntidade(linha);
     }
 
     @Override
-    public void salvar(Usuario usuario) {
-        usuariosCadastrados.put(usuario.getId(), usuario);
+    public Usuario carregarEntidade(String textoArmazenado) {
+        textoArmazenado = textoArmazenado.substring(1, textoArmazenado.length() - 1);
+        String[] partesPareadas = textoArmazenado.split(";");
+        HashMap<String, String> map = new HashMap<>();
+
+        for(String partePareada : partesPareadas) {
+            String[] par = partePareada.split("=");
+            map.put(par[0], par[1]);
+        }
+
+        double rendaMensal = Double.parseDouble(map.get("rendaMensal"));
+        Usuario usuario = new Cliente(map.get("nome"), map.get("senha"), map.get("email"), map.get("cpf"), rendaMensal);
+
+        return usuario;
     }
 
     @Override
-    public void deletar(Usuario usuario) {
-        usuariosCadastrados.remove(usuario.getId());
+    public String getFileName() {
+        return fileName;
     }
+
 }

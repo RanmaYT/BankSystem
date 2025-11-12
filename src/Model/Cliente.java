@@ -10,7 +10,12 @@ public class Cliente extends Usuario {
 
     @Override
     public String converterParaStringArmazenavel() {
-        return "";
+        String textoArmazenavel = String.format("rendaMensal=%.2f}", rendaMensal);
+        String textoPai = super.converterParaStringArmazenavel();
+
+        textoArmazenavel = textoPai.replace("}", ";") + textoArmazenavel.replace(",", ".");
+
+        return textoArmazenavel;
     }
 
     public double getRendaMensal(){

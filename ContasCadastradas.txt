@@ -1,0 +1,1 @@
+{saldo=0.00;emailTitular=jucyara@gmail.com;estadoConta=State.ContaPositiva@4783da3f;chequeEspecial=300.05}
