@@ -25,6 +25,6 @@ public class ContaNegativada implements IContaState{
 
     @Override
     public String getStateName(){
-        return "NEGATIVADA";
+        return "negativada";
     }
 }

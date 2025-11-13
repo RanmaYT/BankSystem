@@ -8,16 +8,6 @@ public class Cliente extends UsuarioAbstrato {
         this.rendaMensal = rendaMensal;
     }
 
-    @Override
-    public String converterParaStringArmazenavel() {
-        String textoArmazenavel = String.format("rendaMensal=%.2f}", rendaMensal);
-        String textoPai = super.converterParaStringArmazenavel();
-
-        textoArmazenavel = textoPai.replace("}", ";") + textoArmazenavel.replace(",", ".");
-
-        return textoArmazenavel;
-    }
-
     public double getRendaMensal(){
         return  rendaMensal;
     }

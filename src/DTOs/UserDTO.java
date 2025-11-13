@@ -13,7 +13,7 @@ public class UserDTO {
         this.nome = user.getNome();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
-        this.cargo = user.getCargo();
+        this.cargo = user.getTipo();
     }
 
     @Override

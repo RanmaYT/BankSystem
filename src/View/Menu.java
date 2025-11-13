@@ -35,6 +35,7 @@ public class Menu {
                 case 1:
                     String emailCliente = input.getStringInput("Entre com seu email: ");
 
+                    // Gambiarra aqui, segurando o fio da realidade
                     SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorEmail(emailCliente));
                     SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(emailCliente));
 

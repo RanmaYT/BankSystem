@@ -1,13 +1,18 @@
 package SingletonRepositories;
 
+import com.google.gson.Gson;
+
 import java.io.*;
 
 public abstract class BaseRepositoryAbstract<T extends IStorable>{
+    // Gambiarra: Mudar para injeção de dependência?
+    protected Gson gson = new Gson();
+
     public void salvar(T entidade) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(getFileName(), true))) {
-            String textoArmazenavel = entidade.converterParaStringArmazenavel();
+            String entidadeJson = gson.toJson(entidade);
 
-            escritor.write(textoArmazenavel);
+            escritor.write(entidadeJson);
             escritor.newLine();
         }
         catch(IOException e) {
@@ -16,6 +21,7 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
     }
 
     public String buscarLinhaComItem(String identificadorLinha) {
+        // Lê o arquivo buscando a linha por um identificador
         try(BufferedReader leitor = new BufferedReader(new FileReader(getFileName()))) {
             String linhaAtual;
             while((linhaAtual = leitor.readLine()) != null){
@@ -29,10 +35,11 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
             return null;
         }
 
+        // Caso não ache nada no arquivo
         return null;
     }
 
-    public void atualizarLinha(String identificadorLinhaAntiga, String novaLinha) {
+    public void atualizarLinha(String identificadorLinhaAntiga, T entidade) {
         File arquivoOriginal = new File(getFileName());
         File arquivoTemporario = new File("tempFile.txt");
         String linhaAntiga = buscarLinhaComItem(identificadorLinhaAntiga);
@@ -48,7 +55,7 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
                     escritor.write(linhaLida);
                 }
                 else {
-                    escritor.write(novaLinha);
+                    escritor.write(gson.toJson(entidade));
                 }
 
                 escritor.newLine();
@@ -66,7 +73,7 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
     }
 
     public void deletar(T entidade) {
-        String linhaParaDeletar = entidade.converterParaStringArmazenavel();
+        String linhaParaDeletar = gson.toJson(entidade);
 
         File arquivoOriginal = new File(getFileName());
         File arquivoTemporario = new File("tempFile.txt");
@@ -95,7 +102,6 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
             System.out.println("Erro ao atualizar arquivo");
         }
     }
-
 
     public abstract T carregarEntidade(String textoArmazenado);
     public abstract String getFileName();

@@ -18,14 +18,4 @@ public class OperacaoExtratavel implements IStorable {
     public double getValorOperacao(){
         return valorOperacao;
     }
-
-    @Override
-    public String converterParaStringArmazenavel() {
-        return String.format("{nomeOperacao=%s,valorOperacao=%.2f}", nomeOperacao, valorOperacao);
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
 }

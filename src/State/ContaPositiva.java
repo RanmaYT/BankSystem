@@ -23,6 +23,6 @@ public class ContaPositiva implements IContaState{
 
     @Override
     public String getStateName(){
-        return "POSITIVA";
+        return "positiva";
     }
 }

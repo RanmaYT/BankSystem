@@ -16,8 +16,6 @@ public class ExtratoBancario implements IStorable {
 
     public void adicionarOperacao(OperacaoExtratavel operacao){
         operacoesRealizadas.add(operacao);
-        // gambiarra: classe de dados fazendo operaçoes de negocios
-        ExtratoRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
     }
 
     public List<OperacaoExtratavel> getOperacoesRealizadas(){
@@ -28,21 +26,4 @@ public class ExtratoBancario implements IStorable {
         return emailTitular;
     }
 
-    @Override
-    public String converterParaStringArmazenavel() {
-        String textoFormatado = String.format("{emailTitular=%s;[", emailTitular);
-
-        for(OperacaoExtratavel operacao : operacoesRealizadas) {
-            textoFormatado += (operacao.converterParaStringArmazenavel() + "/");
-        }
-
-        textoFormatado += "]}";
-
-        return textoFormatado;
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
 }

@@ -1,4 +1,4 @@
-package Factory;
+package Factory.ContaFactory;
 
 import Model.*;
 import State.ContaPositiva;
@@ -11,7 +11,7 @@ public class ContaCorrenteFactory implements ContaFactory{
 
     @Override
     public ContaAbstrata criarConta(UsuarioAbstrato usuario) {
-        if(!(usuario.getCargo() == NivelUsuarioEnum.Cliente)) {
+        if(!(usuario.getTipo() == NivelUsuarioEnum.Cliente)) {
             System.out.println("Apenas clientes podem criar contas corrente");
             return null;
         }

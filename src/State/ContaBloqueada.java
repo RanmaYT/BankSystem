@@ -27,6 +27,6 @@ public class ContaBloqueada implements IContaState{
 
     @Override
     public String getStateName(){
-        return "BLOQUEADA";
+        return "bloqueada";
     }
 }

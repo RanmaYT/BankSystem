@@ -7,7 +7,7 @@ public class ContaCorrente extends ContaAbstrata {
     private double chequeEspecial;
 
     public ContaCorrente(double saldo, String emailTitular, IContaState state, double chequeEspecial) {
-        super(saldo, emailTitular, state);
+        super(saldo, emailTitular, state, "Corrente");
         this.chequeEspecial = chequeEspecial;
     }
 
@@ -51,25 +51,5 @@ public class ContaCorrente extends ContaAbstrata {
             else { System.out.println("Operação cancelada: negou cheque especial!"); }
         }
         else { System.out.println("Saldo insuficiente para realizar a operação"); }
-    }
-
-    @Override
-    public String converterParaStringArmazenavel() {
-        String textoArmazenavel = String.format("chequeEspecial=%.2f}", chequeEspecial);
-        String textoPai = super.converterParaStringArmazenavel();
-
-        textoArmazenavel = textoPai.replace("}", ";") + textoArmazenavel.replace(",", ".");;
-
-        return textoArmazenavel;
-    }
-
-    @Override
-    public String toString(){
-        String textoPai = super.toString();
-        String textoFilho = String.format("\nCheque especial: %.2f", chequeEspecial);
-
-        String textoFormatado = textoPai + textoFilho;
-
-        return textoFormatado;
     }
 }

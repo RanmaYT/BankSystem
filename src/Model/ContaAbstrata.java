@@ -7,27 +7,26 @@ import State.ContaPositiva;
 import State.IContaState;
 
 public abstract class ContaAbstrata implements IStorable {
-    private int id;
-    private static int idCount = 1;
-
     private double saldo;
+    private String tipoConta;
     private String emailTitular;
-    private IContaState estadoConta;
+    private String nomeEstado;
+    private transient IContaState estadoConta;
 
-    public ContaAbstrata(double saldo, String emailTitular, IContaState state) {
+    public ContaAbstrata(double saldo, String emailTitular, IContaState state, String tipoConta) {
         this.saldo = saldo;
         this.emailTitular = emailTitular;
         this.estadoConta = state;
-
-        this.id = idCount;
-        idCount++;
+        this.nomeEstado = state.getStateName();
+        this.tipoConta = tipoConta;
     }
 
     public void mudarEstado(IContaState novoEstado){
         estadoConta = novoEstado;
+        nomeEstado = estadoConta.getStateName();
 
-        // gambiarra: classe de dados fazendo lógica de négocio
-        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
+        // GAMBIARRA MUITO LOUCA
+        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
     }
 
     public void creditar(double valor){
@@ -40,8 +39,8 @@ public abstract class ContaAbstrata implements IStorable {
             mudarEstado(new ContaPositiva());
         }
 
-        // gambiarra: classe de dados fazendo lógica de négocio
-        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
+        // GAMBIARRA MUITO LOUCA
+        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
     }
 
     public void debitar(double valor){
@@ -54,8 +53,8 @@ public abstract class ContaAbstrata implements IStorable {
             mudarEstado(new ContaNegativada());
         }
 
-        // gambiarra: classe de dados fazendo lógica de négocio
-        ContaRepository.getInstance().atualizarLinha(emailTitular, converterParaStringArmazenavel());
+        // GAMBIARRA MUITO LOUCA
+        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
     }
 
     public void deletarConta(){
@@ -69,22 +68,5 @@ public abstract class ContaAbstrata implements IStorable {
 
     public String getEmailTitular() { return emailTitular; }
 
-    @Override
-    public String converterParaStringArmazenavel() {
-        String textoArmazenavel = String.format("{saldo=%.2f;emailTitular=%s;estadoConta=%s}",
-                saldo, emailTitular, estadoConta.getStateName()).replace(",", ".");;
-
-        return textoArmazenavel;
-    }
-
-    @Override
-    // Não está funcionando ainda
-    public int getId() { return id; }
-
-    @Override
-    public String toString(){
-        return String.format("Saldo: %.2f\n" +
-                "Email titular: %s\n" +
-                "Estado da conta: %s", saldo, emailTitular, estadoConta.getStateName());
-    }
+    public String getNomeEstado(){ return nomeEstado; }
 }

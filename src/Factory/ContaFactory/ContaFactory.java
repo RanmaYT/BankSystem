@@ -1,4 +1,4 @@
-package Factory;
+package Factory.ContaFactory;
 
 import Model.ContaAbstrata;
 import Model.UsuarioAbstrato;

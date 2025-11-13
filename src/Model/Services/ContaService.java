@@ -1,6 +1,6 @@
 package Model.Services;
 
-import Factory.ContaFactory;
+import Factory.ContaFactory.ContaFactory;
 import Model.ContaAbstrata;
 
 import Model.ExtratoBancario;
@@ -12,6 +12,7 @@ import SingletonSession.SessionManager;
 import State.ContaBloqueada;
 import State.ContaNegativada;
 import State.ContaPositiva;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -37,8 +38,6 @@ public class ContaService {
         // Gambiarra: uso direto do extrato, sem injeção de dependência;
         ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), conta.getEmailTitular());
         ExtratoRepository.getInstance().salvar(extrato);
-
-        System.out.println("Conta criada e cadastrada com sucesso!");
     }
 
     public void bloquearConta(UsuarioAbstrato cliente) {

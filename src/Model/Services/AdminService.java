@@ -1,7 +1,7 @@
 package Model.Services;
 
 import DTOs.UserDTO;
-import Factory.ContaFactory;
+import Factory.ContaFactory.ContaFactory;
 import Mappers.UsersMapper;
 import Model.Cliente;
 import Model.UsuarioAbstrato;

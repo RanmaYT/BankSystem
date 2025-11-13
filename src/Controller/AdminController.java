@@ -1,7 +1,7 @@
 package Controller;
 
 import DTOs.UserDTO;
-import Factory.ContaCorrenteFactory;
+import Factory.ContaFactory.ContaCorrenteFactory;
 import Model.Services.AdminService;
 
 public class AdminController {

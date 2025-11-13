@@ -7,9 +7,4 @@ public class Admin extends UsuarioAbstrato {
         super(nome, senha, email, cpf, NivelUsuarioEnum.Admin);
         this.matricula = matricula;
     }
-
-    @Override
-    public String converterParaStringArmazenavel() {
-        return "";
-    }
 }

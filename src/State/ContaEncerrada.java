@@ -27,6 +27,6 @@ public class ContaEncerrada implements IContaState{
 
     @Override
     public String getStateName(){
-        return "ENCERRADA";
+        return "encerrada";
     }
 }

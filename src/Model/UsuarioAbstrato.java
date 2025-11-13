@@ -3,24 +3,18 @@ package Model;
 import SingletonRepositories.IStorable;
 
 public abstract class UsuarioAbstrato implements IStorable {
-    private int id;
-    private static int idCount = 1;
-
     private String nome;
     private String senha;
     private String email;
     private String cpf;
-    private NivelUsuarioEnum cargo;
+    private NivelUsuarioEnum tipo;
 
-    public UsuarioAbstrato(String nome, String senha, String email, String cpf, NivelUsuarioEnum cargo){
+    public UsuarioAbstrato(String nome, String senha, String email, String cpf, NivelUsuarioEnum tipo){
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
-        this.cargo = cargo;
-
-        this.id = idCount;
-        idCount++;
+        this.tipo = tipo;
     }
 
     public void atualizarDados(){
@@ -35,16 +29,5 @@ public abstract class UsuarioAbstrato implements IStorable {
 
     public String getCpf(){ return cpf; }
 
-    public NivelUsuarioEnum getCargo(){ return cargo; }
-
-    @Override
-    public String converterParaStringArmazenavel() {
-        String textoArmazenavel = String.format("{nome=%s;senha=%s;email=%s;cpf=%s;cargo=%s}",
-                nome, senha, email, cpf, cargo.toString());
-
-        return textoArmazenavel;
-    }
-
-    @Override
-    public int getId() { return id; }
+    public NivelUsuarioEnum getTipo(){ return tipo; }
 }

@@ -81,7 +81,7 @@ public class MonetaryService {
         extratoBancario.adicionarOperacao(operacaoExtratavel);
 
         // gambiarra: sem injeção de dependência e outras loucuras
-        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getEmailTitular(), extratoBancario.converterParaStringArmazenavel());
+        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getEmailTitular(), extratoBancario);
     }
 
 }

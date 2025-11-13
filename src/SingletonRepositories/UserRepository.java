@@ -1,9 +1,8 @@
 package SingletonRepositories;
 
+import Model.Admin;
 import Model.Cliente;
 import Model.UsuarioAbstrato;
-
-import java.util.HashMap;
 
 public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
     private static UserRepository instance;
@@ -22,24 +21,25 @@ public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
     public UsuarioAbstrato pegarPorEmail(String email){
         String linha = buscarLinhaComItem(email);
 
+        if(linha == null) {
+            System.out.println("Nenhum usuário foi encontrado");
+            return null;
+        }
+
         return carregarEntidade(linha);
     }
 
     @Override
-    public UsuarioAbstrato carregarEntidade(String textoArmazenado) {
-        textoArmazenado = textoArmazenado.substring(1, textoArmazenado.length() - 1);
-        String[] partesPareadas = textoArmazenado.split(";");
-        HashMap<String, String> map = new HashMap<>();
+    public UsuarioAbstrato carregarEntidade(String json) {
+        // ALERTA/GAMBIARRA: Código altamente acoplado
 
-        for(String partePareada : partesPareadas) {
-            String[] par = partePareada.split("=");
-            map.put(par[0], par[1]);
+        if (json.contains("\"tipo\":\"Cliente\"")) {
+            return gson.fromJson(json, Cliente.class);
+        } else if (json.contains("\"tipo\":\"Admin\"")) {
+            return gson.fromJson(json, Admin.class);
         }
 
-        double rendaMensal = Double.parseDouble(map.get("rendaMensal"));
-        UsuarioAbstrato usuario = new Cliente(map.get("nome"), map.get("senha"), map.get("email"), map.get("cpf"), rendaMensal);
-
-        return usuario;
+        return null;
     }
 
     @Override

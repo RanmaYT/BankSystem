@@ -11,7 +11,6 @@ import Strategy.EspeciePayment;
 import Util.InputUtil;
 import View.Menu;
 
-
 public class Main {
     public static void main(String[] args) {
         // Singletons
