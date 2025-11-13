@@ -2,7 +2,7 @@ package SingletonRepositories;
 
 import java.io.*;
 
-public abstract class BaseRepository<T extends IStorable>{
+public abstract class BaseRepositoryAbstract<T extends IStorable>{
     public void salvar(T entidade) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(getFileName(), true))) {
             String textoArmazenavel = entidade.converterParaStringArmazenavel();

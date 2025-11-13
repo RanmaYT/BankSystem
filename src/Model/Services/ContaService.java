@@ -1,10 +1,10 @@
 package Model.Services;
 
 import Factory.ContaFactory;
-import Model.Conta;
+import Model.ContaAbstrata;
 
 import Model.ExtratoBancario;
-import Model.Usuario;
+import Model.UsuarioAbstrato;
 
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.ExtratoRepository;
@@ -24,8 +24,8 @@ public class ContaService {
         this.contaRepo = contaRepo;
     }
 
-    public void criarConta(Usuario usuario, ContaFactory contaFactory){
-        Conta conta = contaFactory.criarConta(usuario);
+    public void criarConta(UsuarioAbstrato usuario, ContaFactory contaFactory){
+        ContaAbstrata conta = contaFactory.criarConta(usuario);
 
         if(conta == null) {
             System.out.println("Falha ao criar conta");
@@ -41,25 +41,25 @@ public class ContaService {
         System.out.println("Conta criada e cadastrada com sucesso!");
     }
 
-    public void bloquearConta(Usuario cliente) {
+    public void bloquearConta(UsuarioAbstrato cliente) {
         // TODO: Validar se a conta já está bloqueada
 
-         Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
+         ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
          conta.mudarEstado(new ContaBloqueada());
     }
 
-    public void desbloquearConta(Usuario cliente) {
+    public void desbloquearConta(UsuarioAbstrato cliente) {
         // TODO: Validar se a conta já está desbloqueada
 
-        Conta conta = contaRepo.pegarPorTitular(cliente.getEmail());
+        ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getEmail());
 
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva() : new ContaNegativada());
     }
 
     // TODO: Transformar o ver saldo em ver informações (Saldo, estado da conta, cheque especial, etc...)
     public double pegarSaldo(){
-        Conta conta = sessionManager.getContaAtiva();
+        ContaAbstrata conta = sessionManager.getContaAtiva();
 
         return conta.getSaldo();
     }

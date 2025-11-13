@@ -1,6 +1,6 @@
 package SingletonRepositories;
 
-import Model.Conta;
+import Model.ContaAbstrata;
 import Model.ContaCorrente;
 import Model.ExtratoBancario;
 import State.*;
@@ -8,7 +8,7 @@ import State.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ContaRepository extends BaseRepository<Conta>{
+public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     private static ContaRepository instance;
     private static final String fileName = "ContasCadastradas.txt";
 
@@ -22,16 +22,16 @@ public class ContaRepository extends BaseRepository<Conta>{
         return instance;
     }
 
-    public Conta pegarPorTitular(String emailTitular){
+    public ContaAbstrata pegarPorTitular(String emailTitular){
         String linhaConta = buscarLinhaComItem(emailTitular);
 
-        Conta conta = carregarEntidade(linhaConta);
+        ContaAbstrata conta = carregarEntidade(linhaConta);
 
         return conta;
     }
 
     @Override
-    public Conta carregarEntidade(String textoArmazenado) {
+    public ContaAbstrata carregarEntidade(String textoArmazenado) {
         // Desconversor básico e acoplado, gambiarra!
         textoArmazenado = textoArmazenado.substring(1, textoArmazenado.length() - 1);
         String[] partesPareadas = textoArmazenado.split(";");
@@ -65,7 +65,7 @@ public class ContaRepository extends BaseRepository<Conta>{
                 break;
         }
 
-        Conta conta = new ContaCorrente(saldo, email, state, chequeEspecial);
+        ContaAbstrata conta = new ContaCorrente(saldo, email, state, chequeEspecial);
 
         return conta;
     }

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class ContaCorrenteFactory implements ContaFactory{
 
     @Override
-    public Conta criarConta(Usuario usuario) {
-        if(!(usuario.getCargo() == NivelUsuario.Cliente)) {
+    public ContaAbstrata criarConta(UsuarioAbstrato usuario) {
+        if(!(usuario.getCargo() == NivelUsuarioEnum.Cliente)) {
             System.out.println("Apenas clientes podem criar contas corrente");
             return null;
         }

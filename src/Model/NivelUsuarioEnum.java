@@ -1,5 +1,5 @@
 package Model;
 
-public enum NivelUsuario {
+public enum NivelUsuarioEnum {
     Admin, Cliente;
 }

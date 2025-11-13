@@ -4,7 +4,7 @@ import DTOs.UserDTO;
 import Factory.ContaFactory;
 import Mappers.UsersMapper;
 import Model.Cliente;
-import Model.Usuario;
+import Model.UsuarioAbstrato;
 import SingletonRepositories.UserRepository;
 
 public class AdminService {
@@ -22,7 +22,7 @@ public class AdminService {
         // TODO: FAZER VALIDAÇÕES (CPF DUPLICADO, EMAIL DUPLICADO...)
 
         // Criar o objeto do cliente
-        Usuario novoCliente = new Cliente(nome, senha, email, cpf, rendaMensal);
+        UsuarioAbstrato novoCliente = new Cliente(nome, senha, email, cpf, rendaMensal);
 
         // Salvar esse objeto no hashmap do repositório
         userRepo.salvar(novoCliente);
@@ -41,13 +41,13 @@ public class AdminService {
     }
 
     public void bloquearCliente(String email) {
-        Usuario cliente = userRepo.pegarPorEmail(email);
+        UsuarioAbstrato cliente = userRepo.pegarPorEmail(email);
 
         contaService.bloquearConta(cliente);
     }
 
     public void desbloquearCliente(String email) {
-        Usuario cliente = userRepo.pegarPorEmail(email);
+        UsuarioAbstrato cliente = userRepo.pegarPorEmail(email);
 
         contaService.desbloquearConta(cliente);
     }

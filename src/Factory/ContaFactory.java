@@ -1,8 +1,8 @@
 package Factory;
 
-import Model.Conta;
-import Model.Usuario;
+import Model.ContaAbstrata;
+import Model.UsuarioAbstrato;
 
 public interface ContaFactory {
-    public Conta criarConta(Usuario usuario);
+    public ContaAbstrata criarConta(UsuarioAbstrato usuario);
 }

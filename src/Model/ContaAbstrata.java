@@ -6,7 +6,7 @@ import State.ContaNegativada;
 import State.ContaPositiva;
 import State.IContaState;
 
-public abstract class Conta implements IStorable {
+public abstract class ContaAbstrata implements IStorable {
     private int id;
     private static int idCount = 1;
 
@@ -14,7 +14,7 @@ public abstract class Conta implements IStorable {
     private String emailTitular;
     private IContaState estadoConta;
 
-    public Conta(double saldo, String emailTitular, IContaState state) {
+    public ContaAbstrata(double saldo, String emailTitular, IContaState state) {
         this.saldo = saldo;
         this.emailTitular = emailTitular;
         this.estadoConta = state;

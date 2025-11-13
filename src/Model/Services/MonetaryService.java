@@ -1,6 +1,6 @@
 package Model.Services;
 
-import Model.Conta;
+import Model.ContaAbstrata;
 import Model.ExtratoBancario;
 import Model.OperacaoExtratavel;
 import SingletonRepositories.ContaRepository;
@@ -22,7 +22,7 @@ public class MonetaryService {
     }
 
     public void sacar(double valor){
-        Conta conta = sessionManager.getContaAtiva();
+        ContaAbstrata conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         conta.debitar(valor);
@@ -32,7 +32,7 @@ public class MonetaryService {
     }
 
     public void depositar(double valor){
-        Conta conta = sessionManager.getContaAtiva();
+        ContaAbstrata conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         conta.creditar(valor);
@@ -61,7 +61,7 @@ public class MonetaryService {
         pagamentoService.setPayStrategy(strategy);
 
         // Pegar a conta do login atual
-        Conta conta = sessionManager.getContaAtiva();
+        ContaAbstrata conta = sessionManager.getContaAtiva();
 
         // Realizar a operação
         double valorFinalPago = pagamentoService.realizarPagamento(conta, valor);

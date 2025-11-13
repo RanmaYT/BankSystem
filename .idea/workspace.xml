@@ -6,7 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BankSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BankSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTOs/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/ContaCorrenteFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ContaCorrenteFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/ContaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ContaFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaAbstrata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/NivelUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/NivelUsuarioEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/ExtratoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ExtratoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Services/PagamentoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/PagamentoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/UsuarioAbstrato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepositoryAbstract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonSession/SessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/EspeciePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy/EspeciePayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/IPaymentStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy/IPaymentStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/InternetBankingStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy/InternetBankingStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +47,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JucyaraFerreira"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JucyaraFerreira&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RanmaYT/BankSystem.git",
-    "accountId": "7626a122-66d5-478c-af94-1010106ab50c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RanmaYT/BankSystem.git&quot;,
+    &quot;accountId&quot;: &quot;7626a122-66d5-478c-af94-1010106ab50c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -58,13 +80,18 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Adriano/IdeaProjects/BankSystem",
-    "project.structure.last.edited": "Project",
+    "last_opened_file_path": "C:/Users/Beto/IdeaProjects/BankSystem/libs/gson-2.13.2",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Beto\IdeaProjects\BankSystem\libs" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />

@@ -2,7 +2,7 @@ package Model;
 
 import SingletonRepositories.IStorable;
 
-public abstract class Usuario implements IStorable {
+public abstract class UsuarioAbstrato implements IStorable {
     private int id;
     private static int idCount = 1;
 
@@ -10,9 +10,9 @@ public abstract class Usuario implements IStorable {
     private String senha;
     private String email;
     private String cpf;
-    private NivelUsuario cargo;
+    private NivelUsuarioEnum cargo;
 
-    public Usuario(String nome, String senha, String email, String cpf, NivelUsuario cargo){
+    public UsuarioAbstrato(String nome, String senha, String email, String cpf, NivelUsuarioEnum cargo){
         this.nome = nome;
         this.senha = senha;
         this.email = email;
@@ -35,7 +35,7 @@ public abstract class Usuario implements IStorable {
 
     public String getCpf(){ return cpf; }
 
-    public NivelUsuario getCargo(){ return cargo; }
+    public NivelUsuarioEnum getCargo(){ return cargo; }
 
     @Override
     public String converterParaStringArmazenavel() {

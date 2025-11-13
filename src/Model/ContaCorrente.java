@@ -3,7 +3,7 @@ package Model;
 import State.IContaState;
 import Util.InputUtil;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends ContaAbstrata {
     private double chequeEspecial;
 
     public ContaCorrente(double saldo, String emailTitular, IContaState state, double chequeEspecial) {

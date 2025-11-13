@@ -1,15 +1,15 @@
 package DTOs;
 
-import Model.NivelUsuario;
-import Model.Usuario;
+import Model.NivelUsuarioEnum;
+import Model.UsuarioAbstrato;
 
 public class UserDTO {
     private String nome;
     private String email;
     private String cpf;
-    private NivelUsuario cargo;
+    private NivelUsuarioEnum cargo;
 
-    public UserDTO(Usuario user){
+    public UserDTO(UsuarioAbstrato user){
         this.nome = user.getNome();
         this.email = user.getEmail();
         this.cpf = user.getCpf();

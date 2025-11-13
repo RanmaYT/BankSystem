@@ -2,7 +2,7 @@ package Model.Services;
 
 import DTOs.ExtratoBancarioDTO;
 import Mappers.ExtratoMapper;
-import Model.Conta;
+import Model.ContaAbstrata;
 import Model.ExtratoBancario;
 import SingletonRepositories.ExtratoRepository;
 import SingletonSession.SessionManager;
@@ -19,7 +19,7 @@ public class ExtratoService {
     }
 
     public ExtratoBancarioDTO pegarExtratoDoUsuarioLogado(){
-        Conta conta = sessionManager.getContaAtiva();
+        ContaAbstrata conta = sessionManager.getContaAtiva();
 
         ExtratoBancario extrato = extratoRepository.pegarPorTitular(conta.getEmailTitular());
 

@@ -1,7 +1,7 @@
 package Strategy;
 
-import Model.Conta;
+import Model.ContaAbstrata;
 
 public interface IPaymentStrategy {
-    public double pagar(Conta conta, double valor);
+    public double pagar(ContaAbstrata conta, double valor);
 }

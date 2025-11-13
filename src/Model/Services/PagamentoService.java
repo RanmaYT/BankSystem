@@ -1,6 +1,6 @@
 package Model.Services;
 
-import Model.Conta;
+import Model.ContaAbstrata;
 import Strategy.IPaymentStrategy;
 
 public class PagamentoService {
@@ -14,7 +14,7 @@ public class PagamentoService {
         this.payStrategy = payStrategy;
     }
 
-    public double realizarPagamento(Conta conta, double valor) {
+    public double realizarPagamento(ContaAbstrata conta, double valor) {
         return payStrategy.pagar(conta, valor);
     }
 }

@@ -1,12 +1,12 @@
 package SingletonSession;
 
-import Model.Conta;
-import Model.Usuario;
+import Model.ContaAbstrata;
+import Model.UsuarioAbstrato;
 
 public class SessionManager {
     private static SessionManager instance;
-    private Usuario usuarioLogado;
-    private Conta contaAtiva;
+    private UsuarioAbstrato usuarioLogado;
+    private ContaAbstrata contaAtiva;
 
     private SessionManager() {
 
@@ -17,19 +17,19 @@ public class SessionManager {
         return instance;
     }
 
-    public Usuario getUsuarioLogado(){
+    public UsuarioAbstrato getUsuarioLogado(){
         return usuarioLogado;
     }
 
-    public void setUsuarioLogado(Usuario usuarioLogado) {
+    public void setUsuarioLogado(UsuarioAbstrato usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
     }
 
-    public Conta getContaAtiva() {
+    public ContaAbstrata getContaAtiva() {
         return contaAtiva;
     }
 
-    public void setContaAtiva(Conta contaAtiva){
+    public void setContaAtiva(ContaAbstrata contaAtiva){
         this.contaAtiva = contaAtiva;
     }
 }

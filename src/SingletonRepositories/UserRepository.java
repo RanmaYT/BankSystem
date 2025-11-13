@@ -1,11 +1,11 @@
 package SingletonRepositories;
 
 import Model.Cliente;
-import Model.Usuario;
+import Model.UsuarioAbstrato;
 
 import java.util.HashMap;
 
-public class UserRepository extends BaseRepository<Usuario>{
+public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
     private static UserRepository instance;
     private static final String fileName = "Usuarios.txt";
 
@@ -19,14 +19,14 @@ public class UserRepository extends BaseRepository<Usuario>{
         return instance;
     }
 
-    public Usuario pegarPorEmail(String email){
+    public UsuarioAbstrato pegarPorEmail(String email){
         String linha = buscarLinhaComItem(email);
 
         return carregarEntidade(linha);
     }
 
     @Override
-    public Usuario carregarEntidade(String textoArmazenado) {
+    public UsuarioAbstrato carregarEntidade(String textoArmazenado) {
         textoArmazenado = textoArmazenado.substring(1, textoArmazenado.length() - 1);
         String[] partesPareadas = textoArmazenado.split(";");
         HashMap<String, String> map = new HashMap<>();
@@ -37,7 +37,7 @@ public class UserRepository extends BaseRepository<Usuario>{
         }
 
         double rendaMensal = Double.parseDouble(map.get("rendaMensal"));
-        Usuario usuario = new Cliente(map.get("nome"), map.get("senha"), map.get("email"), map.get("cpf"), rendaMensal);
+        UsuarioAbstrato usuario = new Cliente(map.get("nome"), map.get("senha"), map.get("email"), map.get("cpf"), rendaMensal);
 
         return usuario;
     }

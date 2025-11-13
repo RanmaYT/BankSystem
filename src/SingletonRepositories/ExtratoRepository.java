@@ -5,7 +5,7 @@ import Model.OperacaoExtratavel;
 
 import java.util.ArrayList;
 
-public class ExtratoRepository extends BaseRepository<ExtratoBancario> {
+public class ExtratoRepository extends BaseRepositoryAbstract<ExtratoBancario> {
     private static ExtratoRepository instance;
     private static final String fileName = "Extratos.txt";
 
