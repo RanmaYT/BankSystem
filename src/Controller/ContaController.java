@@ -25,6 +25,10 @@ public class ContaController {
         return extratoService.pegarExtratoDoUsuarioLogado();
     }
 
+    public void cancelarConta(){
+        contaService.cancelarConta();
+    }
+
     public void sacar(double valor) {
         monetaryService.sacar(valor);
     }

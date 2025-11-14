@@ -1,11 +1,20 @@
 package Mappers;
 
 import DTOs.UserDTOs.ClienteDTO;
+import DTOs.UserDTOs.UserDTO;
 import Model.Cliente;
+import Model.UsuarioAbstrato;
 
 public class UsersMapper {
-    public ClienteDTO clienteToDTO(Cliente cliente) {
-        ClienteDTO clienteDTO = new ClienteDTO(cliente);
-        return clienteDTO;
+    public UserDTO userToDTO(UsuarioAbstrato usuarioAbstrato) {
+        // FERE O PRINCIPIO DO OPEN/CLOSED
+        switch (usuarioAbstrato.getTipo().toString()) {
+            case "Cliente":
+                return new ClienteDTO((Cliente) usuarioAbstrato);
+            case "Admin":
+                return null;
+        }
+
+        return null;
     }
 }

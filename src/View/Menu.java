@@ -55,11 +55,9 @@ public class Menu {
         while(true) {
             System.out.printf("Escolha uma opção, %s\n", SessionManager.getInstance().getUsuarioLogado().getNome());
             System.out.println("[1] Ver informações da conta");
-            System.out.println("[2] Sacar");
-            System.out.println("[3] Depositar");
-            System.out.println("[4] Realizar pagamento");
-            System.out.println("[5] Ver Extrato");
-            System.out.println("[6] Pagar pessoa");
+            System.out.println("[2] Menu de operações monetárias");
+            System.out.println("[3] Ver Extrato");
+            System.out.println("[4] Cancelar conta");
             System.out.println("[0] Sair");
 
             int opcao = input.getIntegerInput("|| ");
@@ -69,44 +67,21 @@ public class Menu {
                     mostrarInfoConta(contaController.pegarInfoConta());
                     continue;
                 case 2:
-                    double valorSaque = input.getDoubleInput("Valor a ser sacado: ");
-                    contaController.sacar(valorSaque);
+                    menuOperacoesMonetarias();
                     continue;
                 case 3:
-                    double valorDeposito = input.getDoubleInput("Valor a ser depositado: ");
-                    contaController.depositar(valorDeposito);
-                    continue;
-                case 4:
-                    boolean escolhaValida = false;
-                    int escolhaPagamento = 0;
-
-                    while(!escolhaValida) {
-                        // Perguntar como ele vai pagar
-                        System.out.println("Como você quer pagar?");
-                        System.out.println("[1] Espécie");
-                        System.out.println("[2] Internet Banking");
-                        System.out.println("[0] Voltar");
-
-                        escolhaPagamento = input.getIntegerInput("|| ");
-
-                        escolhaValida = !(escolhaPagamento < 1 || escolhaPagamento > 2);
-                        if(escolhaPagamento == 0) { return; }
-                    }
-
-                    String itemPago = input.getStringInput("O que está sendo pago: ");
-                    double valorPago = input.getDoubleInput("Qual o valor pago: ");
-
-                    contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
-                    continue;
-                case 5:
                     mostrarExtrato(contaController.pegarExtrato());
                     continue;
-                case 6:
-                    String emailReceptor = input.getStringInput("Email do receptor: ");
-                    double valorOperacao = input.getDoubleInput("Valor a enviar: ");
+                case 4:
+                    System.out.println("Essa ação é irreversível!");
+                    String confirmacao = input.getStringInput("Digite seu cpf para confirmar");
 
-                    contaController.pagarPessoa(emailReceptor, valorOperacao);
-                    continue;
+                    if(!confirmacao.equals(SessionManager.getInstance().getUsuarioLogado().getCpf())) {
+                        System.out.println("A conta não foi encerrada!");
+                        return;
+                    }
+
+                    contaController.cancelarConta();
                 case 0:
                     System.out.println("Saindo do menu de clientes");
                     break;
@@ -125,7 +100,7 @@ public class Menu {
             System.out.println("[1] Cadastrar cliente");
             System.out.println("[2] Bloquear cliente");
             System.out.println("[3] Desbloquear cliente");
-            System.out.println("[4] Verificar cliente");
+            System.out.println("[4] Verificar usuários");
             System.out.println("[0] Sair");
 
             int opcao = input.getIntegerInput("|| ");
@@ -162,6 +137,66 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Valor inválido");
+                    continue;
+            }
+
+            break;
+        }
+    }
+
+    public void menuOperacoesMonetarias(){
+        while(true) {
+            System.out.println("Escolha uma operação monetária:");
+            System.out.println("[1] Sacar");
+            System.out.println("[2] Depositar");
+            System.out.println("[3] Realizar pagamento");
+            System.out.println("[4] Transferir para outra pessoa");
+            System.out.println("[0] Voltar");
+
+            int opcao = input.getIntegerInput("|| ");
+
+            switch (opcao) {
+                case 1:
+                    double valorSaque = input.getDoubleInput("Valor a ser sacado: ");
+                    contaController.sacar(valorSaque);
+                    continue;
+                case 2:
+                    double valorDeposito = input.getDoubleInput("Valor a ser depositado: ");
+                    contaController.depositar(valorDeposito);
+                    continue;
+                case 3:
+                    boolean escolhaPagamentoValida = false;
+                    int escolhaPagamento = 0;
+
+                    while(!escolhaPagamentoValida) {
+                        // Perguntar como ele vai pagar
+                        System.out.println("Como você quer pagar?");
+                        System.out.println("[1] Espécie");
+                        System.out.println("[2] Internet Banking");
+                        System.out.println("[0] Voltar");
+
+                        escolhaPagamento = input.getIntegerInput("|| ");
+
+                        escolhaPagamentoValida = !(escolhaPagamento < 1 || escolhaPagamento > 2);
+                        if(escolhaPagamento == 0) { return; }
+                    }
+
+                    String itemPago = input.getStringInput("O que está sendo pago: ");
+                    double valorPago = input.getDoubleInput("Qual o valor pago: ");
+
+                    contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
+                    continue;
+                case 4:
+                    String emailReceptor = input.getStringInput("Email do receptor: ");
+                    double valorOperacao = input.getDoubleInput("Valor a enviar: ");
+
+                    contaController.pagarPessoa(emailReceptor, valorOperacao);
+                    continue;
+                case 0:
+                    System.out.println("Saindo do menu de operações monetárias");
+                    break;
+                default:
+                    System.out.println("Valor inválido, usuário!");
                     continue;
             }
 

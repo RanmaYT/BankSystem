@@ -31,12 +31,18 @@ public class ContaService {
     }
 
     public void criarConta(UsuarioAbstrato usuario, String tipoConta){
-        // Cria a factory baseada no
+        // Cria a factory baseada no tipo da conta
         IContaFactory contaFactory = switch (tipoConta) {
             case "Corrente" -> new ContaCorrenteFactory();
             case "Poupança" -> new ContaPoupancaFactory(); //
             default -> null;
         };
+
+        // Retorna caso o tipo de conta seja inválido.
+        if(contaFactory == null) {
+            System.out.println("Tipo de conta inválido");
+            return;
+        }
 
         ContaAbstrata conta = contaFactory.criarConta(usuario);
 
@@ -50,6 +56,11 @@ public class ContaService {
         // Gambiarra: uso direto do extrato, sem injeção de dependência;
         ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), conta.getEmailTitular());
         ExtratoRepository.getInstance().salvar(extrato);
+    }
+
+    public void cancelarConta(){
+        ContaAbstrata conta = sessionManager.getContaAtiva();
+        conta.deletarConta();
     }
 
     public void bloquearConta(UsuarioAbstrato cliente) {

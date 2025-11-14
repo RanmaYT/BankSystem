@@ -14,7 +14,7 @@ public class ClienteDTO extends UserDTO {
     public String toString(){
         String textoFormatado = super.toString();
 
-        textoFormatado += String.format("\nRenda mensal: %.2f", rendaMensal);
+        textoFormatado += String.format("\nRenda mensal: R$%.2f", rendaMensal);
 
         return textoFormatado;
     }

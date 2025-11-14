@@ -61,6 +61,11 @@ public abstract class ContaAbstrata implements IStorable {
     public void deletarConta(){
         if(!estadoConta.podeDeletarConta()) { return; }
 
+        if(saldo != 0) {
+            System.out.println("A conta deve estar zerada para ser encerrada!");
+            return;
+        }
+
         mudarEstado(new ContaEncerrada());
     }
 

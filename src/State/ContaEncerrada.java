@@ -21,8 +21,7 @@ public class ContaEncerrada implements IContaState{
 
     @Override
     public boolean podePegarExtrato() {
-        System.out.println("Essa conta já foi encerrada, impossível realizar operações!");
-        return false;
+        return true;
     }
 
     @Override

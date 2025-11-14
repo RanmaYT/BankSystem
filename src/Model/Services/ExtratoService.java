@@ -21,6 +21,10 @@ public class ExtratoService {
     public ExtratoBancarioDTO pegarExtratoDoUsuarioLogado(){
         ContaAbstrata conta = sessionManager.getContaAtiva();
 
+        if(!conta.getEstadoConta().podePegarExtrato()) {
+            return null;
+        }
+
         ExtratoBancario extrato = extratoRepository.pegarPorTitular(conta.getEmailTitular());
 
         return extratoMapper.converterEmDTO(extrato);

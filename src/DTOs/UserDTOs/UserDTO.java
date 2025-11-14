@@ -7,13 +7,13 @@ public class UserDTO {
     private String nome;
     private String email;
     private String cpf;
-    private NivelUsuarioEnum cargo;
+    private NivelUsuarioEnum nivelUsuario;
 
     public UserDTO(UsuarioAbstrato user){
         this.nome = user.getNome();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
-        this.cargo = user.getTipo();
+        this.nivelUsuario = user.getTipo();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class UserDTO {
         return String.format("Nome: %s\n" +
                 "Email: %s\n" +
                 "CPF: %s\n" +
-                "Cargo: %s",
-                nome, email, cpf, cargo.toString());
+                "Tipo de usuário: %s",
+                nome, email, cpf, nivelUsuario.toString());
     }
 }

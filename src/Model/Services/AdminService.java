@@ -1,7 +1,6 @@
 package Model.Services;
 
 import DTOs.UserDTOs.UserDTO;
-import Factory.ContaFactory.ContaCorrenteFactory;
 import Mappers.UsersMapper;
 import Model.Cliente;
 import Model.UsuarioAbstrato;
@@ -35,7 +34,7 @@ public class AdminService {
         // Fica dependente da classe concreta!
         Cliente usuario = (Cliente) userRepo.pegarPorEmail(email);
 
-        UserDTO userDTO = usersMapper.clienteToDTO(usuario);
+        UserDTO userDTO = usersMapper.userToDTO(usuario);
         return userDTO;
     }
 
