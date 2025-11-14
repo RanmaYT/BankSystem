@@ -1,8 +1,7 @@
 package SingletonRepositories;
 
 import Factory.ContaFactory.ContaEstadoSimpleFactory;
-import Model.ContaAbstrata;
-import Model.ContaCorrente;
+import Model.*;
 
 public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     private static ContaRepository instance;
@@ -25,9 +24,14 @@ public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     }
 
     @Override
-    public ContaAbstrata carregarEntidade(String textoArmazenado) {
-        // GAMBIARRA: ACOPLAMENTO ALTO COM CONTA CORRENTE.
-        ContaAbstrata conta = gson.fromJson(textoArmazenado, ContaCorrente.class);
+    public ContaAbstrata carregarEntidade(String json) {
+        ContaAbstrata conta = null;
+
+        if (json.contains("\"tipoConta\":\"Corrente\"")) {
+            conta = gson.fromJson(json, ContaCorrente.class);
+        } else if (json.contains("\"tipoConta\":\"Poupança\"")) {
+            conta = gson.fromJson(json, ContaPoupanca.class);
+        }
 
         // Criação de uma factory para gambiarra
         ContaEstadoSimpleFactory contaEstadoSimpleFactory = new ContaEstadoSimpleFactory();

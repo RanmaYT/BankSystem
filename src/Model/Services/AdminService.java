@@ -1,7 +1,7 @@
 package Model.Services;
 
-import DTOs.UserDTO;
-import Factory.ContaFactory.ContaFactory;
+import DTOs.UserDTOs.UserDTO;
+import Factory.ContaFactory.ContaCorrenteFactory;
 import Mappers.UsersMapper;
 import Model.Cliente;
 import Model.UsuarioAbstrato;
@@ -18,7 +18,7 @@ public class AdminService {
         this.usersMapper = usersMapper;
     }
 
-    public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, ContaFactory tipoConta) {
+    public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, String tipoConta) {
         // TODO: FAZER VALIDAÇÕES (CPF DUPLICADO, EMAIL DUPLICADO...)
 
         // Criar o objeto do cliente
@@ -26,7 +26,6 @@ public class AdminService {
 
         // Salvar esse objeto no hashmap do repositório
         userRepo.salvar(novoCliente);
-        System.out.println("Cliente cadastrado com sucesso");
 
         // Cria uma conta para o cliente
         contaService.criarConta(novoCliente, tipoConta);

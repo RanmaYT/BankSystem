@@ -1,5 +1,6 @@
 package Controller;
 
+import DTOs.ContaDTOs.ContaDTO;
 import DTOs.ExtratoBancarioDTO;
 import Model.Services.ContaService;
 import Model.Services.ExtratoService;
@@ -16,8 +17,8 @@ public class ContaController {
         this.extratoService = extratoService;
     }
 
-    public double verSaldo(){
-        return contaService.pegarSaldo();
+    public ContaDTO pegarInfoConta(){
+        return contaService.pegarInfoConta();
     }
 
     public ExtratoBancarioDTO pegarExtrato() {

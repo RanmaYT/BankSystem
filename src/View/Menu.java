@@ -2,8 +2,9 @@ package View;
 
 import Controller.AdminController;
 import Controller.ContaController;
+import DTOs.ContaDTOs.ContaDTO;
 import DTOs.ExtratoBancarioDTO;
-import DTOs.UserDTO;
+import DTOs.UserDTOs.UserDTO;
 
 // Esses 3 aqui são gambiarra por enquanto
 import SingletonRepositories.ContaRepository;
@@ -53,7 +54,7 @@ public class Menu {
     public void menuPrincipalCliente(){
         while(true) {
             System.out.printf("Escolha uma opção, %s\n", SessionManager.getInstance().getUsuarioLogado().getNome());
-            System.out.println("[1] Ver saldo");
+            System.out.println("[1] Ver informações da conta");
             System.out.println("[2] Sacar");
             System.out.println("[3] Depositar");
             System.out.println("[4] Realizar pagamento");
@@ -65,9 +66,7 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("================");
-                    System.out.printf("Saldo: R$%.2f\n", contaController.verSaldo());
-                    System.out.println("================");
+                    mostrarInfoConta(contaController.pegarInfoConta());
                     continue;
                 case 2:
                     double valorSaque = input.getDoubleInput("Valor a ser sacado: ");
@@ -107,7 +106,7 @@ public class Menu {
                     double valorOperacao = input.getDoubleInput("Valor a enviar: ");
 
                     contaController.pagarPessoa(emailReceptor, valorOperacao);
-                    break;
+                    continue;
                 case 0:
                     System.out.println("Saindo do menu de clientes");
                     break;
@@ -137,13 +136,14 @@ public class Menu {
                     System.out.println("=== Cadastro Cliente ===");
 
                     // Pega os campos necessários
+                    String tipoConta = input.getAlphaInput("Tipo de conta (Poupança/Corrente): ");
                     String nome = input.getAlphaInput("Nome: ");
                     String senha = input.getStringInput("Senha: ");
                     String email = input.getStringInput("Email: ");
                     String cpf = input.getStringInput("CPF: ");
                     double rendaMensal = input.getDoubleInput("Renda Mensal: ");
 
-                    adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal);
+                    adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);
                     continue;
                 case 2:
                     String emailBloqueio = input.getStringInput("Digite o Email do cliente para bloquear a conta: ");
@@ -172,6 +172,12 @@ public class Menu {
     public void mostrarInfoUsuario(UserDTO userDTO){
         System.out.println("================");
         System.out.println(userDTO);
+        System.out.println("================");
+    }
+
+    public void mostrarInfoConta(ContaDTO contaDTO) {
+        System.out.println("================");
+        System.out.println(contaDTO);
         System.out.println("================");
     }
 

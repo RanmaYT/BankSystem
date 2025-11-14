@@ -2,7 +2,7 @@ package Factory.UserFactory;
 
 import Model.Cliente;
 
-public class ClienteFactory implements UserFactory {
+public class ClienteFactory implements IUserFactory {
     private double rendaMensal;
 
     public ClienteFactory(double rendaMensal) {

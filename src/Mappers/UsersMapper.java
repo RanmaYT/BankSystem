@@ -1,6 +1,6 @@
 package Mappers;
 
-import DTOs.ClienteDTO;
+import DTOs.UserDTOs.ClienteDTO;
 import Model.Cliente;
 
 public class UsersMapper {

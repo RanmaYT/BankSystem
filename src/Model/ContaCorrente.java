@@ -52,4 +52,8 @@ public class ContaCorrente extends ContaAbstrata {
         }
         else { System.out.println("Saldo insuficiente para realizar a operação"); }
     }
+
+    // Getters e Setters
+
+    public double getChequeEspecial(){ return chequeEspecial; }
 }

@@ -1,8 +1,8 @@
-package DTOs;
+package DTOs.UserDTOs;
 
 import Model.Cliente;
 
-public class ClienteDTO extends UserDTO{
+public class ClienteDTO extends UserDTO {
     private double rendaMensal;
 
     public ClienteDTO(Cliente cliente) {

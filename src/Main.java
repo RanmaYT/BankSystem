@@ -1,5 +1,6 @@
 import Controller.AdminController;
 import Controller.ContaController;
+import Mappers.ContaMapper;
 import Mappers.ExtratoMapper;
 import Mappers.UsersMapper;
 import Model.Services.*;
@@ -20,7 +21,7 @@ public class Main {
         SessionManager sessionManager = SessionManager.getInstance();
 
         // Services
-        ContaService contaService = new ContaService(sessionManager, contaRepo);
+        ContaService contaService = new ContaService(sessionManager, contaRepo, new ContaMapper());
         AdminService adminService = new AdminService(userRepo, contaService, new UsersMapper());
         MonetaryService monetaryService = new MonetaryService(contaRepo, sessionManager, new PagamentoService(new EspeciePayment()));
         ExtratoService extratoService = new ExtratoService(new ExtratoMapper(), extratoRepository, sessionManager);

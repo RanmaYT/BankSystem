@@ -1,6 +1,10 @@
 package Model.Services;
 
-import Factory.ContaFactory.ContaFactory;
+import DTOs.ContaDTOs.ContaDTO;
+import Factory.ContaFactory.ContaCorrenteFactory;
+import Factory.ContaFactory.ContaPoupancaFactory;
+import Factory.ContaFactory.IContaFactory;
+import Mappers.ContaMapper;
 import Model.ContaAbstrata;
 
 import Model.ExtratoBancario;
@@ -12,20 +16,28 @@ import SingletonSession.SessionManager;
 import State.ContaBloqueada;
 import State.ContaNegativada;
 import State.ContaPositiva;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class ContaService {
     private SessionManager sessionManager;
     private ContaRepository contaRepo;
+    private ContaMapper contaMapper;
 
-    public ContaService(SessionManager sessionManager, ContaRepository contaRepo) {
+    public ContaService(SessionManager sessionManager, ContaRepository contaRepo, ContaMapper contaMapper) {
         this.sessionManager = sessionManager;
         this.contaRepo = contaRepo;
+        this.contaMapper = contaMapper;
     }
 
-    public void criarConta(UsuarioAbstrato usuario, ContaFactory contaFactory){
+    public void criarConta(UsuarioAbstrato usuario, String tipoConta){
+        // Cria a factory baseada no
+        IContaFactory contaFactory = switch (tipoConta) {
+            case "Corrente" -> new ContaCorrenteFactory();
+            case "Poupança" -> new ContaPoupancaFactory(); //
+            default -> null;
+        };
+
         ContaAbstrata conta = contaFactory.criarConta(usuario);
 
         if(conta == null) {
@@ -56,10 +68,11 @@ public class ContaService {
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva() : new ContaNegativada());
     }
 
-    // TODO: Transformar o ver saldo em ver informações (Saldo, estado da conta, cheque especial, etc...)
-    public double pegarSaldo(){
+    public ContaDTO pegarInfoConta(){
         ContaAbstrata conta = sessionManager.getContaAtiva();
 
-        return conta.getSaldo();
+        String tipoConta = conta.getTipoConta();
+
+        return contaMapper.contaToDto(conta, tipoConta);
     }
 }

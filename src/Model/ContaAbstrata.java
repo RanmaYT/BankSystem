@@ -2,6 +2,7 @@ package Model;
 
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.IStorable;
+import State.ContaEncerrada;
 import State.ContaNegativada;
 import State.ContaPositiva;
 import State.IContaState;
@@ -59,6 +60,8 @@ public abstract class ContaAbstrata implements IStorable {
 
     public void deletarConta(){
         if(!estadoConta.podeDeletarConta()) { return; }
+
+        mudarEstado(new ContaEncerrada());
     }
 
     // Getters e Setters
@@ -68,5 +71,9 @@ public abstract class ContaAbstrata implements IStorable {
 
     public String getEmailTitular() { return emailTitular; }
 
-    public String getNomeEstado(){ return nomeEstado; }
+    public String getNomeEstado() { return nomeEstado; }
+
+    public String getTipoConta(){ return tipoConta; }
+
+    public IContaState getEstadoConta(){ return estadoConta; }
 }

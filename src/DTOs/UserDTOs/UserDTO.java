@@ -1,4 +1,4 @@
-package DTOs;
+package DTOs.UserDTOs;
 
 import Model.NivelUsuarioEnum;
 import Model.UsuarioAbstrato;
