@@ -2,7 +2,7 @@ package DTOs.ContaDTOs;
 
 import Model.ContaAbstrata;
 
-public class ContaDTO {
+public abstract class ContaDTO {
     private double saldo;
     private String tipoConta;
     private String emailTitular;
@@ -20,7 +20,7 @@ public class ContaDTO {
         return String.format("Saldo: %.2f\n" +
                         "Email titular: %s\n" +
                         "Tipo conta: %s\n" +
-                        "Estado conta %s\n",
+                        "Estado conta %s",
                 saldo, emailTitular, tipoConta, estadoConta);
     }
 }

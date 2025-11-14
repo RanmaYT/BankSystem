@@ -3,6 +3,7 @@ package Mappers;
 import DTOs.ContaDTOs.ContaCorrenteDTO;
 import DTOs.ContaDTOs.ContaDTO;
 
+import DTOs.ContaDTOs.ContaPoupancaDTO;
 import Model.ContaAbstrata;
 import Model.ContaCorrente;
 import Model.ContaPoupanca;
@@ -15,8 +16,7 @@ public class ContaMapper {
                 return new ContaCorrenteDTO(contaCorrente);
             case "Poupança":
                 ContaPoupanca contaPoupanca = (ContaPoupanca) conta;
-                System.out.println("ContaPoupançaDTO");
-                return null;
+                return new ContaPoupancaDTO(contaPoupanca);
         }
 
         return null;

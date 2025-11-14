@@ -19,7 +19,7 @@ public class AdminService {
     }
 
     public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, String tipoConta) {
-        // TODO: FAZER VALIDAÇÕES (CPF DUPLICADO, EMAIL DUPLICADO...)
+        // TODO: FAZER SISTEMA DE VALIDAÇÕES (CPF DUPLICADO, EMAIL DUPLICADO...)
 
         // Criar o objeto do cliente
         UsuarioAbstrato novoCliente = new Cliente(nome, senha, email, cpf, rendaMensal);
