@@ -35,4 +35,8 @@ public class ContaController {
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
         monetaryService.realizarPagamento(opcaoPagamento, itemPago, valor);
     }
+
+    public void pagarPessoa(String emailReceptor, double valorEnviado){
+        monetaryService.pagarPessoa(emailReceptor, valorEnviado);
+    }
 }

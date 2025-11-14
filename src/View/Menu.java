@@ -58,6 +58,7 @@ public class Menu {
             System.out.println("[3] Depositar");
             System.out.println("[4] Realizar pagamento");
             System.out.println("[5] Ver Extrato");
+            System.out.println("[6] Pagar pessoa");
             System.out.println("[0] Sair");
 
             int opcao = input.getIntegerInput("|| ");
@@ -101,6 +102,12 @@ public class Menu {
                 case 5:
                     mostrarExtrato(contaController.pegarExtrato());
                     continue;
+                case 6:
+                    String emailReceptor = input.getStringInput("Email do receptor: ");
+                    double valorOperacao = input.getDoubleInput("Valor a enviar: ");
+
+                    contaController.pagarPessoa(emailReceptor, valorOperacao);
+                    break;
                 case 0:
                     System.out.println("Saindo do menu de clientes");
                     break;

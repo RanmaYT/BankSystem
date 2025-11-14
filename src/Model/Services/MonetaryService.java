@@ -71,6 +71,17 @@ public class MonetaryService {
         salvarNoExtrato(conta.getEmailTitular(), nomeOperacao, -valorFinalPago);
     }
 
+    public void pagarPessoa(String emailReceptor, double valorEnviado){
+        ContaAbstrata contaPagante = sessionManager.getContaAtiva();
+        ContaAbstrata contaReceptor = contaRepo.pegarPorTitular(emailReceptor);
+
+        contaPagante.debitar(valorEnviado);
+        salvarNoExtrato(contaPagante.getEmailTitular(), "Pagamento para: " + contaReceptor.getEmailTitular(), -valorEnviado);
+
+        contaReceptor.creditar(valorEnviado);
+        salvarNoExtrato(contaReceptor.getEmailTitular(), "Pagamento de: " + contaPagante.getEmailTitular(), valorEnviado);
+    }
+
     // TODO: MOVER PARA EXTRATO SERVICE DEPOIS
     public void salvarNoExtrato(String emailTitular, String nomeOperacao, double valorOperacao){
         // Cria uma operação extratável

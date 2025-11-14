@@ -6,30 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTOs/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOs/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/ContaCorrenteFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ContaFactory/ContaCorrenteFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/ContaFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ContaFactory/ContaFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ContaAbstrata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaAbstrata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ContaCorrente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ExtratoBancario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/OperacaoExtratavel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Services/ContaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/ContaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Services/MonetaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/UsuarioAbstrato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/UsuarioAbstrato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepositoryAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/BaseRepositoryAbstract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ContaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/ExtratoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/IStorable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingletonRepositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaBloqueada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaBloqueada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaEncerrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaEncerrada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaNegativada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaNegativada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/ContaPositiva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/ContaPositiva.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,23 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Beto/IdeaProjects/BankSystem/libs/gson-2.13.2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Beto/IdeaProjects/BankSystem/libs/gson-2.13.2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Beto\IdeaProjects\BankSystem\libs" />
