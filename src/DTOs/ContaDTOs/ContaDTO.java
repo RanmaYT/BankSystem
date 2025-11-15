@@ -5,22 +5,22 @@ import Model.ContaAbstrata;
 public abstract class ContaDTO {
     private double saldo;
     private String tipoConta;
-    private String emailTitular;
+    private String cpfTitular;
     private String estadoConta;
 
     public ContaDTO(ContaAbstrata conta) {
         this.saldo = conta.getSaldo();
         this.tipoConta = conta.getTipoConta();
-        this.emailTitular = conta.getEmailTitular();
+        this.cpfTitular = conta.getCpfTitular();
         this.estadoConta = conta.getNomeEstado();
     }
 
     @Override
     public String toString(){
         return String.format("Saldo: %.2f\n" +
-                        "Email titular: %s\n" +
+                        "CPF titular: %s\n" +
                         "Tipo conta: %s\n" +
-                        "Estado conta %s",
-                saldo, emailTitular, tipoConta, estadoConta);
+                        "Estado conta: %s",
+                saldo, cpfTitular, tipoConta, estadoConta);
     }
 }

@@ -6,8 +6,8 @@ import Util.InputUtil;
 public class ContaCorrente extends ContaAbstrata {
     private double chequeEspecial;
 
-    public ContaCorrente(double saldo, String emailTitular, IContaState state, double chequeEspecial) {
-        super(saldo, emailTitular, state, "Corrente");
+    public ContaCorrente(double saldo, String cpfTitular, IContaState state, double chequeEspecial) {
+        super(saldo, cpfTitular, state, "Corrente");
         this.chequeEspecial = chequeEspecial;
     }
 

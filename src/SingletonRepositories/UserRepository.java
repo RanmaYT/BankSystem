@@ -18,8 +18,8 @@ public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
         return instance;
     }
 
-    public UsuarioAbstrato pegarPorEmail(String email){
-        String linha = buscarLinhaComItem(email);
+    public UsuarioAbstrato pegarPorCpf(String cpf){
+        String linha = buscarLinhaComItem(cpf);
 
         if(linha == null) {
             System.out.println("Nenhum usuário foi encontrado");

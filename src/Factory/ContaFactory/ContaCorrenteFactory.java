@@ -12,6 +12,6 @@ public class ContaCorrenteFactory implements IContaFactory{
         // Alto acoplamento com a classe cliente.
         Cliente cliente = (Cliente) usuario;
 
-        return new ContaCorrente(0, usuario.getEmail(), new ContaPositiva(), FinancaUtil.calcularChequeEspecial(cliente.getRendaMensal()));
+        return new ContaCorrente(0, usuario.getCpf(), new ContaPositiva(), FinancaUtil.calcularChequeEspecial(cliente.getRendaMensal()));
     }
 }

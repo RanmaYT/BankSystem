@@ -34,11 +34,11 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    String emailCliente = input.getStringInput("Entre com seu email: ");
+                    String cpfCliente = input.getStringInput("Entre com seu cpf: ");
 
                     // Gambiarra aqui, segurando o fio da realidade
-                    SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorEmail(emailCliente));
-                    SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(emailCliente));
+                    SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorCpf(cpfCliente));
+                    SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(cpfCliente));
 
                     menuPrincipalCliente();
                     break;
@@ -121,16 +121,16 @@ public class Menu {
                     adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);
                     continue;
                 case 2:
-                    String emailBloqueio = input.getStringInput("Digite o Email do cliente para bloquear a conta: ");
-                    adminController.bloquearCliente(emailBloqueio);
+                    String cpfBloqueio = input.getStringInput("Digite o cpf do cliente para bloquear a conta: ");
+                    adminController.bloquearCliente(cpfBloqueio);
                     continue;
                 case 3:
-                    String emailDesbloqueio = input.getStringInput("Digite o Email do cliente para desbloquear a conta: ");
-                    adminController.desbloquearCliente(emailDesbloqueio);
+                    String cpfDesbloqueio = input.getStringInput("Digite o cpf do cliente para desbloquear a conta: ");
+                    adminController.desbloquearCliente(cpfDesbloqueio);
                     continue;
                 case 4:
-                    String emailConsulta = input.getStringInput("Digite o Email do cliente buscado: ");
-                    mostrarInfoUsuario(adminController.getUserInfo(emailConsulta));
+                    String cpfConsulta = input.getStringInput("Digite o cpf do cliente buscado: ");
+                    mostrarInfoUsuario(adminController.getUserInfo(cpfConsulta));
                     continue;
                 case 0:
                     System.out.println("Saindo do menu de administração");
@@ -177,9 +177,11 @@ public class Menu {
 
                         escolhaPagamento = input.getIntegerInput("|| ");
 
-                        escolhaPagamentoValida = !(escolhaPagamento < 1 || escolhaPagamento > 2);
-                        if(escolhaPagamento == 0) { return; }
+                        escolhaPagamentoValida = !(escolhaPagamento < 0 || escolhaPagamento > 2);
+
                     }
+
+                    if(escolhaPagamento == 0) { continue; }
 
                     String itemPago = input.getStringInput("O que está sendo pago: ");
                     double valorPago = input.getDoubleInput("Qual o valor pago: ");
@@ -187,7 +189,7 @@ public class Menu {
                     contaController.realizarPagamento(escolhaPagamento, itemPago, valorPago);
                     continue;
                 case 4:
-                    String emailReceptor = input.getStringInput("Email do receptor: ");
+                    String emailReceptor = input.getStringInput("CPF do receptor: ");
                     double valorOperacao = input.getDoubleInput("Valor a enviar: ");
 
                     contaController.pagarPessoa(emailReceptor, valorOperacao);

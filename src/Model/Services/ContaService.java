@@ -31,7 +31,7 @@ public class ContaService {
     }
 
     public void criarConta(UsuarioAbstrato usuario, String tipoConta){
-        // Cria a factory baseada no tipo da conta
+        // Cria a factory baseada no tipo da conta, gambiarra?
         IContaFactory contaFactory = switch (tipoConta) {
             case "Corrente" -> new ContaCorrenteFactory();
             case "Poupança" -> new ContaPoupancaFactory(); //
@@ -54,7 +54,7 @@ public class ContaService {
         contaRepo.salvar(conta);
 
         // Gambiarra: uso direto do extrato, sem injeção de dependência;
-        ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), conta.getEmailTitular());
+        ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), usuario.getCpf());
         ExtratoRepository.getInstance().salvar(extrato);
     }
 
@@ -64,17 +64,23 @@ public class ContaService {
     }
 
     public void bloquearConta(UsuarioAbstrato cliente) {
-        // TODO: Validar se a conta já está bloqueada
+        ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getCpf());
 
-         ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getEmail());
+        if(!conta.getNomeEstado().equals("bloqueada")) {
+            System.out.println("Essa conta já está bloqueada");
+            return;
+        }
 
          conta.mudarEstado(new ContaBloqueada());
     }
 
     public void desbloquearConta(UsuarioAbstrato cliente) {
-        // TODO: Validar se a conta já está desbloqueada
+        ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getCpf());
 
-        ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getEmail());
+        if(!conta.getNomeEstado().equals("bloqueada")) {
+            System.out.println("Essa conta não está bloqueada");
+            return;
+        }
 
         conta.mudarEstado(conta.getSaldo() >= 0 ? new ContaPositiva() : new ContaNegativada());
     }

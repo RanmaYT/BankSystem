@@ -15,17 +15,15 @@ public class AdminController {
         admService.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);
     }
 
-    public UserDTO getUserInfo(String clienteEmail){
-        return admService.getUserInfo(clienteEmail);
+    public UserDTO getUserInfo(String cpf){
+        return admService.getUserInfo(cpf);
     }
 
-    public void bloquearCliente(String clienteEmail){
-        admService.bloquearCliente(clienteEmail);
-        System.out.println("Conta bloqueada!");
+    public void bloquearCliente(String cpf){
+        admService.bloquearCliente(cpf);
     }
 
-    public void desbloquearCliente(String clienteEmail) {
-        admService.desbloquearCliente(clienteEmail);
-        System.out.println("Conta desbloqueada!");
+    public void desbloquearCliente(String cpf) {
+        admService.desbloquearCliente(cpf);
     }
 }

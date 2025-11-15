@@ -5,6 +5,7 @@ import Model.ExtratoBancario;
 import Model.OperacaoExtratavel;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.ExtratoRepository;
+import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
 import Strategy.EspeciePayment;
 import Strategy.IPaymentStrategy;
@@ -28,7 +29,7 @@ public class MonetaryService {
         conta.debitar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta.getEmailTitular(), "Saque", -valor );
+        salvarNoExtrato(conta.getCpfTitular(), "Saque", -valor );
     }
 
     public void depositar(double valor){
@@ -38,7 +39,7 @@ public class MonetaryService {
         conta.creditar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta.getEmailTitular(), "Depósito", valor);
+        salvarNoExtrato(conta.getCpfTitular(), "Depósito", valor);
     }
 
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
@@ -68,31 +69,31 @@ public class MonetaryService {
 
         // Salva a operação no extrato
         String nomeOperacao = "Pagamento: " + itemPago;
-        salvarNoExtrato(conta.getEmailTitular(), nomeOperacao, -valorFinalPago);
+        salvarNoExtrato(conta.getCpfTitular(), nomeOperacao, -valorFinalPago);
     }
 
-    public void pagarPessoa(String emailReceptor, double valorEnviado){
+    public void pagarPessoa(String cpfReceptor, double valorEnviado){
         ContaAbstrata contaPagante = sessionManager.getContaAtiva();
-        ContaAbstrata contaReceptor = contaRepo.pegarPorTitular(emailReceptor);
+        ContaAbstrata contaReceptor = contaRepo.pegarPorTitular(cpfReceptor);
 
         contaPagante.debitar(valorEnviado);
-        salvarNoExtrato(contaPagante.getEmailTitular(), "Pagamento para: " + contaReceptor.getEmailTitular(), -valorEnviado);
+        salvarNoExtrato(contaPagante.getCpfTitular(), "Pagamento para: " + UserRepository.getInstance().pegarPorCpf(contaReceptor.getCpfTitular()).getNome(), -valorEnviado);
 
         contaReceptor.creditar(valorEnviado);
-        salvarNoExtrato(contaReceptor.getEmailTitular(), "Pagamento de: " + contaPagante.getEmailTitular(), valorEnviado);
+        salvarNoExtrato(contaReceptor.getCpfTitular(), "Pagamento de: " + UserRepository.getInstance().pegarPorCpf(contaPagante.getCpfTitular()).getNome(), valorEnviado);
     }
 
     // TODO: MOVER PARA EXTRATO SERVICE DEPOIS
-    public void salvarNoExtrato(String emailTitular, String nomeOperacao, double valorOperacao){
+    public void salvarNoExtrato(String cpfTitular, String nomeOperacao, double valorOperacao){
         // Cria uma operação extratável
         OperacaoExtratavel operacaoExtratavel = new OperacaoExtratavel(nomeOperacao, valorOperacao);
 
         // Pegar o extrato e adiciona a operação ao extrato.
-        ExtratoBancario extratoBancario = ExtratoRepository.getInstance().pegarPorTitular(emailTitular);
+        ExtratoBancario extratoBancario = ExtratoRepository.getInstance().pegarPorTitular(cpfTitular);
         extratoBancario.adicionarOperacao(operacaoExtratavel);
 
         // gambiarra: sem injeção de dependência e outras loucuras
-        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getEmailTitular(), extratoBancario);
+        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getCpfTitular(), extratoBancario);
     }
 
 }

@@ -17,8 +17,8 @@ public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
         return instance;
     }
 
-    public ContaAbstrata pegarPorTitular(String emailTitular){
-        String linhaConta = buscarLinhaComItem(emailTitular);
+    public ContaAbstrata pegarPorTitular(String cpf){
+        String linhaConta = buscarLinhaComItem(cpf);
 
         return carregarEntidade(linhaConta);
     }
@@ -27,6 +27,7 @@ public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     public ContaAbstrata carregarEntidade(String json) {
         ContaAbstrata conta = null;
 
+        // Gambiarra!
         if (json.contains("\"tipoConta\":\"Corrente\"")) {
             conta = gson.fromJson(json, ContaCorrente.class);
         } else if (json.contains("\"tipoConta\":\"Poupança\"")) {

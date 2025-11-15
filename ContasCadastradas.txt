@@ -1,1 +1,0 @@
-{"saldo":0.0,"tipoConta":"Poupança","emailTitular":"gmail.com","nomeEstado":"encerrada"}

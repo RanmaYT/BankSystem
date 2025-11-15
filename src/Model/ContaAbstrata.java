@@ -10,13 +10,13 @@ import State.IContaState;
 public abstract class ContaAbstrata implements IStorable {
     private double saldo;
     private String tipoConta;
-    private String emailTitular;
+    private String cpfTitular;
     private String nomeEstado;
     private transient IContaState estadoConta;
 
-    public ContaAbstrata(double saldo, String emailTitular, IContaState state, String tipoConta) {
+    public ContaAbstrata(double saldo, String cpfTitular, IContaState state, String tipoConta) {
         this.saldo = saldo;
-        this.emailTitular = emailTitular;
+        this.cpfTitular = cpfTitular;
         this.estadoConta = state;
         this.nomeEstado = state.getStateName();
         this.tipoConta = tipoConta;
@@ -27,7 +27,7 @@ public abstract class ContaAbstrata implements IStorable {
         nomeEstado = estadoConta.getStateName();
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
     }
 
     public void creditar(double valor){
@@ -35,13 +35,13 @@ public abstract class ContaAbstrata implements IStorable {
 
         saldo += valor;
 
-        if(saldo >= 0 && estadoConta.getClass() != ContaPositiva.class) {
-            System.out.println("A conta agora está positivada");
+        if(saldo >= 0 && !nomeEstado.equals("positiva")) {
+            System.out.println("A conta agora está positiva");
             mudarEstado(new ContaPositiva());
         }
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
     }
 
     public void debitar(double valor){
@@ -49,13 +49,13 @@ public abstract class ContaAbstrata implements IStorable {
 
         saldo -= valor;
 
-        if(saldo < 0) {
+        if(saldo < 0 && !nomeEstado.equals("negativada")) {
             System.out.println("A conta agora está negativada");
             mudarEstado(new ContaNegativada());
         }
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(emailTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
     }
 
     public void deletarConta(){
@@ -74,7 +74,7 @@ public abstract class ContaAbstrata implements IStorable {
         return saldo;
     }
 
-    public String getEmailTitular() { return emailTitular; }
+    public String getCpfTitular() { return cpfTitular; }
 
     public String getNomeEstado() { return nomeEstado; }
 

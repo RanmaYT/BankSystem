@@ -1,17 +1,16 @@
 package Model;
 
-import SingletonRepositories.ExtratoRepository;
 import SingletonRepositories.IStorable;
 
 import java.util.List;
 
 public class ExtratoBancario implements IStorable {
     private List<OperacaoExtratavel> operacoesRealizadas;
-    private String emailTitular;
+    private String cpfTitular;
 
-    public ExtratoBancario(List<OperacaoExtratavel> tipoDeLista, String emailTitular) {
-        operacoesRealizadas = tipoDeLista;
-        this.emailTitular = emailTitular;
+    public ExtratoBancario(List<OperacaoExtratavel> listaDeOperacoes, String cpfTitular) {
+        this.operacoesRealizadas = listaDeOperacoes;
+        this.cpfTitular = cpfTitular;
     }
 
     public void adicionarOperacao(OperacaoExtratavel operacao){
@@ -22,8 +21,8 @@ public class ExtratoBancario implements IStorable {
         return operacoesRealizadas;
     }
 
-    public String getEmailTitular() {
-        return emailTitular;
+    public String getCpfTitular() {
+        return cpfTitular;
     }
 
 }

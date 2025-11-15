@@ -30,22 +30,22 @@ public class AdminService {
         contaService.criarConta(novoCliente, tipoConta);
     }
 
-    public UserDTO getUserInfo(String email){
+    public UserDTO getUserInfo(String cpf){
         // Fica dependente da classe concreta!
-        Cliente usuario = (Cliente) userRepo.pegarPorEmail(email);
+        Cliente usuario = (Cliente) userRepo.pegarPorCpf(cpf);
 
         UserDTO userDTO = usersMapper.userToDTO(usuario);
         return userDTO;
     }
 
-    public void bloquearCliente(String email) {
-        UsuarioAbstrato cliente = userRepo.pegarPorEmail(email);
+    public void bloquearCliente(String cpf) {
+        UsuarioAbstrato cliente = userRepo.pegarPorCpf(cpf);
 
         contaService.bloquearConta(cliente);
     }
 
-    public void desbloquearCliente(String email) {
-        UsuarioAbstrato cliente = userRepo.pegarPorEmail(email);
+    public void desbloquearCliente(String cpf) {
+        UsuarioAbstrato cliente = userRepo.pegarPorCpf(cpf);
 
         contaService.desbloquearConta(cliente);
     }

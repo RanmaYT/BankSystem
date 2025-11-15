@@ -25,7 +25,7 @@ public class ExtratoService {
             return null;
         }
 
-        ExtratoBancario extrato = extratoRepository.pegarPorTitular(conta.getEmailTitular());
+        ExtratoBancario extrato = extratoRepository.pegarPorTitular(conta.getCpfTitular());
 
         return extratoMapper.converterEmDTO(extrato);
     }

@@ -1,1 +1,0 @@
-{"rendaMensal":3000.0,"nome":"Rony","senha":"1234","email":"gmail.com","cpf":"1345240138","tipo":"Cliente"}

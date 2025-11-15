@@ -16,8 +16,8 @@ public class ExtratoRepository extends BaseRepositoryAbstract<ExtratoBancario> {
         return instance;
     }
 
-    public ExtratoBancario pegarPorTitular(String emailTitular) {
-        String linhaSalva = buscarLinhaComItem(emailTitular);
+    public ExtratoBancario pegarPorTitular(String cpf) {
+        String linhaSalva = buscarLinhaComItem(cpf);
 
         return carregarEntidade(linhaSalva);
     }
