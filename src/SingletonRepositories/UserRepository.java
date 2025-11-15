@@ -1,5 +1,6 @@
 package SingletonRepositories;
 
+import Exceptions.ItemNotFoundException;
 import Model.Admin;
 import Model.Cliente;
 import Model.UsuarioAbstrato;
@@ -18,13 +19,10 @@ public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
         return instance;
     }
 
-    public UsuarioAbstrato pegarPorCpf(String cpf){
+    public UsuarioAbstrato pegarPorCpf(String cpf) throws ItemNotFoundException {
         String linha = buscarLinhaComItem(cpf);
 
-        if(linha == null) {
-            System.out.println("Nenhum usuário foi encontrado");
-            return null;
-        }
+        if(linha == null) { throw new ItemNotFoundException("Nenhum usuário foi encontrado"); }
 
         return carregarEntidade(linha);
     }

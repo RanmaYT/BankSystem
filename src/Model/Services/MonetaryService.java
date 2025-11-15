@@ -77,9 +77,10 @@ public class MonetaryService {
         ContaAbstrata contaReceptor = contaRepo.pegarPorTitular(cpfReceptor);
 
         contaPagante.debitar(valorEnviado);
-        salvarNoExtrato(contaPagante.getCpfTitular(), "Pagamento para: " + UserRepository.getInstance().pegarPorCpf(contaReceptor.getCpfTitular()).getNome(), -valorEnviado);
-
         contaReceptor.creditar(valorEnviado);
+
+        // Salva no extrato apenas se as 2 operações foram um sucesso
+        salvarNoExtrato(contaPagante.getCpfTitular(), "Pagamento para: " + UserRepository.getInstance().pegarPorCpf(contaReceptor.getCpfTitular()).getNome(), -valorEnviado);
         salvarNoExtrato(contaReceptor.getCpfTitular(), "Pagamento de: " + UserRepository.getInstance().pegarPorCpf(contaPagante.getCpfTitular()).getNome(), valorEnviado);
     }
 

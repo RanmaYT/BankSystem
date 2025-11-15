@@ -1,5 +1,6 @@
 package Model;
 
+import Exceptions.OperacaoNaoConcluidaException;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.IStorable;
 import State.ContaEncerrada;
@@ -33,6 +34,10 @@ public abstract class ContaAbstrata implements IStorable {
     public void creditar(double valor){
         if(!estadoConta.podeCreditar()) { return; }
 
+        if(valor <= 0) {
+            throw new OperacaoNaoConcluidaException("Impossível creditar valores menores ou iguais a zero!");
+        }
+
         saldo += valor;
 
         if(saldo >= 0 && !nomeEstado.equals("positiva")) {
@@ -45,7 +50,11 @@ public abstract class ContaAbstrata implements IStorable {
     }
 
     public void debitar(double valor){
-        if(!estadoConta.podeDebitar()) { return; }
+        if(!estadoConta.podeDebitar()) { throw new OperacaoNaoConcluidaException("Impossível debitar!"); }
+
+        if(valor <= 0) {
+            throw new OperacaoNaoConcluidaException("Impossível debitar valores menores ou iguais a zero!");
+        }
 
         saldo -= valor;
 

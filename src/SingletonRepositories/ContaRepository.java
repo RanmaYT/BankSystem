@@ -1,5 +1,6 @@
 package SingletonRepositories;
 
+import Exceptions.ItemNotFoundException;
 import Factory.ContaFactory.ContaEstadoSimpleFactory;
 import Model.*;
 
@@ -18,9 +19,11 @@ public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     }
 
     public ContaAbstrata pegarPorTitular(String cpf){
-        String linhaConta = buscarLinhaComItem(cpf);
+        String linha = buscarLinhaComItem(cpf);
 
-        return carregarEntidade(linhaConta);
+        if(linha == null) { throw new ItemNotFoundException("Nenhum conta foi encontrado"); }
+
+        return carregarEntidade(linha);
     }
 
     @Override

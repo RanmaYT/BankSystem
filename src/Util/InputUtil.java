@@ -20,7 +20,7 @@ public class InputUtil {
         // Valida se é composto apenas por letras
         hasOnlyLetters = input.matches("[a-zA-Zá-ú ]+");
         if(!hasOnlyLetters) {
-            System.out.println(TextColor.RED_BOLD + "Esse campo aceita apenas letras");
+            System.out.println(TextColor.RED_BOLD + "Esse campo aceita apenas letras" + TextColor.ANSI_RESET);
             return "";
         }
 
@@ -45,12 +45,11 @@ public class InputUtil {
                 sc.nextLine();
 
                 return input;
-            } catch(InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 // Limpa o input em caso de erro, e printa uma mensagem
                 sc.nextLine();
-                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores inteiros");
+                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores inteiros" + TextColor.ANSI_RESET);
 
-                // Retorna um valor inválido para os contextos
                 continue;
             }
         }
@@ -72,7 +71,7 @@ public class InputUtil {
             } catch(InputMismatchException e) {
                 // Limpa o input em caso de erro, e printa uma mensagem
                 sc.nextLine();
-                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores flutuantes");
+                System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores flutuantes" + TextColor.ANSI_RESET);
             }
         }
     }

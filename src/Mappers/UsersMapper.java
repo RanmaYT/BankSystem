@@ -7,7 +7,7 @@ import Model.UsuarioAbstrato;
 
 public class UsersMapper {
     public UserDTO userToDTO(UsuarioAbstrato usuarioAbstrato) {
-        // FERE O PRINCIPIO DO OPEN/CLOSED
+        // FERE O PRINCIPIO DO OPEN/CLOSED E SRP
         switch (usuarioAbstrato.getTipo().toString()) {
             case "Cliente":
                 return new ClienteDTO((Cliente) usuarioAbstrato);

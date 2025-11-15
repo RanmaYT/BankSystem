@@ -1,5 +1,6 @@
 package Model;
 
+import Exceptions.OperacaoNaoConcluidaException;
 import State.IContaState;
 import Util.InputUtil;
 
@@ -38,7 +39,7 @@ public class ContaCorrente extends ContaAbstrata {
 
             // Oferecer a possibilidade de utilizar o cheque especial, repete enquanto uma entrada válida não for colocada
             while(escolha.isEmpty()) {
-                // conta não deveria receber entrada, gambiarra!
+                // ALERTA: CONTA NÃO DEVERIA RECEBER ENTRA (GAMBIARRA)
                 System.out.println("O saldo atual é insuficiente para a compra, é possível utilizar o cheque especial, seu saldo ficará negativado com um adicional de 10% do valor do cheque");
                 escolha = input.getAlphaInput("Usar (s/n): ");
             }
@@ -48,9 +49,11 @@ public class ContaCorrente extends ContaAbstrata {
 
             // Valida o que o usuário escolheu
             if(escolha.equals("s")) { usarChequeEspecial(valor); }
-            else { System.out.println("Operação cancelada: negou cheque especial!"); }
+            else {
+                throw new OperacaoNaoConcluidaException("Operação cancelada: cheque especial negado.");
+            }
         }
-        else { System.out.println("Saldo insuficiente para realizar a operação"); }
+        else { throw new OperacaoNaoConcluidaException("Operação cancelada: saldo insuficiente"); }
     }
 
     // Getters e Setters

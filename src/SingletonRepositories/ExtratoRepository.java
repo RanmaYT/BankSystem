@@ -1,5 +1,6 @@
 package SingletonRepositories;
 
+import Exceptions.ItemNotFoundException;
 import Model.ExtratoBancario;
 
 public class ExtratoRepository extends BaseRepositoryAbstract<ExtratoBancario> {
@@ -17,9 +18,11 @@ public class ExtratoRepository extends BaseRepositoryAbstract<ExtratoBancario> {
     }
 
     public ExtratoBancario pegarPorTitular(String cpf) {
-        String linhaSalva = buscarLinhaComItem(cpf);
+        String linha = buscarLinhaComItem(cpf);
 
-        return carregarEntidade(linhaSalva);
+        if(linha == null) { throw new ItemNotFoundException("Nenhum extrato foi encontrado"); }
+
+        return carregarEntidade(linha);
     }
 
     @Override

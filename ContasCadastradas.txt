@@ -1,0 +1,1 @@
+{"chequeEspecial":300.00000447034836,"saldo":146.0,"tipoConta":"Corrente","cpfTitular":"123","nomeEstado":"positiva"}
