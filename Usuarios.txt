@@ -1,0 +1,2 @@
+{"rendaMensal":3000.0,"nome":"Toin","senha":"12345","email":"toin@gmail.com","cpf":"144.444.444-56","tipo":"Cliente"}
+{"rendaMensal":4500.0,"nome":"Jucy","senha":"1234a","email":"jucy@gmail.com","cpf":"199.222.333-99","tipo":"Cliente"}

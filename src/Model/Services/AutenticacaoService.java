@@ -1,5 +1,6 @@
 package Model.Services;
 
+import Exceptions.CredenciaisInvalidaException;
 import Model.UsuarioAbstrato;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
@@ -12,12 +13,11 @@ public class AutenticacaoService {
         return senha.equals(user.getSenha());
     }
 
-    public boolean logIn(String cpf, String senha){
+    public void logIn(String cpf, String senha){
         if(verificarLogin(cpf, senha)) {
             SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorCpf(cpf));
             SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(cpf));
-            return true;
         }
-        else { return false; }
+        else { throw new CredenciaisInvalidaException("Credenciais inválidas"); }
     }
 }

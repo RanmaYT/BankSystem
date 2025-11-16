@@ -30,24 +30,12 @@ public class ContaService {
         this.contaMapper = contaMapper;
     }
 
-    public void criarConta(UsuarioAbstrato usuario, String tipoConta){
-        // Cria a factory baseada no tipo da conta, gambiarra?
-        IContaFactory contaFactory = switch (tipoConta) {
-            case "Corrente" -> new ContaCorrenteFactory();
-            case "Poupança" -> new ContaPoupancaFactory(); //
-            default -> null;
-        };
-
-        // Retorna caso o tipo de conta seja inválido.
-        if(contaFactory == null) {
-            throw new IllegalArgumentException("Tipo de conta inválido!");
-        }
-
+    public void criarConta(UsuarioAbstrato usuario, IContaFactory contaFactory){
         ContaAbstrata conta = contaFactory.criarConta(usuario);
 
         contaRepo.salvar(conta);
 
-        // Gambiarra: uso direto do extratoRepo, sem injeção de dependência;
+        // Alerta/Gambiarra: uso direto do extratoRepo, sem injeção de dependência;
         ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), usuario.getCpf());
         ExtratoRepository.getInstance().salvar(extrato);
     }

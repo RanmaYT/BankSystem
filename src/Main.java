@@ -1,5 +1,6 @@
 import Controller.AdminController;
 import Controller.ContaController;
+import Controller.UIController;
 import Mappers.ContaMapper;
 import Mappers.ExtratoMapper;
 import Mappers.UsersMapper;
@@ -10,10 +11,13 @@ import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
 import Strategy.EspeciePayment;
 import Util.InputUtil;
-import View.Menu;
+import View.View;
+
 
 public class Main {
     public static void main(String[] args) {
+        InputUtil input = new InputUtil();
+
         // Singletons
         UserRepository userRepo = UserRepository.getInstance();
         ContaRepository contaRepo = ContaRepository.getInstance();
@@ -29,10 +33,9 @@ public class Main {
         // Controllers
         AdminController adminController = new AdminController(adminService);
         ContaController contaController = new ContaController(contaService, monetaryService, extratoService);
+        UIController uiController = new UIController(input, adminController, contaController, new View());
 
-        InputUtil input = new InputUtil();
-        Menu menu = new Menu(input, adminController, contaController);
+        uiController.menuPrincipal();
 
-        menu.menuPrincipal();
     }
 }

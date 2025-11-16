@@ -1,6 +1,9 @@
 package Model.Services;
 
 import DTOs.UserDTOs.UserDTO;
+import Factory.ContaFactory.ContaCorrenteFactory;
+import Factory.ContaFactory.ContaPoupancaFactory;
+import Factory.ContaFactory.IContaFactory;
 import Factory.UserFactory.ClienteFactory;
 import Factory.UserFactory.IUserFactory;
 import Mappers.UsersMapper;
@@ -19,8 +22,19 @@ public class AdminService {
     }
 
     public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, String tipoConta) {
-        // TODO: FAZER SISTEMA DE VALIDAÇÕES (CPF DUPLICADO, EMAIL DUPLICADO...)
         IUserFactory userFactory = new ClienteFactory(rendaMensal);
+
+        // ALERTA: GAMBIARRA QUE RESULTA EM ACOPLAMENTO
+        IContaFactory contaFactory = switch (tipoConta) {
+            case "Corrente" -> new ContaCorrenteFactory();
+            case "Poupança" -> new ContaPoupancaFactory(); //
+            default -> null;
+        };
+
+        // Retorna caso o tipo de conta seja inválido.
+        if(contaFactory == null) {
+            throw new IllegalArgumentException("Tipo de conta inválido!");
+        }
 
         // Criar o objeto do cliente
         UsuarioAbstrato novoCliente = userFactory.criarUsuario(nome, senha, email, cpf);
@@ -29,7 +43,7 @@ public class AdminService {
         userRepo.salvar(novoCliente);
 
         // Cria uma conta para o cliente
-        contaService.criarConta(novoCliente, tipoConta);
+        contaService.criarConta(novoCliente, contaFactory);
     }
 
     public UserDTO getUserInfo(String cpf){

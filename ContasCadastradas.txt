@@ -1,0 +1,2 @@
+{"saldo":0.0,"tipoConta":"Poupança","cpf":"144.444.444-56","nomeEstado":"positiva"}
+{"chequeEspecial":450.00000670552254,"saldo":0.0,"tipoConta":"Corrente","cpf":"199.222.333-99","nomeEstado":"positiva"}
