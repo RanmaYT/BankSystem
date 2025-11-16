@@ -16,6 +16,8 @@ public class ExtratoBancarioDTO {
 
     @Override
     public String toString(){
+        if(operacoesRealizadas.isEmpty()) { return "O extrato está vazio"; }
+
         String textoFormatado = "";
 
         textoFormatado += "======================\n";

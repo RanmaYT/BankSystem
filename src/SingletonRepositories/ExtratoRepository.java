@@ -18,7 +18,7 @@ public class ExtratoRepository extends BaseRepositoryAbstract<ExtratoBancario> {
     }
 
     public ExtratoBancario pegarPorTitular(String cpf) {
-        String linha = buscarLinhaComItem(cpf);
+        String linha = buscarLinhaComItemPorCPF(cpf);
 
         if(linha == null) { throw new ItemNotFoundException("Nenhum extrato foi encontrado"); }
 

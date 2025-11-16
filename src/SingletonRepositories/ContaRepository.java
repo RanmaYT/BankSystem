@@ -19,7 +19,7 @@ public class ContaRepository extends BaseRepositoryAbstract<ContaAbstrata> {
     }
 
     public ContaAbstrata pegarPorTitular(String cpf){
-        String linha = buscarLinhaComItem(cpf);
+        String linha = buscarLinhaComItemPorCPF(cpf);
 
         if(linha == null) { throw new ItemNotFoundException("Nenhum conta foi encontrado"); }
 

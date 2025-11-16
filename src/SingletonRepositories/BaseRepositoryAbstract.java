@@ -20,12 +20,14 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
         }
     }
 
-    public String buscarLinhaComItem(String identificadorLinha) {
+    public String buscarLinhaComItemPorCPF(String cpfLinha) {
+        String textoBuscado = String.format("\"cpf\":\"%s\"", cpfLinha);
+
         // Lê o arquivo buscando a linha por um identificador
         try(BufferedReader leitor = new BufferedReader(new FileReader(getFileName()))) {
             String linhaAtual;
             while((linhaAtual = leitor.readLine()) != null){
-                if(linhaAtual.contains(identificadorLinha)) {
+                if(linhaAtual.contains(textoBuscado)) {
                     return linhaAtual;
                 }
             }
@@ -42,7 +44,7 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
     public void atualizarLinha(String identificadorLinhaAntiga, T entidade) {
         File arquivoOriginal = new File(getFileName());
         File arquivoTemporario = new File("tempFile.txt");
-        String linhaAntiga = buscarLinhaComItem(identificadorLinhaAntiga);
+        String linhaAntiga = buscarLinhaComItemPorCPF(identificadorLinhaAntiga);
 
         try(BufferedReader leitor = new BufferedReader(new FileReader(getFileName()))) {
             String linhaLida;

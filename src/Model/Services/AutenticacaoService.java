@@ -1,11 +1,23 @@
 package Model.Services;
 
+import Model.UsuarioAbstrato;
+import SingletonRepositories.ContaRepository;
+import SingletonRepositories.UserRepository;
+import SingletonSession.SessionManager;
+
 public class AutenticacaoService {
-    public boolean verificarLogin(String email, String senha) {
-        // Pegar o cliente cadastrado com aquele email
+    public boolean verificarLogin(String cpf, String senha) {
+        UsuarioAbstrato user = UserRepository.getInstance().pegarPorCpf(cpf);
 
-        // Verificar se a senha bate
+        return senha.equals(user.getSenha());
+    }
 
-        return false;
+    public boolean logIn(String cpf, String senha){
+        if(verificarLogin(cpf, senha)) {
+            SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorCpf(cpf));
+            SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(cpf));
+            return true;
+        }
+        else { return false; }
     }
 }

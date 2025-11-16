@@ -20,7 +20,7 @@ public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
     }
 
     public UsuarioAbstrato pegarPorCpf(String cpf) throws ItemNotFoundException {
-        String linha = buscarLinhaComItem(cpf);
+        String linha = buscarLinhaComItemPorCPF(cpf);
 
         if(linha == null) { throw new ItemNotFoundException("Nenhum usuário foi encontrado"); }
 

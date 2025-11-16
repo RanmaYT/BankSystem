@@ -11,13 +11,13 @@ import State.IContaState;
 public abstract class ContaAbstrata implements IStorable {
     private double saldo;
     private String tipoConta;
-    private String cpfTitular;
+    private String cpf;
     private String nomeEstado;
     private transient IContaState estadoConta;
 
-    public ContaAbstrata(double saldo, String cpfTitular, IContaState state, String tipoConta) {
+    public ContaAbstrata(double saldo, String cpf, IContaState state, String tipoConta) {
         this.saldo = saldo;
-        this.cpfTitular = cpfTitular;
+        this.cpf = cpf;
         this.estadoConta = state;
         this.nomeEstado = state.getStateName();
         this.tipoConta = tipoConta;
@@ -28,7 +28,7 @@ public abstract class ContaAbstrata implements IStorable {
         nomeEstado = estadoConta.getStateName();
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpf, this);
     }
 
     public void creditar(double valor){
@@ -46,7 +46,7 @@ public abstract class ContaAbstrata implements IStorable {
         }
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpf, this);
     }
 
     public void debitar(double valor){
@@ -64,7 +64,7 @@ public abstract class ContaAbstrata implements IStorable {
         }
 
         // GAMBIARRA MUITO LOUCA
-        ContaRepository.getInstance().atualizarLinha(cpfTitular, this);
+        ContaRepository.getInstance().atualizarLinha(cpf, this);
     }
 
     public void deletarConta(){
@@ -83,7 +83,7 @@ public abstract class ContaAbstrata implements IStorable {
         return saldo;
     }
 
-    public String getCpfTitular() { return cpfTitular; }
+    public String getCpf() { return cpf; }
 
     public String getNomeEstado() { return nomeEstado; }
 

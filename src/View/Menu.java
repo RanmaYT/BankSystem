@@ -9,6 +9,7 @@ import DTOs.UserDTOs.UserDTO;
 // Esses 3 aqui são gambiarra por enquanto
 import Exceptions.ItemNotFoundException;
 import Exceptions.OperacaoNaoConcluidaException;
+import Model.Services.AutenticacaoService;
 import SingletonRepositories.ContaRepository;
 import SingletonRepositories.UserRepository;
 import SingletonSession.SessionManager;
@@ -38,14 +39,23 @@ public class Menu {
                 switch (opcao) {
                     case 1:
                         String cpfCliente = input.getStringInput("Entre com seu cpf: ");
+                        String senhaCliente = input.getStringInput("Digite sua senha: ");
 
-                        // Gambiarra aqui, segurando o fio da realidade
-                        SessionManager.getInstance().setUsuarioLogado(UserRepository.getInstance().pegarPorCpf(cpfCliente));
-                        SessionManager.getInstance().setContaAtiva(ContaRepository.getInstance().pegarPorTitular(cpfCliente));
+                        // Gambiarra aqui, segurando o fio da realidade, o service não deveria conversar diretamente com o menu.
+                        AutenticacaoService authService = new AutenticacaoService();
+                        if(authService.logIn(cpfCliente, senhaCliente) == false) {
+                            System.out.println("Credenciais inválidas!");
+                            continue;
+                        }
 
                         menuPrincipalCliente();
                         break;
                     case 2:
+                        // Sistema simples de senha
+                        String passeChave = input.getStringInput("Entre com a senha de administração: ");
+
+                        if(passeChave.equals("123Bank"))
+
                         menuPrincipalAdmin();
                         break;
                     default:
@@ -120,17 +130,23 @@ public class Menu {
                 switch (opcao) {
                     case 1:
                         // Menu cadastro cliente
-                        System.out.println("=== Cadastro Cliente ===");
+                        try{
+                            System.out.println("=== Cadastro Cliente ===");
 
-                        // Pega os campos necessários
-                        String tipoConta = input.getAlphaInput("Tipo de conta (Poupança/Corrente): ");
-                        String nome = input.getAlphaInput("Nome: ");
-                        String senha = input.getStringInput("Senha: ");
-                        String email = input.getStringInput("Email: ");
-                        String cpf = input.getStringInput("CPF: ");
-                        double rendaMensal = input.getDoubleInput("Renda Mensal: ");
+                            // Pega os campos necessários
+                            String tipoConta = input.getAlphaInput("Tipo de conta (Poupança/Corrente): ");
+                            String nome = input.getAlphaInput("Nome: ");
+                            String senha = input.getStringInput("Senha: ");
+                            String email = input.getStringInput("Email: ");
+                            String cpf = input.getStringInput("CPF: ");
+                            double rendaMensal = input.getDoubleInput("Renda Mensal: ");
 
-                        adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);
+                            adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);
+                        }
+                        catch(IllegalArgumentException e) {
+                            System.out.println(TextColor.RED_BOLD + e.getMessage() + TextColor.ANSI_RESET);
+                        }
+
                         continue;
                     case 2:
                         String cpfBloqueio = input.getStringInput("Digite o cpf do cliente para bloquear a conta: ");
@@ -169,7 +185,7 @@ public class Menu {
             System.out.println("[4] Transferir para outra pessoa");
             System.out.println("[0] Voltar");
 
-            int opcao = input.getIntegerInput("|| ");
+            int opcao = input.getIntegerInput("--> ");
 
             try{
                 switch (opcao) {

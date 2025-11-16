@@ -11,7 +11,7 @@ public abstract class ContaDTO {
     public ContaDTO(ContaAbstrata conta) {
         this.saldo = conta.getSaldo();
         this.tipoConta = conta.getTipoConta();
-        this.cpfTitular = conta.getCpfTitular();
+        this.cpfTitular = conta.getCpf();
         this.estadoConta = conta.getNomeEstado();
     }
 

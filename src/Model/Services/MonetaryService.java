@@ -29,7 +29,7 @@ public class MonetaryService {
         conta.debitar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta.getCpfTitular(), "Saque", -valor );
+        salvarNoExtrato(conta.getCpf(), "Saque", -valor );
     }
 
     public void depositar(double valor){
@@ -39,7 +39,7 @@ public class MonetaryService {
         conta.creditar(valor);
 
         // Salvar a operação no extrato
-        salvarNoExtrato(conta.getCpfTitular(), "Depósito", valor);
+        salvarNoExtrato(conta.getCpf(), "Depósito", valor);
     }
 
     public void realizarPagamento(int opcaoPagamento, String itemPago, double valor) {
@@ -69,7 +69,7 @@ public class MonetaryService {
 
         // Salva a operação no extrato
         String nomeOperacao = "Pagamento: " + itemPago;
-        salvarNoExtrato(conta.getCpfTitular(), nomeOperacao, -valorFinalPago);
+        salvarNoExtrato(conta.getCpf(), nomeOperacao, -valorFinalPago);
     }
 
     public void pagarPessoa(String cpfReceptor, double valorEnviado){
@@ -80,8 +80,8 @@ public class MonetaryService {
         contaReceptor.creditar(valorEnviado);
 
         // Salva no extrato apenas se as 2 operações foram um sucesso
-        salvarNoExtrato(contaPagante.getCpfTitular(), "Pagamento para: " + UserRepository.getInstance().pegarPorCpf(contaReceptor.getCpfTitular()).getNome(), -valorEnviado);
-        salvarNoExtrato(contaReceptor.getCpfTitular(), "Pagamento de: " + UserRepository.getInstance().pegarPorCpf(contaPagante.getCpfTitular()).getNome(), valorEnviado);
+        salvarNoExtrato(contaPagante.getCpf(), "Pagamento para: " + UserRepository.getInstance().pegarPorCpf(contaReceptor.getCpf()).getNome(), -valorEnviado);
+        salvarNoExtrato(contaReceptor.getCpf(), "Pagamento de: " + UserRepository.getInstance().pegarPorCpf(contaPagante.getCpf()).getNome(), valorEnviado);
     }
 
     // TODO: MOVER PARA EXTRATO SERVICE DEPOIS
@@ -94,7 +94,7 @@ public class MonetaryService {
         extratoBancario.adicionarOperacao(operacaoExtratavel);
 
         // gambiarra: sem injeção de dependência e outras loucuras
-        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getCpfTitular(), extratoBancario);
+        ExtratoRepository.getInstance().atualizarLinha(extratoBancario.getCpf(), extratoBancario);
     }
 
 }

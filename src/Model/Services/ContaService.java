@@ -40,20 +40,14 @@ public class ContaService {
 
         // Retorna caso o tipo de conta seja inválido.
         if(contaFactory == null) {
-            System.out.println("Tipo de conta inválido");
-            return;
+            throw new IllegalArgumentException("Tipo de conta inválido!");
         }
 
         ContaAbstrata conta = contaFactory.criarConta(usuario);
 
-        if(conta == null) {
-            System.out.println("Falha ao criar conta");
-            return;
-        }
-
         contaRepo.salvar(conta);
 
-        // Gambiarra: uso direto do extrato, sem injeção de dependência;
+        // Gambiarra: uso direto do extratoRepo, sem injeção de dependência;
         ExtratoBancario extrato = new ExtratoBancario(new ArrayList<>(), usuario.getCpf());
         ExtratoRepository.getInstance().salvar(extrato);
     }

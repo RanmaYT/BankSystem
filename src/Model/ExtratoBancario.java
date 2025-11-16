@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ExtratoBancario implements IStorable {
     private List<OperacaoExtratavel> operacoesRealizadas;
-    private String cpfTitular;
+    private String cpf;
 
-    public ExtratoBancario(List<OperacaoExtratavel> listaDeOperacoes, String cpfTitular) {
+    public ExtratoBancario(List<OperacaoExtratavel> listaDeOperacoes, String cpf) {
         this.operacoesRealizadas = listaDeOperacoes;
-        this.cpfTitular = cpfTitular;
+        this.cpf = cpf;
     }
 
     public void adicionarOperacao(OperacaoExtratavel operacao){
@@ -21,8 +21,8 @@ public class ExtratoBancario implements IStorable {
         return operacoesRealizadas;
     }
 
-    public String getCpfTitular() {
-        return cpfTitular;
+    public String getCpf() {
+        return cpf;
     }
 
 }
