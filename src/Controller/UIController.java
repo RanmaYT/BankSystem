@@ -7,6 +7,7 @@ import Model.Services.AutenticacaoService;
 import SingletonSession.SessionManager;
 import Util.InputUtil;
 import View.View;
+import org.w3c.dom.Text;
 
 public class UIController {
     private InputUtil inputUtil;
@@ -64,7 +65,7 @@ public class UIController {
         while(true) {
             view.mostrarMenuCliente();
 
-            int opcao = inputUtil.getIntegerInput("|| ");
+            int opcao = inputUtil.getIntegerInput("--> ");
 
             try{
                 switch (opcao) {
@@ -106,7 +107,7 @@ public class UIController {
         while(true) {
             view.mostrarMenuAdministrador();
 
-            int opcao = inputUtil.getIntegerInput("|| ");
+            int opcao = inputUtil.getIntegerInput("--> ");
 
             try{
                 switch (opcao) {
@@ -117,10 +118,10 @@ public class UIController {
 
                             // Pega os campos necessários
                             String tipoConta = inputUtil.getAlphaInput("Tipo de conta (Poupança/Corrente): ");
-                            String nome = inputUtil.getAlphaInput("Nome: ");
-                            String senha = inputUtil.getStringInput("Senha: ");
+                            String nome = inputUtil.getNameInput("Nome: ");
+                            String senha = inputUtil.getPasswordInput("Senha: ");
                             String email = inputUtil.getStringInput("Email: ");
-                            String cpf = inputUtil.getStringInput("CPF: ");
+                            String cpf = inputUtil.getCPFInput("CPF: ");
                             double rendaMensal = inputUtil.getDoubleInput("Renda Mensal: ");
 
                             adminController.cadastrarCliente(nome, senha, email, cpf, rendaMensal, tipoConta);

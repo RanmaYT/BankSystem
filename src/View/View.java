@@ -7,13 +7,13 @@ import SingletonSession.SessionManager;
 
 public class View {
     public void mostrarMenuPrincipal() {
-        System.out.println("Como você deseja entrar:");
+        System.out.println(TextColor.WHITE_BOLD + "Como você deseja entrar:");
         System.out.println("[1] Cliente");
         System.out.println("[2] Administrador");
     }
 
     public void mostrarMenuCliente(){
-        System.out.printf("Escolha uma opção, %s\n", SessionManager.getInstance().getUsuarioLogado().getNome());
+        System.out.printf(TextColor.WHITE_BOLD +  "Escolha uma opção, %s\n", SessionManager.getInstance().getUsuarioLogado().getNome());
         System.out.println("[1] Ver informações da conta");
         System.out.println("[2] Menu de operações monetárias");
         System.out.println("[3] Ver Extrato");
@@ -22,7 +22,7 @@ public class View {
     }
 
     public void mostrarMenuAdministrador(){
-        System.out.println("Escolha uma opção:");
+        System.out.println(TextColor.WHITE_BOLD +  "Escolha uma opção:");
         System.out.println("[1] Cadastrar cliente");
         System.out.println("[2] Bloquear cliente");
         System.out.println("[3] Desbloquear cliente");
@@ -31,7 +31,7 @@ public class View {
     }
 
     public void mostrarMenuOperacaoFinanceira(){
-        System.out.println("Escolha uma operação monetária:");
+        System.out.println(TextColor.WHITE_BOLD + "Escolha uma operação monetária:");
         System.out.println("[1] Sacar");
         System.out.println("[2] Depositar");
         System.out.println("[3] Realizar pagamento");
@@ -40,20 +40,20 @@ public class View {
     }
 
     public void mostrarOpcoesPagamento(){
-        System.out.println("Como você quer pagar?");
+        System.out.println(TextColor.WHITE_BOLD + "Como você quer pagar?");
         System.out.println("[1] Espécie");
         System.out.println("[2] Internet Banking");
         System.out.println("[0] Voltar");
     }
 
     public void mostrarInfoUsuario(UserDTO userDTO){
-        System.out.println("================");
+        System.out.println(TextColor.WHITE_BOLD + "================");
         System.out.println(userDTO);
         System.out.println("================");
     }
 
     public void mostrarInfoConta(ContaDTO contaDTO) {
-        System.out.println("================");
+        System.out.println(TextColor.WHITE_BOLD + "================");
         System.out.println(contaDTO);
         System.out.println("================");
     }

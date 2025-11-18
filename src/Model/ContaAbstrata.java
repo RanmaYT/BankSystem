@@ -7,6 +7,7 @@ import State.ContaEncerrada;
 import State.ContaNegativada;
 import State.ContaPositiva;
 import State.IContaState;
+import View.TextColor;
 
 public abstract class ContaAbstrata implements IStorable {
     private double saldo;
@@ -35,13 +36,13 @@ public abstract class ContaAbstrata implements IStorable {
         if(!estadoConta.podeCreditar()) { return; }
 
         if(valor <= 0) {
-            throw new OperacaoNaoConcluidaException("Impossível creditar valores menores ou iguais a zero!");
+            throw new OperacaoNaoConcluidaException(TextColor.RED_BOLD + "Impossível creditar valores menores ou iguais a zero!");
         }
 
         saldo += valor;
 
         if(saldo >= 0 && !nomeEstado.equals("positiva")) {
-            System.out.println("A conta agora está positiva");
+            System.out.println(TextColor.GREEN_BOLD + "A conta agora está positiva");
             mudarEstado(new ContaPositiva());
         }
 
@@ -53,13 +54,13 @@ public abstract class ContaAbstrata implements IStorable {
         if(!estadoConta.podeDebitar()) { throw new OperacaoNaoConcluidaException("Impossível debitar!"); }
 
         if(valor <= 0) {
-            throw new OperacaoNaoConcluidaException("Impossível debitar valores menores ou iguais a zero!");
+            throw new OperacaoNaoConcluidaException(TextColor.RED_BOLD + "Impossível debitar valores menores ou iguais a zero!");
         }
 
         saldo -= valor;
 
         if(saldo < 0 && !nomeEstado.equals("negativada")) {
-            System.out.println("A conta agora está negativada");
+            System.out.println(TextColor.RED_BOLD + "A conta agora está negativada");
             mudarEstado(new ContaNegativada());
         }
 
@@ -71,7 +72,7 @@ public abstract class ContaAbstrata implements IStorable {
         if(!estadoConta.podeDeletarConta()) { return; }
 
         if(saldo != 0) {
-            System.out.println("A conta deve estar zerada para ser encerrada!");
+            System.out.println(TextColor.RED_BOLD + "A conta deve estar zerada para ser encerrada!");
             return;
         }
 
