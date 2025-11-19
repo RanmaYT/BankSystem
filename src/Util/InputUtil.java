@@ -13,24 +13,23 @@ public class InputUtil {
         boolean hasOnlyLetters = false;
         String input = "";
 
-        // Pegar o input
-        System.out.print(campoEntrada);
-        input = sc.nextLine();
+        while(!hasOnlyLetters) {
+            // Pegar o input
+            System.out.print(campoEntrada);
+            input = sc.nextLine();
 
-        // Valida se é composto apenas por letras
-        hasOnlyLetters = input.matches("[a-zA-Zá-úÁ-ÚÇç ]+");
-        if(!hasOnlyLetters) {
-            System.out.println(TextColor.RED_BOLD + "Esse campo aceita apenas letras" + TextColor.ANSI_RESET);
-            return "";
+            // Valida se é composto apenas por letras
+            hasOnlyLetters = input.matches("[a-zA-Zá-úÁ-ÚÇç ]+");
+            if (!hasOnlyLetters) {
+                System.out.println(TextColor.RED_BOLD + "Esse campo aceita apenas letras" + TextColor.ANSI_RESET);
+            }
         }
-
         return input;
     }
 
     public String getNameInput(String campoEntrada) {
         while (true) {
-            System.out.print(TextColor.WHITE_BOLD + campoEntrada);
-            String name = sc.nextLine().trim();
+            String name = getAlphaInput(TextColor.WHITE_BOLD + campoEntrada);
 
             //Verificação de letras maiúsculas e minúsculas
             String[] partesFormato = name.split("\\s+");
@@ -39,7 +38,7 @@ public class InputUtil {
             for (String p : partesFormato) {
                 String correto = p.substring(0,1).toUpperCase() + p.substring(1).toLowerCase();
 
-                //Só irá pegar se for escrito o nome inteiro maiusculo ou certo
+                //Só irá pegar se for escrito o nome inteiro minusculo ou certo
                 if (!p.equals(p.toLowerCase()) && !p.equals(correto)) {
                     formatoInvalido = true;
                     break;
@@ -50,13 +49,6 @@ public class InputUtil {
                 System.out.println(TextColor.RED_BOLD + "Formato inválido.");
                 continue;
             }
-
-            // aqui faz a validação de apenas letras e espaços
-            if (!name.matches("[a-zA-Zá-úÁ-ÚçÇ ]+")) {
-                System.out.println(TextColor.RED_BOLD + "Use apenas letras e espaços.");
-                continue;
-            }
-
             // quebra em partes
             String[] partes = name.split("\\s+");
             boolean valido = true;
@@ -68,15 +60,6 @@ public class InputUtil {
                     System.out.println(TextColor.RED_BOLD + "Cada nome deve ter pelo menos 3 letras.");
                     valido = false;
                     break;
-                }
-
-                // impede os nomes colados
-                for (int i = 1; i < p.length(); i++) {
-                    if (Character.isUpperCase(p.charAt(i))) {
-                        System.out.println(TextColor.RED_BOLD + "Separe nome e sobrenome com espaço.");
-                        valido = false;
-                        break;
-                    }
                 }
             }
 
@@ -107,6 +90,21 @@ public class InputUtil {
         }
     }
 
+    public String getEmailInput(String campoEntrada){
+        String email;
+
+        while(true){
+            System.out.print(TextColor.WHITE_BOLD + campoEntrada);
+            email = sc.nextLine().trim();
+
+            if(!email.matches("^[A-Za-z]{3,}[A-Za-z0-9]*@(gmail\\.com|outlook\\.com)&")){
+                System.out.println(TextColor.RED_BOLD + "E-mail inválido. Ele deve ter no mínimo 3 letras e terminar com @gmail.com ou @outlook.com");
+                continue;
+            }
+            return email;
+        }
+    }
+
     public String getStringInput(String campoEntrada){
         System.out.print(campoEntrada);
         String input = sc.nextLine();
@@ -117,7 +115,7 @@ public class InputUtil {
         String senha;
 
         while (true) {
-            System.out.print(campoEntrada);
+            System.out.print(TextColor.WHITE_BOLD + campoEntrada);
             senha = sc.nextLine().trim();
 
             // Tem que ter exatamente 6 dígitos

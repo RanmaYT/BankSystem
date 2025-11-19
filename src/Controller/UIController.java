@@ -120,7 +120,7 @@ public class UIController {
                             String tipoConta = inputUtil.getAlphaInput("Tipo de conta (Poupança/Corrente): ");
                             String nome = inputUtil.getNameInput("Nome: ");
                             String senha = inputUtil.getPasswordInput("Senha: ");
-                            String email = inputUtil.getStringInput("Email: ");
+                            String email = inputUtil.getEmailInput("Email: ");
                             String cpf = inputUtil.getCPFInput("CPF: ");
                             double rendaMensal = inputUtil.getDoubleInput("Renda Mensal: ");
 
