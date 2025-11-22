@@ -8,6 +8,23 @@ public abstract class BaseRepositoryAbstract<T extends IStorable>{
     // Gambiarra: Mudar para injeção de dependência?
     protected Gson gson = new Gson();
 
+    public boolean itemJaExiste(String identificadorItem) {
+        // Lê o arquivo buscando a linha por um identificador
+        try(BufferedReader leitor = new BufferedReader(new FileReader(getFileName()))) {
+            String linhaAtual;
+            while((linhaAtual = leitor.readLine()) != null){
+                if(linhaAtual.contains(identificadorItem)) {
+                    return true;
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public void salvar(T entidade) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(getFileName(), true))) {
             String entidadeJson = gson.toJson(entidade);

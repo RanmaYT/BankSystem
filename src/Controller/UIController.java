@@ -56,7 +56,7 @@ public class UIController {
                 }
             }
             catch(Exception e) {
-                view.exibirMensagem(e.getMessage());
+                view.exibirErro(e.getMessage());
             }
         }
     }
@@ -98,7 +98,7 @@ public class UIController {
                 }
             }
             catch(Exception e) {
-                view.exibirMensagem(e.getMessage());
+                view.exibirErro(e.getMessage());
             }
         }
     }
@@ -152,7 +152,7 @@ public class UIController {
 
             }
             catch(Exception e) {
-                view.exibirMensagem(e.getMessage());
+                view.exibirErro(e.getMessage());
             }
         }
     }
@@ -207,7 +207,7 @@ public class UIController {
                 }
             }
             catch(Exception e) {
-                view.exibirMensagem(e.getMessage());
+                view.exibirErro(e.getMessage());
             }
         }
     }

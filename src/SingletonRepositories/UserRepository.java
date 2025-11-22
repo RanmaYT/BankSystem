@@ -5,11 +5,25 @@ import Model.Admin;
 import Model.Cliente;
 import Model.UsuarioAbstrato;
 
+import java.io.File;
+import java.io.IOException;
+
 public class UserRepository extends BaseRepositoryAbstract<UsuarioAbstrato> {
     private static UserRepository instance;
     private static final String fileName = "Usuarios.txt";
 
-    private UserRepository() {}
+    private UserRepository() {
+        File file = new File(fileName);
+
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static UserRepository getInstance(){
         if(instance == null) {

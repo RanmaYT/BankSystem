@@ -97,7 +97,7 @@ public class InputUtil {
             System.out.print(TextColor.WHITE_BOLD + campoEntrada);
             email = sc.nextLine().trim();
 
-            if(!email.matches("^[A-Za-z]{3,}[A-Za-z0-9]*@(gmail\\.com|outlook\\.com)&")){
+            if(!email.matches("^[A-Za-z]{3,}[A-Za-z0-9]*@(gmail\\.com|outlook\\.com)$")){
                 System.out.println(TextColor.RED_BOLD + "E-mail inválido. Ele deve ter no mínimo 3 letras e terminar com @gmail.com ou @outlook.com");
                 continue;
             }
@@ -108,7 +108,7 @@ public class InputUtil {
     public String getStringInput(String campoEntrada){
         System.out.print(campoEntrada);
         String input = sc.nextLine();
-        return  input;
+        return input;
     }
 
     public String getPasswordInput(String campoEntrada) {

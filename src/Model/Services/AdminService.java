@@ -39,6 +39,13 @@ public class AdminService {
         // Criar o objeto do cliente
         UsuarioAbstrato novoCliente = userFactory.criarUsuario(nome, senha, email, cpf);
 
+        // Valida o cliente criado
+        boolean clienteValido = UserValidationService.usuarioValido(novoCliente, userRepo);
+
+        if(!clienteValido) {
+            throw new RuntimeException("CPF ou Email já foram cadastrados");
+        }
+
         // Salvar esse objeto no hashmap do repositório
         userRepo.salvar(novoCliente);
 
