@@ -1,0 +1,3 @@
+{"operacoesRealizadas":[],"cpf":"12313212300"}
+{"operacoesRealizadas":[],"cpf":"77689954699"}
+{"operacoesRealizadas":[],"cpf":"76745699900"}

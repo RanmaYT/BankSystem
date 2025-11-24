@@ -190,9 +190,8 @@ public class InputUtil {
                 double valor = Double.parseDouble(input);
 
                 return valor;
-            } catch(InputMismatchException e) {
-                // Limpa o input em caso de erro, e printa uma mensagem
-                sc.nextLine();
+
+            } catch(NumberFormatException e) {
                 System.out.println(TextColor.RED_BOLD + "Esse campo só aceita valores flutuantes" + TextColor.ANSI_RESET);
             }
         }

@@ -10,6 +10,7 @@ public class View {
         System.out.println(TextColor.WHITE_BOLD + "Como você deseja entrar:");
         System.out.println("[1] Cliente");
         System.out.println("[2] Administrador");
+        System.out.println("[0] Sair");
     }
 
     public void mostrarMenuCliente(){

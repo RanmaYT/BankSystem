@@ -25,7 +25,7 @@ public class UIController {
     public void menuPrincipal() {
         while(true) {
             view.mostrarMenuPrincipal();
-            int opcao = inputUtil.getIntegerInput("|| ");
+            int opcao = inputUtil.getIntegerInput("---> ");
 
             try {
                 switch (opcao) {
@@ -50,6 +50,10 @@ public class UIController {
 
                         menuAdministrador();
                         break;
+
+                    case 0:
+                        System.exit(0);
+
                     default:
                         view.exibirErro("Valor inválido!");
                         break;
