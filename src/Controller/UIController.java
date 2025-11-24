@@ -1,13 +1,10 @@
 package Controller;
 
-import Exceptions.CredenciaisInvalidaException;
-import Exceptions.ItemNotFoundException;
-import Exceptions.OperacaoNaoConcluidaException;
 import Model.Services.AutenticacaoService;
 import SingletonSession.SessionManager;
 import Util.InputUtil;
 import View.View;
-import org.w3c.dom.Text;
+import View.TextColor;
 
 public class UIController {
     private InputUtil inputUtil;
@@ -83,7 +80,7 @@ public class UIController {
                         view.mostrarExtrato(contaController.pegarExtrato());
                         continue;
                     case 4:
-                        view.exibirMensagem("Essa ação é irreversível");
+                        view.exibirMensagem(TextColor.RED_BOLD + "Essa ação é irreversível" + TextColor.ANSI_RESET);
                         String confirmacao = inputUtil.getStringInput("Digite seu cpf para confirmar");
 
                         // Uso do Singleton aumenta o acoplamento
@@ -94,7 +91,7 @@ public class UIController {
 
                         contaController.cancelarConta();
                     case 0:
-                        view.exibirMensagem("Saindo do menu de clientes");
+                        view.exibirMensagem(TextColor.BLUE_BOLD + "Saindo do menu de clientes" + TextColor.ANSI_RESET);
                         return;
                     default:
                         view.exibirErro("Valor inválido!");

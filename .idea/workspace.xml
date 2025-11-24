@@ -7,8 +7,6 @@
     <list default="true" id="c1a9983f-90b4-45e4-962f-662fe9c8574d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Util/InputUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util/InputUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
