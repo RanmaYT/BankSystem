@@ -24,6 +24,8 @@ public class AdminService {
     public void cadastrarCliente(String nome, String senha, String email, String cpf, double rendaMensal, String tipoConta) {
         IUserFactory userFactory = new ClienteFactory(rendaMensal);
 
+        tipoConta = tipoConta.substring(0, 1).toUpperCase() + tipoConta.substring(1, tipoConta.length()).toLowerCase();
+
         // ALERTA: GAMBIARRA QUE RESULTA EM ACOPLAMENTO
         IContaFactory contaFactory = switch (tipoConta) {
             case "Corrente" -> new ContaCorrenteFactory();
