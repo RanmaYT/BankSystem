@@ -48,7 +48,7 @@ public class ContaService {
     public void bloquearConta(UsuarioAbstrato cliente) {
         ContaAbstrata conta = contaRepo.pegarPorTitular(cliente.getCpf());
 
-        if(!conta.getNomeEstado().equals("bloqueada")) {
+        if(conta.getNomeEstado().equals("bloqueada")) {
             System.out.println("Essa conta já está bloqueada");
             return;
         }
